@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:mime="http://www.w3.org/2005/05/xmlmime" xmlns:tns="http://ve.tecno.afip.gov.ar/domain/service/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="http://core.tecno.afip.gov.ar/model/ws/types" xmlns:vewst="http://ve.tecno.afip.gov.ar/domain/service/ws/types" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:vews="http://ve.tecno.afip.gov.ar/domain/service/ws" name="VEConsumerService" targetNamespace="http://ve.tecno.afip.gov.ar/domain/service/ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://ve.tecno.afip.gov.ar/domain/service/ws/types" xmlns:vewst="http://ve.tecno.afip.gov.ar/domain/service/ws/types" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ve.tecno.afip.gov.ar/domain/service/ws/types">
+      <xs:element name="Adjunto" type="vews:adjunto" />
+      <xs:element name="Adjuntos" type="tns:Adjuntos" />
+      <xs:element name="Comunicacion" type="tns:Comunicacion" />
+      <xs:element name="ComunicacionSimplificada" type="tns:ComunicacionSimplificada" />
+      <xs:element name="Estado" type="tns:Estado" />
+      <xs:element name="Estados" type="tns:Estados" />
+      <xs:element name="Items" type="tns:Items" />
+      <xs:element name="Sistema" type="tns:Sistema" />
+      <xs:element name="SistemasPublicadores" type="tns:SistemasPublicadores" />
+      <xs:element name="Subservicio" type="tns:Subservicio" />
+      <xs:element name="Subservicios" type="tns:Subservicios" />
+      <xs:element name="VentanillaWSFault" type="tns:VentanillaWSFault" />
+      <xs:complexType name="RequestConsultarComunicaciones">
+        <xs:sequence>
+          <xs:element name="authRequest" type="core:AuthRequest" />
+          <xs:element name="filter" type="tns:Filter" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Filter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:int" />
+          <xs:element name="fechaDesde" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaHasta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="comunicacionIdDesde" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="comunicacionIdHasta" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="tieneAdjunto" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="sistemaPublicadorId" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" default="1" name="pagina" type="xs:int" />
+          <xs:element minOccurs="0" name="resultadosPorPagina" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="referencia1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="referencia2" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="VentanillaWSFault">
+        <xs:sequence>
+          <xs:element name="faultCode" type="xs:int" />
+          <xs:element name="faultMessage" type="xs:string" />
+          <xs:element name="category" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="possibleSolutions" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RespuestaPaginada">
+        <xs:sequence>
+          <xs:element name="pagina" type="xs:int" />
+          <xs:element name="totalPaginas" type="xs:int" />
+          <xs:element name="itemsPorPagina" type="xs:int" />
+          <xs:element name="totalItems" type="xs:int" />
+          <xs:element form="qualified" name="items" type="tns:Items" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Items">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="tns:ComunicacionSimplificada" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DummyResult">
+        <xs:sequence>
+          <xs:element name="dbserver" type="xs:string" />
+          <xs:element name="appserver" type="xs:string" />
+          <xs:element name="authserver" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ComunicacionSimplificada">
+        <xs:sequence>
+          <xs:element name="idComunicacion" type="xs:long" />
+          <xs:element name="cuitDestinatario" type="xs:long" />
+          <xs:element name="fechaPublicacion" type="xs:string" />
+          <xs:element minOccurs="0" name="fechaVencimiento" type="xs:string" />
+          <xs:element name="sistemaPublicador" type="xs:long" />
+          <xs:element name="sistemaPublicadorDesc" type="xs:string" />
+          <xs:element name="estado" type="xs:int" />
+          <xs:element name="estadoDesc" type="xs:string" />
+          <xs:element name="asunto" type="xs:string" />
+          <xs:element name="prioridad" type="xs:int" />
+          <xs:element name="tieneAdjunto" type="xs:boolean" />
+          <xs:element minOccurs="0" name="referencia1" type="xs:string" />
+          <xs:element minOccurs="0" name="referencia2" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequestConsultarSistemasPublicadores">
+        <xs:sequence>
+          <xs:element name="authRequest" type="core:AuthRequest" />
+          <xs:element minOccurs="0" name="idSistemaPublicador" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SistemasPublicadores">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="tns:Sistema" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Sistema">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="descripcion" type="xs:string" />
+          <xs:element minOccurs="0" name="certCNs" type="xs:string" />
+          <xs:element minOccurs="0" form="qualified" name="subservicios" type="tns:Subservicios" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Subservicios">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="tns:Subservicio" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Subservicio">
+        <xs:sequence>
+          <xs:element name="nombre" type="xs:string" />
+          <xs:element name="descripcion" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequestConsumirComunicacion">
+        <xs:sequence>
+          <xs:element name="authRequest" type="core:AuthRequest" />
+          <xs:element name="idComunicacion" type="xs:long" />
+          <xs:element minOccurs="0" name="incluirAdjuntos" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Comunicacion">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ComunicacionSimplificada">
+            <xs:sequence>
+              <xs:element name="mensaje" type="xs:string" />
+              <xs:element name="tiempoDeVida" type="xs:int" />
+              <xs:element form="qualified" name="adjuntos" type="tns:Adjuntos" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Adjuntos">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="adjunto" type="vews:adjunto" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequestConsultarEstados">
+        <xs:sequence>
+          <xs:element name="authRequest" type="core:AuthRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Estados">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="tns:Estado" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Estado">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long" />
+          <xs:element name="descripcion" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarComunicaciones" nillable="true" type="tns:RequestConsultarComunicaciones" />
+      <xs:element name="consultarSistemasPublicadores" nillable="true" type="tns:RequestConsultarSistemasPublicadores" />
+      <xs:element name="consumirComunicacion" nillable="true" type="tns:RequestConsumirComunicacion" />
+      <xs:element name="consultarEstados" nillable="true" type="tns:RequestConsultarEstados" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://ve.tecno.afip.gov.ar/domain/service/ws" xmlns="http://ve.tecno.afip.gov.ar/domain/service/ws" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ve.tecno.afip.gov.ar/domain/service/ws">
+      <xs:element name="AuthRequest" type="core:AuthRequest" />
+      <xs:element name="Filter" type="vewst:Filter" />
+      <xs:element name="RequestConsultarComunicaciones" type="vewst:RequestConsultarComunicaciones" />
+      <xs:element name="RequestConsultarEstados" type="vewst:RequestConsultarEstados" />
+      <xs:element name="RequestConsultarSistemasPublicadores" type="vewst:RequestConsultarSistemasPublicadores" />
+      <xs:element name="RequestConsumirComunicacion" type="vewst:RequestConsumirComunicacion" />
+      <xs:element name="RespuestaPaginada" type="vewst:RespuestaPaginada" />
+      <xs:complexType name="adjunto">
+        <xs:sequence>
+          <xs:element name="filename" type="xs:string" />
+          <xs:element mime:expectedContentTypes="application/octet-stream" minOccurs="0" name="content" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="compressed" type="xs:boolean" />
+          <xs:element minOccurs="0" name="signed" type="xs:boolean" />
+          <xs:element minOccurs="0" name="encrypted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="processed" type="xs:boolean" />
+          <xs:element minOccurs="0" name="public" type="xs:boolean" />
+          <xs:element minOccurs="0" name="md5" type="xs:string" />
+          <xs:element name="contentSize" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarComunicacionesResponse" type="vews:consultarComunicacionesResponse" />
+      <xs:complexType name="consultarComunicacionesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="RespuestaPaginada" type="vewst:RespuestaPaginada" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarSistemasPublicadoresResponse" type="vews:consultarSistemasPublicadoresResponse" />
+      <xs:complexType name="consultarSistemasPublicadoresResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="Sistemas" type="vewst:SistemasPublicadores" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="dummy" type="vews:dummy" />
+      <xs:complexType name="dummy">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:element name="dummyResponse" type="vews:dummyResponse" />
+      <xs:complexType name="dummyResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="DummyResult" type="vewst:DummyResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consumirComunicacionResponse" type="vews:consumirComunicacionResponse" />
+      <xs:complexType name="consumirComunicacionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="Comunicacion" type="vewst:Comunicacion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarEstadosResponse" type="vews:consultarEstadosResponse" />
+      <xs:complexType name="consultarEstadosResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="Estados" type="vewst:Estados" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://ve.tecno.afip.gov.ar/domain/service/ws" targetNamespace="http://core.tecno.afip.gov.ar/model/ws/types">
+      <xs:complexType name="AuthRequest">
+        <xs:sequence>
+          <xs:element form="qualified" name="token" type="xs:string" />
+          <xs:element form="qualified" name="sign" type="xs:string" />
+          <xs:element form="qualified" name="cuitRepresentada" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="consultarComunicaciones">
+    <wsdl:part name="parameters" element="vewst:consultarComunicaciones" />
+  </wsdl:message>
+  <wsdl:message name="consultarEstadosResponse">
+    <wsdl:part name="parameters" element="vews:consultarEstadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarSistemasPublicadoresResponse">
+    <wsdl:part name="parameters" element="vews:consultarSistemasPublicadoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="consumirComunicacion">
+    <wsdl:part name="parameters" element="vewst:consumirComunicacion" />
+  </wsdl:message>
+  <wsdl:message name="consultarEstados">
+    <wsdl:part name="parameters" element="vewst:consultarEstados" />
+  </wsdl:message>
+  <wsdl:message name="dummy">
+    <wsdl:part name="parameters" element="vews:dummy" />
+  </wsdl:message>
+  <wsdl:message name="consultarSistemasPublicadores">
+    <wsdl:part name="parameters" element="vewst:consultarSistemasPublicadores" />
+  </wsdl:message>
+  <wsdl:message name="VentanillaWSFault">
+    <wsdl:part name="VentanillaWSFault" element="vewst:VentanillaWSFault" />
+  </wsdl:message>
+  <wsdl:message name="consultarComunicacionesResponse">
+    <wsdl:part name="parameters" element="vews:consultarComunicacionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="dummyResponse">
+    <wsdl:part name="parameters" element="vews:dummyResponse" />
+  </wsdl:message>
+  <wsdl:message name="consumirComunicacionResponse">
+    <wsdl:part name="parameters" element="vews:consumirComunicacionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="VEConsumer">
+    <wsdl:operation name="consultarComunicaciones">
+      <wsdl:input name="consultarComunicaciones" message="vews:consultarComunicaciones" />
+      <wsdl:output name="consultarComunicacionesResponse" message="vews:consultarComunicacionesResponse" />
+      <wsdl:fault name="VentanillaWSFault" message="vews:VentanillaWSFault" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarSistemasPublicadores">
+      <wsdl:input name="consultarSistemasPublicadores" message="vews:consultarSistemasPublicadores" />
+      <wsdl:output name="consultarSistemasPublicadoresResponse" message="vews:consultarSistemasPublicadoresResponse" />
+      <wsdl:fault name="VentanillaWSFault" message="vews:VentanillaWSFault" />
+    </wsdl:operation>
+    <wsdl:operation name="dummy">
+      <wsdl:input name="dummy" message="vews:dummy" />
+      <wsdl:output name="dummyResponse" message="vews:dummyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consumirComunicacion">
+      <wsdl:input name="consumirComunicacion" message="vews:consumirComunicacion" />
+      <wsdl:output name="consumirComunicacionResponse" message="vews:consumirComunicacionResponse" />
+      <wsdl:fault name="VentanillaWSFault" message="vews:VentanillaWSFault" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarEstados">
+      <wsdl:input name="consultarEstados" message="vews:consultarEstados" />
+      <wsdl:output name="consultarEstadosResponse" message="vews:consultarEstadosResponse" />
+      <wsdl:fault name="VentanillaWSFault" message="vews:VentanillaWSFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VEConsumerServiceSoapBinding" type="vews:VEConsumer">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="consultarComunicaciones">
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VentanillaWSFault">
+        <soap12:fault use="literal" name="VentanillaWSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="consultarSistemasPublicadores">
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VentanillaWSFault">
+        <soap12:fault use="literal" name="VentanillaWSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="dummy">
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarEstados">
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VentanillaWSFault">
+        <soap12:fault use="literal" name="VentanillaWSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="consumirComunicacion">
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VentanillaWSFault">
+        <soap12:fault use="literal" name="VentanillaWSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VEConsumerService">
+    <wsdl:port name="VEConsumerPort" binding="vews:VEConsumerServiceSoapBinding">
+      <soap12:address location="https://infraestructura.afip.gob.ar/ve-ws/services/veconsumer" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

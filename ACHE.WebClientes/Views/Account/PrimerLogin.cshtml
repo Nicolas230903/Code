@@ -1,0 +1,132 @@
+﻿@model ACHE.WebClientes.Models.PrimerLoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ar">
+<head id="Head1" runat="server">
+    <title>Contabilium.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link href="/css/style.default.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css' />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="horizontal-menu stickyheader">
+    <div id="preloader">
+        <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+    </div>
+    <section>
+        <div class="mainpanel">
+            <div class="headerbar">
+                <div class="header-left">
+                    <div class="logopanel">
+                        <img src="/images/logo-inside.png" alt="contabilium" />
+                    </div>
+                    <div class="topnav">
+                        <ul class="nav nav-horizontal">
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <ul class="headermenu">
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <img src="/files/personas/no-photo.png" alt="" />
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                                    <li><a href="@Url.Action("CambiarPwd", "Account")"><i class="fa fa-key"></i><span>Cambiar contraseña</span></a></li>
+                                    @*<li><a href="#" data-toggle="modal" data-target="#modalAyuda"><i class="fa fa-question-circle"></i><span>Ayuda</span></a></li>*@
+                                    <li><a href="@Url.Action("LogOut", "Account")"><i class="fa fa-sign-out"></i><span>Cerrar sesión</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pageheader">
+                <h2><i class="fa fa-key"></i>Establecer contraseña</h2>
+                <div class="breadcrumb-wrapper">
+                    <span class="label">Estás aquí:</span>
+                    <ol class="breadcrumb">
+                        <li><a href="@Url.Action("Index", "Home")">Contabilium</a></li>
+                        <li class="active">Cambiar contraseña</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="contentpanel">
+                <div class="row mb15">
+                    <form id="frmEdicion" runat="server" class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>
+                                    Por favor, crea tu contraseña para poder acceder a visualizar todos tus comprobantes.
+                                </p>
+                                <div class="alert alert-danger" id="divError" style="display: none">
+                                    <strong>Lo sentimos! <span id="msgError" /></strong>
+                                </div>
+                                @*<div class="alert alert-success" id="divOk" style="display: none">
+                                    <strong>Bien hecho! </strong>Los datos se han actualizado correctamente
+                                    <label id="lblOk" style="color: green;">Su contraseña ha sido guardada correctamente, debera usarla para loguearse</label>
+                                </div>*@
+                                <div class="row mb15">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label"><span class="asterisk">*</span> Contraseña</label>
+                                            <input type="password" id="txtPwd" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb15">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label"><span class="asterisk">*</span> Confirmar contraseña</label>
+                                            <input type="password" id="txtPwd2" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <a class="btn btn-primary" onclick="validarPwd(@ViewBag.IdLogin);return false;">Continuar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/js/jquery-ui-1.10.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/modernizr.min.js"></script>
+    <script src="/js/toggles.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/views/common.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtPwd, #txtPwd2").keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if (keycode == '13') {
+                    validarPwd(@ViewBag.IdLogin);
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

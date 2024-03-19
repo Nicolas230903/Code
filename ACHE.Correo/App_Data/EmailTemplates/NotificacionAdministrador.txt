@@ -1,0 +1,131 @@
+﻿<table cellspacing="0" cellpadding="0" border="0" style="color:#333;background:#fff;padding:0;margin:0;width:100%;font:15px/1.25em 'Helvetica Neue',Arial,Helvetica"> 
+	<tbody>
+		<tr width="100%"> 
+			<td valign="top" align="left" style="background:#f0f0f0;font:15px/1.25em 'Helvetica Neue',Arial,Helvetica"> 
+				<table style="border:none;padding:0 18px;margin:50px auto;width:500px"> 
+					<tbody>
+						<tr width="100%" height="57"> 
+							<td valign="top" align="left" style="border-top-left-radius:4px;border-top-right-radius:4px;background:#00A19C;padding:12px 18px;text-align:center">
+								<img height="57" src="http://app.contabilium.com/images/logo-mail-verde.png" title="Contabilium" /> 
+							</td> 
+						</tr>
+						<tr width="100%"> 
+							<td valign="top" align="left" style="border-bottom-left-radius:4px;border-bottom-right-radius:4px;background:#fff;padding:18px">
+								<h1 style="font-size:20px;margin:0;color:#333">
+									Estimado Administrador, 
+								</h1>
+								<p style="font:15px/1.25em 'Helvetica Neue',Arial,Helvetica;color:#333">
+
+								<b>Notificacion 2 Dias:</b>
+									<br/><br/>
+									Cantidad de correos a enviar: <TOTALCORREOSDOSDIAS>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSDOSDIAS>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSDOSDIAS>
+									<br /><br/>
+								<b>Notificacion 2 Semanas:</b>
+									<br/><br/>
+									Cantidad de correos a enviar: <TOTALCORREOSDOSSEMANAS>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSDOSSEMANAS>
+									<br />	
+									Datos de los usuarios:
+									<br /><br/>
+									<DATOSUSUARIOSDOSDOSSEMANAS>
+									<br /><br/>
+								<b>Notificacion Fin DEMO:</b>
+									<br/><br/>
+									Cantidad de correos a enviar: <TOTALCORREOSVEITICINCODIAS>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSVEITICINCODIAS>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSVEITICINCODIAS>
+									<br /><br/>
+								    <b>Notificacion Vencimiento plan pago:</b>
+									<br/><br/>
+									Cantidad de correos a enviar: <TOTALCORREOSCINCODIASVENCIMIENTOS>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSCINCODIASVENCIMIENTOS>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSCINCODIASVENCIMIENTOS>
+									<br/><br/>
+
+									<b>Notificacion Cheques a vencer:</b>
+									<br/><br/>
+									Cantidad de correos a enviar: <TOTALCORREOSCHEQUESACOBRAR>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSCHEQUESACOBRAR>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSCHEQUESACOBRAR>
+									<br /><br/>
+
+									<b>Notificacion cheques vencidos:</b>
+									<br/><br/>
+									Cantidad de correos a enviar: <TOTALCORREOSCHEQUESAVENCER>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSCHEQUESAVENCER>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSCHEQUESAVENCER>
+									<br /><br/>
+
+									<b>Avisos vencimientos de comprobantes:</b>
+									<br/>
+									<b>Primer aviso:</b>
+									<br/>
+									Cantidad de correos a enviar: <TOTALCORREOSPRIMERAVISO>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSPRIMERAVISO>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSPRIMERAVISO>
+									<br />
+									<b>segunro aviso:</b>
+									<br/>
+									Cantidad de correos a enviar: <TOTALCORREOSSEGUNDOAVISO>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSSEGUNDOAVISO>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSSEGUNDOAVISO>
+									<br/>
+									<b>tercer aviso:</b>
+									<br/>
+									Cantidad de correos a enviar: <TOTALCORREOSTERCERAVISO>
+									<br />
+									Cantidad de correos enviados: <TOTALCORREOSENVIADOSTERCERAVISO>
+									<br />	
+									Datos de los usuarios: 
+									<br /><br/>
+									<DATOSUSUARIOSTERCERAVISO>
+									<br /><br/>
+
+
+								</p>
+								<p style="font:15px/1.25em 'Helvetica Neue',Arial,Helvetica;color:#333">
+									<br /><br />
+									<strong>Muchas Gracias, el equipo de Contabilium</strong>
+								</p>
+								<p style="font:15px/1.25em 'Helvetica Neue',Arial,Helvetica;color:#939393;margin-bottom:0">
+									No respondas este mail.
+								</p>
+							</td> 
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>

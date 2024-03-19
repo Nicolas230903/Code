@@ -1,0 +1,81 @@
+Nombre;Codigo;CodigoPadre;AdmiteAsientoManual;TipoDeCuenta
+Activo;1;;NO;Activo
+Caja y Bancos;1.1;1;NO;Activo
+Cta Cte Banco A;1.1.2;1.1;SI;Activo
+Caja en pesos;1.1.1;1.1;SI;Activo
+Tarjeta;1.1.3;1.1;SI;Activo
+Creditos por ventas;1.2;1;NO;Activo
+Deudores por ventas;1.2.1;1.2;SI;Activo
+Valores a Depositar;1.2.2;1.2;SI;Activo
+Otros Créditos;1.3;1;NO;Activo
+Ret Sufridas Imp Ganancias;1.3.1;1.3;SI;Activo
+IVA Saldo Tecnico a Favor;1.3.2;1.3;SI;Activo
+IVA Crédito Fiscal;1.3.3;1.3;SI;Activo
+IVA Retenciones;1.3.4;1.3;SI;Activo
+IVA Percepciones;1.3.5;1.3;SI;Activo
+Ret y Percepciones Imp IIBB CABA;1.3.6;1.3;SI;Activo
+Ret y Percepciones Imp IIBB BsAs;1.3.7;1.3;SI;Activo
+IVA Saldo Libre Disponibilidad;1.3.8;1.3;SI;Activo
+Ret Imp a las Ganancias a depositar;1.3.9;1.3;SI;Activo
+Adelantos al Personal;1.3.10;1.3;SI;Activo
+Bienes de Cambio;1.4;1;NO;Activo
+Mercaderías;1.4.1;1.4;SI;Activo
+Anticipos a Proveedores;1.4.2;1.4;SI;Activo
+Bienes de Uso;1.5;1;NO;Activo
+Inmuebles;1.5.1;1.5;SI;Activo
+Rodados;1.5.2;1.5;SI;Activo
+Maquinarias;1.5.3;1.5;SI;Activo
+Muebles y Utiles;1.5.4;1.5;SI;Activo
+Fondo de Amortiz Rodados;1.5.5;1.5;SI;Activo
+Fondo de Amortiz Maquinarias;1.5.6;1.5;SI;Activo
+Fondo de Amortiz Muebles y Utiles;1.5.7;1.5;SI;Activo
+Pasivo;2;;NO;Pasivo
+Deudas Comerciales;2.1;2;SI;Pasivo
+Proveedores en Cta Cte;2.1.1;2.1;SI;Pasivo
+Provisiones;2.1.2;2.1;SI;Pasivo
+Anticipo de Clientes;2.1.3;2.1;SI;Pasivo
+Cheques Diferidos no debitados;2.1.4;2.1;SI;Pasivo
+Deudas Financieras;2.2;2;SI;Pasivo
+Prestamo Banco A a pagar;2.2.1;2.2;SI;Pasivo
+Deudas Sociales;2.3;2;NO;Pasivo
+Remuneraciones a Pagar;2.3.1;2.3;SI;Pasivo
+Cargas Sociales (SUSS) a pagar;2.3.2;2.3;SI;Pasivo
+Retenciones Sufridas SUSS;2.3.3;2.3;SI;Pasivo
+Deudas Fiscales;2.4;2;NO;Pasivo
+IVA a Pagar DDJJ;2.4.1;2.4;SI;Pasivo
+IVA Débito Fiscal;2.4.2;2.4;SI;Pasivo
+Impuesto a las Ganancias a pagar;2.4.3;2.4;SI;Pasivo
+Impuesto a los IIBB a pagar;2.4.4;2.4;SI;Pasivo
+Percepciones IVA a depositar;2.4.5;2.4;SI;Pasivo
+Percepciones IIBB a depositar;2.4.6;2.4;SI;Pasivo
+Patrimonio Neto;3;;NO;Resultado
+Capital Social;3.1;3;SI;Resultado
+Reserva Legal;3.2;3;SI;Resultado
+Resultados No Asignados;3.3;3;SI;Resultado
+Resultados;4;;NO;Resultado
+Ingresos;4.1;4;NO;Resultado
+Ventas;4.1.1;4.1;SI;Resultado
+Ingresos Por Servicios;4.1.2;4.1;SI;Resultado
+Egresos;4.2;4;NO;Resultado
+Intereses;4.2.1;4.2;SI;Resultado
+Descuentos;4.2.2;4.2;SI;Resultado
+Costo de Mercaderia Vendida;4.2.3;4.2;SI;Resultado
+Costo de servicios;4.2.4;4.2;SI;Resultado
+Sueldos;4.2.5;4.2;SI;Resultado
+Cargas Sociales;4.2.6;4.2;SI;Resultado
+Honorarios;4.2.7;4.2;SI;Resultado
+Impuestos y Tasas;4.2.8;4.2;SI;Resultado
+Mantenimiento y Limpieza;4.2.9;4.2;SI;Resultado
+Papeleria y Utiles de Oficina;4.2.10;4.2;SI;Resultado
+Viaticos y Movilidad;4.2.11;4.2;SI;Resultado
+Comunicaciones;4.2.12;4.2;SI;Resultado
+Seguros;4.2.13;4.2;SI;Resultado
+Seguridad;4.2.14;4.2;SI;Resultado
+Energía Eléctrica;4.2.15;4.2;SI;Resultado
+Gas;4.2.16;4.2;SI;Resultado
+Amortizaciones;4.2.17;4.2;SI;Resultado
+Gastos Bancarios;4.2.18;4.2;SI;Resultado
+Impuestos Deb/Cred CtaCte;4.2.19;4.2;SI;Resultado
+Impuesto a las Ganancias;4.2.20;4.2;SI;Resultado
+Gastos Varios;4.2.21;4.2;SI;Resultado
+Alquileres;4.2.22;4.2;SI;Resultado

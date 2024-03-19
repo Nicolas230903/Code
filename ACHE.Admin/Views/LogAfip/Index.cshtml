@@ -1,0 +1,128 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageheader">
+
+    <h2>
+        <i class="fa fa-users"></i>Log AFIP
+        <span>Administración</span>
+    </h2>
+</div>
+
+<div class="contentpanel">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 table-results">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <input type="hidden" id="hdnPage" runat="server" value="1" />
+                    <div class="row mb20"></div>
+                    <div class="row">
+                        <h4 class="panel-title" style="clear: left; padding-left: 20px">Buscar por CUIT los registros de acceso a los servicios externos</h4>
+                        <p id="msjResultados" style="padding-left: 20px"></p>
+                    </div>
+                </div>
+                <!-- panel-heading -->
+                <div class="panel-body">
+
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">CUIT</label>
+                                <input type="text" maxlength="11" id="txtCuit" class="form-control required number validCuit" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Cantidad de filas</label>
+                                <select class="form-control" id="ddlTake" onchange="logAfip.obtenerLogAfip();" data-placeholder="Seleccione un filas a mostrar">
+                                    <option value=""></option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100" selected>100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <a class="btn btn-success" id="btnBuscarLogPorCuit" onclick="logAfip.obtenerLogAfip();">Buscar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger" id="divError" style="display: none">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Lo sentimos!</strong> <span id="msgError"></span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover mb30">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Entidad</th>
+                                    <th>Url</th>
+                                    <th>Nombre</th>
+                                    <th>Mensaje</th>
+                                    <th>FechaEmision</th>
+                                    <th>UsuarioCUIT</th>
+                                    <th>RazonSocial</th>
+                                    <th>Envio</th>
+                                    <th>Respuesta</th>
+                                    <th>RespuestaExitosa</th>
+                                    <th>FechaRespuesta</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsContainer">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="resultTemplate" type="text/x-jQuery-tmpl">
+    {{each results}}
+    <tr onclick="logAfip.detalle(${ID});" style="cursor: pointer;">
+        <td>${ID}</td>
+        <td>${Entidad}</td>
+        <td>${Url}</td>
+        <td>${Nombre}</td>
+        <td>${Mensaje}</td>
+        <td>${FechaEmision}</td>
+        <td>${UsuarioCUIT}</td>
+        <td>${RazonSocial}</td>
+        <td>${Envio}</td>
+        <td>${Respuesta}</td>
+        <td>${RespuestaExitosa}</td>
+        <td>${FechaRespuesta}</td>
+    </tr>
+    {{/each}}
+</script>
+
+<script id="noResultTemplate" type="text/x-jQuery-tmpl">
+    <tr>
+        <td colspan="11">
+            No se han encontrado resultados
+        </td>
+    </tr>
+</script>
+
+<script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/select2.min.js"></script>
+<script src="~/js/views/LogAfip.js"></script>
+
+<script>
+    jQuery(document).ready(function () {
+        logAfip.obtenerLogAfip();
+    });
+</script>
+
+
+

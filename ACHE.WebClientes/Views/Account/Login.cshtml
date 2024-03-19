@@ -1,0 +1,191 @@
+﻿@model ACHE.WebClientes.Models.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Contabilium.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link href="/css/style.default.css" rel="stylesheet" />
+    <style type="text/css">
+        small
+        {
+            font-size: 12px;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body class="notfound">
+    
+    <section>
+        <div class="lockedpanel">
+            @*<div class="row">
+                <div class="col-md-8">
+                    <div class="signin-info">
+                        <div class="logopanel">
+                            <img src="/images/logo.png" alt="contabilium" />
+                        </div>
+                        <!-- logopanel -->
+                        <div class="mb20"></div>
+                        <h4 class="text-success" style="font-weight: bold">100% seguro. 100% confidencial. 100% gratis</h4>
+                        <div class="mb20"></div>
+
+                        <h5><strong>La forma más fácil de administrar tus finanzas!</strong></h5>
+                        <ul>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i>No requiere instalación. Es full web</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i>Empezás a facturar inmediatamente</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i>Administración de clientes y proveedores</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i>Emisión de recibos, facturas, NC y ND las 24 horas, los 365 días del año</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i>Reporte de ingresos y egresos, iva, etc</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i>Envío de comprobantes por mail a tus clientes y a tu contador</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i>y mucho más!!</li>
+                        </ul>
+                        <div class="mb20"></div>
+                        <strong>¿Aún no lo estás usando? <a href="#">Registrate gratis haciendo click aquí!</a></strong>
+                    </div>
+                    <!-- signin0-info -->
+
+                </div>
+                <!-- col-sm-7 -->
+
+                <div class="col-md-4">*@
+                <div class="loginuser">
+                    <img src="/images/logo-login.png" alt="contabilium" />
+                </div>    
+
+                    <div id="divLogin">
+
+                        <div id="divLoginLoading" style="text-align: center; display: none" class="form">
+                            <h4>ACCESO CLIENTES</h4>
+                            <br />
+                            <h3  style="color:#2b9b8f;font-family: Arial, Helvetica, sans-serif;">Un momento por favor</h3>
+                            <p>Estamos verificando la información ingresada...</p>
+                            <br />
+                            <img src="/images/loaders/greenLoader.gif" />
+                        </div>
+
+                        <div id="divLoginForm">
+                            <h4>ACCESO CLIENTES</h4>
+                            <div class="logged">
+                                <small class="text-muted">
+                                    Ingresa tu tipo y número de documento para ingresar al sistema.
+                                    Si nunca ingresaste, tu contraseña es el número de comprobante recibido.
+                                </small>
+                            </div>
+
+                            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form", id = "frmLogin" }))
+                            {
+                                if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+                                { 
+                                    @Html.BootStrapValidationSummary()
+                                }
+                                <div class="alert alert-danger" id="divError" style="display: none"></div>
+
+                                @Html.DropDownListFor(model => model.TipoDocumento, new SelectList(
+                                  new List<Object>{ 
+                                      new { value = "CUIT" , text = "CUIT" }, 
+                                      new { value = "DNI" , text = "DNI"  }
+                                    },
+                                  "value",
+                                  "text", 1), new { @class = "form-control" })
+                                    
+                                @Html.TextBoxFor(m => m.Documento, new { @class = "form-control numeric", @placeholder = "Nro. de Documento", @id = "txtDocumento" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Contraseña" })
+
+                                <input type="submit" class="btn btn-success btn-block" value="Ingresar" />
+                                <br />
+                                <div align="center">
+                                    <a style="display: inline-block; vertical-align: middle;" href="#" onclick="Acceso.showForm('recupero');"><small>¿Olvidaste tu contraseña?</small></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div id="divRecupero" style="display: none">
+
+                        <div id="divRecuperoLoading" style="text-align: center; display: none" class="form">
+                            <h4>ACCESO CLIENTES</h4>
+                            <br />
+                            <h3 style="color:#2b9b8f;font-family: Arial, Helvetica, sans-serif;">Verificando...</h3>
+                            <br />
+                            <br />
+                            <img src="/images/loaders/greenLoader.gif" />
+                            <br />
+                            <br />
+                        </div>
+
+                        <div id="divRecuperoFin" style="text-align: center; display: none" class="form">
+                            <h4>ACCESO CLIENTES</h4>
+                            <br />
+                            <h3 style="color:#2b9b8f;font-family: Arial, Helvetica, sans-serif;">El restablecimiento de tu contraseña ha sido realizado</h3>
+                            <p>Te enviamos un email con tu nueva contraseña.</p>
+                            <small>(Si luego de unos minutos no lo recibes, por favor verifica en tu Correo No Deseado)</small>
+                            <br />
+                            <br />
+                            <a href="#" onclick="Acceso.showForm('login');"><small>volver</small></a>
+                        </div>
+                        <div id="divRecuperoForm" class="form">
+                            <h4>ACCESO CLIENTES</h4>
+                            <div class="logged">
+                                <small class="text-muted">Ingresa tu tipo y número de documento para recuperar tu contraseña.</small>
+                            </div>
+
+                            <form id="frmRecupero">
+                                <div class="alert alert-danger" id="divError2" style="display:none"></div>
+                                <select class="form-control" id="cmbTipo">
+                                    <option value="CUIT">CUIT</option>
+                                    <option value="DNI">DNI</option>
+                                </select>
+                                <input type="text" class="form-control numeric" placeholder="Nro Documento" id="txtDocumentoRecuperar" />
+                                @*<a class="btn bnt-success btn-block" onclick="recuperarPwd(); return false;">Recuperar</a>*@
+                                <input type="submit" class="btn btn-success btn-block" value="Recuperar" onclick="Acceso.recuperar(); return false;" />
+                                
+                                <br />
+                                <a href="#" onclick="Acceso.showForm('login');"><small>volver</small></a>
+                            </form>
+                        </div>
+                    </div>
+                @*</div>
+                <!-- col-sm-5 -->
+            </div>
+            <!-- row -->
+            <div class="signup-footer">
+                <div class="pull-left">
+                    &copy; 2014. Todos los derechos reservados
+           
+                </div>
+                <div class="pull-right">
+                    Powered By <a href="http://www.achesoft.com/" target="_blank">ACHE</a>
+                </div>
+            </div>*@
+        </div>
+        <!-- signin -->
+    </section>
+
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/modernizr.min.js"></script>
+    <script src="/js/jquery.numericInput.min.js"></script>
+    <script src="/js/jquery-ui-1.10.3.min.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/views/login.js"></script>
+    <script src="/js/views/common.js"></script>
+</body>
+</html>

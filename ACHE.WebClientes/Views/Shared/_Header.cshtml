@@ -1,0 +1,29 @@
+﻿<div class="headerbar">
+    <div class="header-left">
+        <div class="logopanel">
+            <img src="/images/logo-inside.png" alt="contabilium" />
+        </div>
+        <div class="topnav">
+            <ul class="nav nav-horizontal">
+                <li><a href='@Url.Action("Index", "Home")'><i class="fa fa-file-text"></i><span>Comprobantes</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="header-right">
+        <ul class="headermenu">
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img src="/files/personas/no-photo.png" alt="" />
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li><a href="@Url.Action("CambiarPwd", "Account")"><i class="fa fa-key"></i><span>Cambiar contraseña</span></a></li>
+                        <li><a href="@Url.Action("LogOut", "Account")"><i class="fa fa-sign-out"></i><span>Cerrar sesión</span></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

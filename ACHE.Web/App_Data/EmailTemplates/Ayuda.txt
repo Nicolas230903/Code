@@ -1,0 +1,35 @@
+﻿<table style="font-family: Arial,Helvetica,sans-serif;" width="550" align="center" border="0" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<td colspan="3" style="padding:10px 0 15px 0" align="left">
+				<img src="https://www.axan.com.ar/wp-content/uploads/2019/08/cropped-logo_full.png" alt="axanweb.com" />
+			</td>
+		</tr>
+		<tr><td colspan="3"  width="100%" style="border-top:solid 1px #e8e8e8;display:block"></td></tr>
+		<tr>
+			<td colspan="3" style="padding: 20px 20px 10px; font-size: 12px; color: rgb(51, 51, 51); line-height: 18px;">
+				<span style="font-family:Arial;font-size:18px;color:#333333;padding-bottom:3px">
+					Estimado administrador:
+				</span>
+				<p>
+					<br />
+					El usuario <USUARIO> (id: <ID>) cuyo e-mail es <EMAIL> ha enviado el siguiente mensaje:
+					<br />
+                    <MENSAJE>
+					<br /><br />
+					
+					<br /><br />
+					<b>Muchas Gracias, el equipo de axanweb</b>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"  style="padding-top:10px;border-top:solid 1px #e8e8e8">
+				<span style="font-family:Arial;font-size:12px;color:#999999">
+					No respondas este mail.
+				</span>
+			</td>
+		</tr>
+		<tr><td colspan="3"  height="15" style="font-size:1px">&nbsp;</td></tr>
+	</tbody>
+</table>

@@ -1,0 +1,105 @@
+﻿@model ACHE.WebClientes.Models.FacturasViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageheader">
+    <h2><i class="fa fa-file-text"></i>Comprobantes</h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">Estás aquí:</span>
+        <ol class="breadcrumb">
+            <li>Contabilium</li>
+            <li class="active">Comprobantes</li>
+        </ol>
+    </div>
+</div>
+
+<div class="contentpanel">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="pull-right">
+                        @*<div class="btn-group mr10">
+                            <div class="btn btn-white tooltips">
+                                <a id="divIconoDescargar" href="javascript:exportar();">
+                                    <i class="glyphicon glyphicon-save"></i>&nbsp;Exportar
+                                </a>
+                                <img alt="" src="/images/loaders/loader1.gif" id="imgLoading" style="display: none" />
+                                <a href="" id="lnkDownload" onclick="resetearExportacion();" download="Comprobantes" style="display: none">Descargar</a>
+                            </div>
+                        </div>*@
+
+                        @*<div class="btn-group mr10" id="divPagination" style="display: none">
+                            <a class="btn btn-white" id="lnkPrevPage" style="cursor: pointer" onclick="mostrarPagAnterior();"><i class="glyphicon glyphicon-chevron-left"></i>Anterior</a>
+                            <a class="btn btn-white" id="lnkNextPage" style="cursor: pointer" onclick="mostrarPagProxima();">Siguiente <i class="glyphicon glyphicon-chevron-right"></i></a>
+                        </div>*@
+                    </div>
+
+                    <h4 class="panel-title">Resultados</h4>
+                    <p id="msjResultados"></p>
+                </div>
+                <!-- panel-heading -->
+                <div class="panel-body">
+                    <div class="alert alert-danger" id="divError" style="display: none">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Lo sentimos!</strong> <span id="msgError"></span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table mb30">
+                            <thead>
+                                <tr>
+                                    @*<th>#</th>*@
+                                    <th>Tipo</th>
+                                    <th>Nro Comprobante</th>
+                                    <th>Emisor</th>
+                                    <th>N° CAE</th>
+                                    <th>Fecha</th>
+                                    <th style="text-align:right">Importe</th>
+                                    <th style="text-align:right">Saldo</th>
+                                    <th style="text-align:center">Descargar</th>
+                                    <th style="text-align:center">Pagar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.listaFacturas.Count() > 0) {
+                                    foreach (var fact in Model.listaFacturas) {
+                                    <tr>
+                                        <td>@fact.TipoComprobante</td>
+                                        <td>@fact.NroComprobante</td>
+                                        <td>@fact.Emisor</td>
+                                        <td>@fact.CAE</td>
+                                        <td>@fact.FechaFacturacion.ToString("dd/MM/yyyy")</td>
+                                        <td style="text-align:right">@fact.Total.ToString("N2")</td>
+                                        <td style="text-align:right">@fact.Saldo.ToString("N2")</td>
+                                        <td style="text-align:center">
+
+                                            @if(fact.Modo=="E"){
+                                                <a href="@fact.Descargar" download><i class='fa fa-file-pdf-o fa-2x'></i></a>
+                                            }
+
+                                        </td>
+                                        <td style="text-align:center">@fact.BtnPago</td>
+                                    </tr>
+                                    }
+                                }
+                                else {
+                                    <tr>
+                                        <td colspan="9">No se han encontrado comprobantes</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section  Scripts{
+    <script type="text/javascript" src="http://mp-tools.mlstatic.com/buttons/render.js"></script>
+    <script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
+}

@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pageheader">
+
+    <h2><i class="fa fa-medkit"></i>Soporte
+    <span>Recuperar CAE</span></h2>
+</div>
+
+<div class="contentpanel">
+    <div class="row mb15">
+        <!-- profile-header -->
+        <div class="alert alert-danger" id="divError" style="display: none">
+            <strong>Lo sentimos! </strong><span id="msgError"></span>
+        </div>
+        <div class="alert alert-success" id="divOk" style="display: none">
+            <strong>Bien hecho! </strong>Los datos se han actualizado correctamente
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form id="frmEdicion">
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <h3>Recuperar CAE</h3>
+                            <label class="control-label">Todos los datos son obligatorios</label>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="row mb15">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">CUIT del usuario</label>
+                                <input id="txtCuitUsuario" class="form-control required number" maxlength="12" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb15">
+                        <div class="col-md-1 col-sm-2">
+                            <div class="form-group">
+                                <label class="control-label">Tipo de comprobante</label>
+                                <select class="select2" id="ddlTipoComprobante">
+                                    <option value="FCA">FCA</option>
+                                    <option value="FCB">FCB</option>
+                                    <option value="FCC">FCC</option>
+                                    <option value="NCA">NCA</option>
+                                    <option value="NCB">NCB</option>
+                                    <option value="NCC">NCC</option>
+                                    <option value="NDA">NDA</option>
+                                    <option value="NDB">NDB</option>
+                                    <option value="NDC">NDC</option>
+
+                                    <option value="FCAMP">FCA MiPyMES</option>
+                                    <option value="FCBMP">FCB MiPyMES</option>
+                                    <option value="FCCMP">FCC MiPyMES</option>
+                                    <option value="NCAMP">NCA MiPyMES</option>
+                                    <option value="NCBMP">NCB MiPyMES</option>
+                                    <option value="NCCMP">NCC MiPyMES</option>
+                                    <option value="NDAMP">NDA MiPyMES</option>
+                                    <option value="NDBMP">NDB MiPyMES</option>
+                                    <option value="NDCMP">NDC MiPyMES</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-2">
+                            <div class="form-group">
+                                <label class="control-label">Punto de venta</label>
+                                <input id="txtPunto" class="form-control required number" maxlength="4" />
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-2">
+                            <div class="form-group">
+                                <label class="control-label">Nro comprobante</label>
+                                <input id="txtNroComprobante" class="form-control required number" maxlength="8" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-success" id="btnActualizar" onclick="soporte.recuperarComprobante()">Recuperar</a>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/select2.min.js"></script>
+<script src="~/js/views/soporte.js"></script>
+
+<script>
+    jQuery(document).ready(function () {
+        soporte.config();
+    });
+</script>

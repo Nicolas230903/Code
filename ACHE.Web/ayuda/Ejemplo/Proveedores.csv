@@ -1,0 +1,4 @@
+Codigo;RazonSocial;NombreFantansia;TipoDocumento;NroDocumento;CondicionIva;Telefono;Celular;Web;Email;Observaciones;Provincia;Ciudad;Domicilio;PisoDepto;CodigoPostal;EmailsEnvioFc;Personeria;AlicuotaIvaDefecto;TipoComprobanteDefecto;CBU;Banco;Contacto
+5;Proveedor Resp Inscripto;;DNI;55555555;RI;4525108;1524539428;www.paginaweb.com;email@proveedor.com;ninguna;Ciudad de buenos aires;Almagro;Av corrienets 5584;2;1414;email@proveedor.com;F;0;;;;Nombre de su contacto uno
+6;Proveedor Monotributista;;CUIT;20123456781;MO;4525108;1524539428;;;ninguna;buenos aires;Mar del plata;Av Cordoba 5666;4;1414;;J;0;;;;Nombre de su contacto dos
+7;Proveedor Exento;;CUIT;66666666;EX;4525108;1524539428;;;ninguna;Neuquen;Neuquen;Av Cordoba 5666;4;1414;;J;0;;;;Nombre de su contacto dos

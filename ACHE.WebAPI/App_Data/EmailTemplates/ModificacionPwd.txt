@@ -1,0 +1,38 @@
+﻿<table cellspacing="0" cellpadding="0" border="0" style="color:#333;background:#fff;padding:0;margin:0;width:100%;font:15px/1.25em 'Helvetica Neue',Arial,Helvetica"> 
+	<tbody>
+		<tr width="100%"> 
+			<td valign="top" align="left" style="background:#f0f0f0;font:15px/1.25em 'Helvetica Neue',Arial,Helvetica"> 
+				<table style="border:none;padding:0 18px;margin:50px auto;width:500px"> 
+					<tbody>
+						<tr width="100%" height="57"> 
+							<td valign="top" align="left" style="border-top-left-radius:4px;border-top-right-radius:4px;background:#E7E7E9;padding:12px 18px;text-align:center">
+								<img height="57" src="http://app.contabilium.com/images/logo-mail-gris.png" title="Contabilium" /> 
+							</td> 
+						</tr>
+						<tr width="100%"> 
+							<td valign="top" align="left" style="border-bottom-left-radius:4px;border-bottom-right-radius:4px;background:#fff;padding:18px">
+								<h1 style="font-size:20px;margin:0;color:#333">
+									Estimado <USUARIO>, 
+								</h1>
+								<p style="font:15px/1.25em 'Helvetica Neue',Arial,Helvetica;color:#333">
+									<br />
+                                    Su contraseña de Contabilium ha sido modificada.
+									<br />
+									<br />
+									En caso de no haber sido ud. quien realizara el cambio o ante cualquier inquietud, contáctese con nosotros llamando al 0800-26-61399 o enviandonos un mail a soporte@kaplarweb.com.
+								</p>
+								<p style="font:15px/1.25em 'Helvetica Neue',Arial,Helvetica;color:#333">
+									<br /><br />
+									<strong>Muchas Gracias, el equipo de Contabilium</strong>
+								</p>
+								<p style="font:15px/1.25em 'Helvetica Neue',Arial,Helvetica;color:#939393;margin-bottom:0">
+									No respondas este mail.
+								</p>
+							</td> 
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>

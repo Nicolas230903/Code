@@ -1,0 +1,3 @@
+Codigo;RazonSocial;NombreFantansia;TipoDocumento;NroDocumento;CondicionIva;Telefono;Celular;Web;Email;Observaciones;Provincia;Ciudad;Domicilio;PisoDepto;CodigoPostal;EmailsEnvioFc;Personeria;AlicuotaIvaDefecto;TipoComprobanteDefecto;CBU;Banco;Contacto
+Prv1;Proveedor 1;;DNI;12345678;RI;4525108;1524539428;www.achesoft.com;achesoft@kaplarweb.com;ninguna;buenos aires;capital federal;Av corrienets 5584;2;1414;achesoft@kaplarweb.com;F;0;nada;;;Nombre de su contacto uno
+1;Proveedor 2;;CUIT;20123456781;MO;4525108;1524539428;www.achesoft.com;achesoft@kaplarweb.com;ninguna;buenos aires;capital federal;Av Cordoba 5666;4;1414;achesoft@kaplarweb.com;J;0;nada;;;Nombre de su contacto dos

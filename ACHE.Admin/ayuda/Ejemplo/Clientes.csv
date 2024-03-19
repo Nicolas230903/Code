@@ -1,0 +1,3 @@
+Codigo;RazonSocial;NombreFantasia;TipoDocumento;NroDocumento;CondicionIva;Telefono;Celular;Web;Email;Observaciones;Provincia;Ciudad;Domicilio;PisoDepto;CodigoPostal;EmailsEnvioFc;Personeria;AlicuotaIvaDefecto;TipoComprobanteDefecto;CBU;Banco;Contacto
+1;Cliente 1;;DNI;12344678;MO;4525108;1524539428;www.achesoft.com;achesoft@kaplarweb.com;ninguna;buenos aires;capital federal;julian alvarez 684;1;1414;achesoft@kaplarweb.com;F;0;nada;;;Nombre de su contacto uno
+;Cliente 2;;DNI;13345679;CF;4525108;1524539428;www.achesoft.com;achesoft@kaplarweb.com;ninguna;buenos aires;capital federal;castillo 754;9;1414;achesoft@kaplarweb.com;F;0;nada;;;Nombre de su contacto dos

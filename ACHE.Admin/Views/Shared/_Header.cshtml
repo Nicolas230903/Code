@@ -1,0 +1,48 @@
+﻿<div class="headerbar">
+    <div class="header-left">
+        <div class="logopanel">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="~/images/logo-inside.png" alt="ELUM" /></a>
+        </div>
+        <div class="topnav">
+            <a class="menutoggle"><i class="fa fa-bars"></i></a>
+
+            <div class="logopanel-mobile">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/images/logo-inside.png" alt="ELUM" /></a>
+            </div>
+
+            <ul class="nav nav-horizontal">
+                <li><a href='@Url.Action("Index", "Home")'><i class="fa fa-bar-chart"></i><span>DashBoard</span></a></li>
+                <li><a href='@Url.Action("Index", "Usuario")'><i class="fa fa-users"></i><span>Usuarios</span></a></li>
+                <li><a href='@Url.Action("Index", "Facturacion")'><i class="fa fa-money"></i><span>Facturación</span></a></li>
+                <li><a href='@Url.Action("Index", "Sistemas")'><i class="fa fa-bars"></i><span>Sistemas</span></a></li>
+                <li><a href='@Url.Action("Index", "LogAfip")'><i class="fa fa-circle-o-notch"></i><span>Log AFIP</span></a></li>
+                <li class="nav-parent">
+                    <a href="#"><i class="fa fa-medkit"></i>Soporte <span class="caret"></span></a>
+                    <ul class="dropdown-menu children">
+                        <li><a href='@Url.Action("Index", "Soporte")'><i class="fa fa-caret-right"></i><span>Recuperar CAE</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="header-right">
+        <ul class="headermenu">
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img src="~/images/photos/loggeduser.png" alt="" />
+                        Admin
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+
+                        <li><a href="@Url.Action("LogOut", "Account")"><i class="fa fa-sign-out"></i><span>Cerrar sesión</span></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

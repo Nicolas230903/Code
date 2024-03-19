@@ -1,0 +1,14 @@
+Fecha: 22/10/2015 02:50:01 p.m. 
+Error: No se especificó el host SMTP.
+Detalle: System.InvalidOperationException: No se especificó el host SMTP.
+   en System.Net.Mail.SmtpClient.CheckHostAndPort()
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en ACHE.Model.EmailHelper.SendMailMessage(MailMessage mailMessage) en c:\ACHE\Contabilum\Site\Code\ACHE.Extensions\EmailHelper.cs:línea 195
+^^-------------------------------------------------------------------^^
+Fecha: 22/10/2015 04:52:03 p.m. 
+Error: No se especificó el host SMTP.
+Detalle: System.InvalidOperationException: No se especificó el host SMTP.
+   en System.Net.Mail.SmtpClient.CheckHostAndPort()
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en ACHE.Model.EmailHelper.SendMailMessage(MailMessage mailMessage) en c:\ACHE\Contabilum\Site\Code\ACHE.Extensions\EmailHelper.cs:línea 195
+^^-------------------------------------------------------------------^^

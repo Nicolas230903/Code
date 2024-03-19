@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=301880
+  -->
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <connectionStrings>
+    <add name="ACHEEntities" connectionString="metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=USUARIO\SQLEXPRESS2012;initial catalog=Contabilium_qa;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient"/>
+    <add name="ACHEString" connectionString="data source=USUARIO\SQLEXPRESS2012;initial catalog=Contabilium_qa;integrated security=True;MultipleActiveResultSets=True;" providerName="System.Data.EntityClient"/>
+  </connectionStrings>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="Email.From" value="no-reply@contabilium.com" />
+    <add key="Email.Notifications" value="no-reply@contabilium.com"/>
+    <add key="PathBaseWeb" value="localhost:33693" />
+    <add key="Admin.BasicLogError" value="~/log/BasicError_XX.log"/>
+
+    <add key="Admin.usu" value="conta" />
+    <add key="Admin.pwd" value="bilium684" />
+    <!--Test-->
+    <add key="FE.QA.wsaa" value="https://wsaahomo.afip.gov.ar/ws/services/LoginCms"/>
+    <add key="FE.QA.wsfev1" value="https://wswhomo.afip.gov.ar/wsfev1/service.asmx"/>
+    <!--<add key="FE.QA.CertificadoAFIP" value="~\fe\CertificadoTest30714075159-5.pfx"/>-->
+    <add key="FE.QA.CertificadoAFIP" value="C:\ACHE\Contabilum\Site\Code\ACHE.Web\fe\CertificadoTest30714075159-5.pfx"/>
+    <!--Prod-->
+    <add key="FE.PROD.wsaa" value="https://wsaa.afip.gov.ar/ws/services/LoginCms"/>
+    <add key="FE.PROD.wsfev1" value="https://servicios1.afip.gov.ar/wsfev1/service.asmx"/>
+    <!--<add key="FE.PROD.CertificadoAFIP" value="~\fe\Contabilium_AFIP_Produccion.pfx"/>-->
+    <add key="FE.PROD.CertificadoAFIP" value="C:\ACHE\Contabilum\Site\Code\ACHE.Web\fe\Contabilium_AFIP_Produccion.pfx"/>
+    <add key="FE.LoguearWS" value="false"/>
+    <add key="FE.PatLoghXML" value="~\log\LogAFIP.xml"/>
+    <add key="FE.Template" value="~\fe\TemplateFactura_"/>
+    <add key="FE.TemplateRecibo" value="~\fe\TemplateRecibo.pdf"/>
+    <add key="FE.Pwd" value=""/>
+    <add key="FE.TemplateRemito" value="~\fe\TemplateRemito.pdf" />
+    <add key="Usu.idContabilium" value="1110"/>
+    <add key="Usu.idPuntoDeVenta" value="3117"/>
+    <add key="PathBaseWeb" value="C:\ACHE\Contabilum\Site\Code\ACHE.Web\" />
+  </appSettings>
+  <system.web>
+    <authentication mode="Forms">
+      <forms loginUrl="~/Account/Login" defaultUrl="~/Home/Index" slidingExpiration="true" timeout="20"/>
+    </authentication>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" />
+  </system.web>
+  <!--system.net>
+    <mailSettings>
+      <smtp from="no-reply@contabilium.com">
+        <network host="mail.contabilium.com" port="25" password="Julian684" userName="demo@contabilium.com"/>
+      </smtp>
+    </mailSettings>
+  </system.net -->
+  <system.net>
+    <mailSettings>
+      <smtp>
+        <network host="localhost"/>
+      </smtp>
+    </mailSettings>
+  </system.net>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35"/>
+        <bindingRedirect oldVersion="4.0.0.0-4.0.0.1" newVersion="4.0.0.1"/>
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.webServer>
+    <httpCompression directory="%SystemDrive%inetpubtempIIS Temporary Compressed Files">
+      <scheme name="gzip" dll="%Windir%system32inetsrvgzip.dll" />
+      <dynamicTypes>
+        <add mimeType="text/" enabled="true" />
+        <add mimeType="message/" enabled="true" />
+        <add mimeType="application/javascript" enabled="true" />
+        <add mimeType="/" enabled="false" />
+      </dynamicTypes>
+      <staticTypes>
+        <add mimeType="text/" enabled="true" />
+        <add mimeType="message/" enabled="true" />
+        <add mimeType="application/javascript" enabled="true" />
+        <add mimeType="/" enabled="false" />
+      </staticTypes>
+    </httpCompression>
+    <httpErrors>
+      <clear />
+      <error statusCode="400" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="502" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="407" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="414" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="415" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="501" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="500" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="401" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="403" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="404" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="405" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="412" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+      <error statusCode="406" prefixLanguageFilePath="" path="/errorGenerico.aspx" responseMode="ExecuteURL" />
+    </httpErrors>
+  </system.webServer>
+  
+</configuration>

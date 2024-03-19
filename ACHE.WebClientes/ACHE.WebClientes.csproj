@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9143B3E3-D650-4705-8D28-F4DFF668C680}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACHE.WebClientes</RootNamespace>
+    <AssemblyName>ACHE.WebClientes</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\EmailTemplates\Notificacion.txt" />
+    <Content Include="App_Data\EmailTemplates\RecuperoPwd.txt" />
+    <Content Include="css\animate.delay.css" />
+    <Content Include="css\animate.min.css" />
+    <Content Include="css\bootstrap-fileupload.min.css" />
+    <Content Include="css\bootstrap-override.css" />
+    <Content Include="css\bootstrap-timepicker.min.css" />
+    <Content Include="css\bootstrap-wysihtml5.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\chosen.css" />
+    <Content Include="css\colorpicker.css" />
+    <Content Include="css\dropzone.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\fullcalendar.css" />
+    <Content Include="css\jasny-bootstrap.min.css" />
+    <Content Include="css\jquery-jvectormap-1.2.2.css" />
+    <Content Include="css\jquery-ui-1.10.3.css" />
+    <Content Include="css\jquery.datatables.css" />
+    <Content Include="css\jquery.gritter.css" />
+    <Content Include="css\jquery.tagsinput.css" />
+    <Content Include="css\lato.css" />
+    <Content Include="css\morris.css" />
+    <Content Include="css\prettyPhoto.css" />
+    <Content Include="css\select2.css" />
+    <Content Include="css\style.default.css" />
+    <Content Include="css\style.inverse.css" />
+    <Content Include="css\toggles.css" />
+    <Content Include="files\personas\no-photo.png" />
+    <Content Include="fonts\fontawesome-webfontba72.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\lato\Lato-Bla-webfont.svg" />
+    <Content Include="fonts\lato\Lato-BlaIta-webfont.svg" />
+    <Content Include="fonts\lato\Lato-Bol-webfont.svg" />
+    <Content Include="fonts\lato\Lato-BolIta-webfont.svg" />
+    <Content Include="fonts\lato\Lato-Hai-webfont.svg" />
+    <Content Include="fonts\lato\Lato-HaiIta-webfont.svg" />
+    <Content Include="fonts\lato\Lato-Lig-webfont.svg" />
+    <Content Include="fonts\lato\Lato-LigIta-webfont.svg" />
+    <Content Include="fonts\lato\Lato-Reg-webfont.svg" />
+    <Content Include="fonts\lato\Lato-RegIta-webfont.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\1.png" />
+    <Content Include="images\calendar-arrow.png" />
+    <Content Include="images\chosen-sprite.png" />
+    <Content Include="images\close-white.png" />
+    <Content Include="images\colorpicker\colorpicker_background.png" />
+    <Content Include="images\colorpicker\colorpicker_hex.png" />
+    <Content Include="images\colorpicker\colorpicker_hsb_b.png" />
+    <Content Include="images\colorpicker\colorpicker_hsb_h.png" />
+    <Content Include="images\colorpicker\colorpicker_hsb_s.png" />
+    <Content Include="images\colorpicker\colorpicker_indic.gif" />
+    <Content Include="images\colorpicker\colorpicker_overlay.png" />
+    <Content Include="images\colorpicker\colorpicker_rgb_b.png" />
+    <Content Include="images\colorpicker\colorpicker_rgb_g.png" />
+    <Content Include="images\colorpicker\colorpicker_rgb_r.png" />
+    <Content Include="images\colorpicker\colorpicker_select.gif" />
+    <Content Include="images\colorpicker\colorpicker_submit.png" />
+    <Content Include="images\colorpicker\select2.png" />
+    <Content Include="images\droparrows.png" />
+    <Content Include="images\dropdown-arrow.png" />
+    <Content Include="images\favicon.png" />
+    <Content Include="images\filetypes\aac.png" />
+    <Content Include="images\filetypes\ai.png" />
+    <Content Include="images\filetypes\aiff.png" />
+    <Content Include="images\filetypes\avi.png" />
+    <Content Include="images\filetypes\bmp.png" />
+    <Content Include="images\filetypes\c.png" />
+    <Content Include="images\filetypes\cpp.png" />
+    <Content Include="images\filetypes\css.png" />
+    <Content Include="images\filetypes\csv.png" />
+    <Content Include="images\filetypes\dat.png" />
+    <Content Include="images\filetypes\dmg.png" />
+    <Content Include="images\filetypes\doc.png" />
+    <Content Include="images\filetypes\dotx.png" />
+    <Content Include="images\filetypes\dwg.png" />
+    <Content Include="images\filetypes\dxf.png" />
+    <Content Include="images\filetypes\eps.png" />
+    <Content Include="images\filetypes\exe.png" />
+    <Content Include="images\filetypes\flv.png" />
+    <Content Include="images\filetypes\folder.png" />
+    <Content Include="images\filetypes\gif.png" />
+    <Content Include="images\filetypes\h.png" />
+    <Content Include="images\filetypes\hpp.png" />
+    <Content Include="images\filetypes\html.png" />
+    <Content Include="images\filetypes\ics.png" />
+    <Content Include="images\filetypes\iso.png" />
+    <Content Include="images\filetypes\java.png" />
+    <Content Include="images\filetypes\jpg.png" />
+    <Content Include="images\filetypes\js.png" />
+    <Content Include="images\filetypes\key.png" />
+    <Content Include="images\filetypes\less.png" />
+    <Content Include="images\filetypes\mid.png" />
+    <Content Include="images\filetypes\mp3.png" />
+    <Content Include="images\filetypes\mp4.png" />
+    <Content Include="images\filetypes\mpg.png" />
+    <Content Include="images\filetypes\odf.png" />
+    <Content Include="images\filetypes\ods.png" />
+    <Content Include="images\filetypes\odt.png" />
+    <Content Include="images\filetypes\otp.png" />
+    <Content Include="images\filetypes\ots.png" />
+    <Content Include="images\filetypes\ott.png" />
+    <Content Include="images\filetypes\pdf.png" />
+    <Content Include="images\filetypes\php.png" />
+    <Content Include="images\filetypes\png.png" />
+    <Content Include="images\filetypes\ppt.png" />
+    <Content Include="images\filetypes\psd.png" />
+    <Content Include="images\filetypes\py.png" />
+    <Content Include="images\filetypes\qt.png" />
+    <Content Include="images\filetypes\rar.png" />
+    <Content Include="images\filetypes\rb.png" />
+    <Content Include="images\filetypes\rtf.png" />
+    <Content Include="images\filetypes\sass.png" />
+    <Content Include="images\filetypes\scss.png" />
+    <Content Include="images\filetypes\sql.png" />
+    <Content Include="images\filetypes\tga.png" />
+    <Content Include="images\filetypes\tgz.png" />
+    <Content Include="images\filetypes\tiff.png" />
+    <Content Include="images\filetypes\txt.png" />
+    <Content Include="images\filetypes\viejos\1419311056_docx_win.png" />
+    <Content Include="images\filetypes\viejos\1419311244_647704-pdf-128.png" />
+    <Content Include="images\filetypes\viejos\1419311251_647707-word-128.png" />
+    <Content Include="images\filetypes\viejos\1419311256_647705-powerpoint-128.png" />
+    <Content Include="images\filetypes\viejos\1419311263_647706-text-128.png" />
+    <Content Include="images\filetypes\viejos\1419311269_647703-image-128.png" />
+    <Content Include="images\filetypes\viejos\audio.png" />
+    <Content Include="images\filetypes\viejos\avi.png" />
+    <Content Include="images\filetypes\viejos\bmp.png" />
+    <Content Include="images\filetypes\viejos\doc-old.png" />
+    <Content Include="images\filetypes\viejos\doc.png" />
+    <Content Include="images\filetypes\viejos\folder.png" />
+    <Content Include="images\filetypes\viejos\gif.png" />
+    <Content Include="images\filetypes\viejos\html.png" />
+    <Content Include="images\filetypes\viejos\jpeg.png" />
+    <Content Include="images\filetypes\viejos\pdf.png" />
+    <Content Include="images\filetypes\viejos\png.png" />
+    <Content Include="images\filetypes\viejos\pptx.png" />
+    <Content Include="images\filetypes\viejos\rar.png" />
+    <Content Include="images\filetypes\viejos\text.png" />
+    <Content Include="images\filetypes\viejos\wmv.png" />
+    <Content Include="images\filetypes\viejos\xlxs.png" />
+    <Content Include="images\filetypes\viejos\zip.png" />
+    <Content Include="images\filetypes\wav.png" />
+    <Content Include="images\filetypes\xls.png" />
+    <Content Include="images\filetypes\xlsx.png" />
+    <Content Include="images\filetypes\xml.png" />
+    <Content Include="images\filetypes\yml.png" />
+    <Content Include="images\filetypes\zip.png" />
+    <Content Include="images\filetypes\_blank.png" />
+    <Content Include="images\filetypes\_page.png" />
+    <Content Include="images\icon-search.png" />
+    <Content Include="images\is-document.png" />
+    <Content Include="images\is-money.png" />
+    <Content Include="images\is-user.png" />
+    <Content Include="images\loaders\greenLoader.gif" />
+    <Content Include="images\loaders\loader1.gif" />
+    <Content Include="images\loaders\loader10.gif" />
+    <Content Include="images\loaders\loader11.gif" />
+    <Content Include="images\loaders\loader12.gif" />
+    <Content Include="images\loaders\loader13.gif" />
+    <Content Include="images\loaders\loader14.gif" />
+    <Content Include="images\loaders\loader15.gif" />
+    <Content Include="images\loaders\loader16.gif" />
+    <Content Include="images\loaders\loader17.gif" />
+    <Content Include="images\loaders\loader18.gif" />
+    <Content Include="images\loaders\loader19.gif" />
+    <Content Include="images\loaders\loader2.gif" />
+    <Content Include="images\loaders\loader20.gif" />
+    <Content Include="images\loaders\loader21.gif" />
+    <Content Include="images\loaders\loader22.gif" />
+    <Content Include="images\loaders\loader23.gif" />
+    <Content Include="images\loaders\loader24.gif" />
+    <Content Include="images\loaders\loader25.gif" />
+    <Content Include="images\loaders\loader26.gif" />
+    <Content Include="images\loaders\loader27.gif" />
+    <Content Include="images\loaders\loader28.gif" />
+    <Content Include="images\loaders\loader29.gif" />
+    <Content Include="images\loaders\loader3.gif" />
+    <Content Include="images\loaders\loader30.gif" />
+    <Content Include="images\loaders\loader4.gif" />
+    <Content Include="images\loaders\loader5.gif" />
+    <Content Include="images\loaders\loader6.gif" />
+    <Content Include="images\loaders\loader7.gif" />
+    <Content Include="images\loaders\loader8.gif" />
+    <Content Include="images\loaders\loader9.gif" />
+    <Content Include="images\loaders\login.GIF" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\locked.png" />
+    <Content Include="images\logo-inside.png" />
+    <Content Include="images\logo-login.png" />
+    <Content Include="images\logo-mail.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\minus.png" />
+    <Content Include="images\photos\blog1.jpg" />
+    <Content Include="images\photos\blog2.jpg" />
+    <Content Include="images\photos\blog3.jpg" />
+    <Content Include="images\photos\blog4.jpg" />
+    <Content Include="images\photos\loggeduser.png" />
+    <Content Include="images\photos\media-audio.png" />
+    <Content Include="images\photos\media-doc.png" />
+    <Content Include="images\photos\media1.jpg" />
+    <Content Include="images\photos\media2.png" />
+    <Content Include="images\photos\media3.png" />
+    <Content Include="images\photos\media4.png" />
+    <Content Include="images\photos\media5.png" />
+    <Content Include="images\photos\media6.png" />
+    <Content Include="images\photos\media7.png" />
+    <Content Include="images\photos\photo1.png" />
+    <Content Include="images\photos\photo2.png" />
+    <Content Include="images\photos\photo3.png" />
+    <Content Include="images\photos\profile-1.png" />
+    <Content Include="images\photos\profilepic1.png" />
+    <Content Include="images\photos\user1.png" />
+    <Content Include="images\photos\user2.png" />
+    <Content Include="images\photos\user3.png" />
+    <Content Include="images\photos\user4.png" />
+    <Content Include="images\photos\user5.png" />
+    <Content Include="images\photos\userprofile.png" />
+    <Content Include="images\plus-white.png" />
+    <Content Include="images\plus.png" />
+    <Content Include="images\prettyphoto\dark_rounded\btnNext.html" />
+    <Content Include="images\prettyphoto\dark_rounded\btnPrevious.html" />
+    <Content Include="images\prettyphoto\dark_rounded\contentPattern.html" />
+    <Content Include="images\prettyphoto\dark_rounded\loader.html" />
+    <Content Include="images\prettyphoto\dark_rounded\sprite.html" />
+    <Content Include="images\prettyphoto\dark_rounded\_div style=.html" />
+    <Content Include="images\prettyphoto\dark_square\btnNext.html" />
+    <Content Include="images\prettyphoto\dark_square\btnPrevious.html" />
+    <Content Include="images\prettyphoto\dark_square\loader.html" />
+    <Content Include="images\prettyphoto\dark_square\sprite.html" />
+    <Content Include="images\prettyphoto\dark_square\_div style=.html" />
+    <Content Include="images\prettyphoto\default_thumb.png" />
+    <Content Include="images\prettyphoto\facebook\btnNext.html" />
+    <Content Include="images\prettyphoto\facebook\btnPrevious.html" />
+    <Content Include="images\prettyphoto\facebook\contentPatternBottom.html" />
+    <Content Include="images\prettyphoto\facebook\contentPatternLeft.html" />
+    <Content Include="images\prettyphoto\facebook\contentPatternRight.html" />
+    <Content Include="images\prettyphoto\facebook\contentPatternTop.html" />
+    <Content Include="images\prettyphoto\facebook\default_thumbnail.html" />
+    <Content Include="images\prettyphoto\facebook\loader.html" />
+    <Content Include="images\prettyphoto\facebook\sprite.html" />
+    <Content Include="images\prettyphoto\facebook\_div style=.html" />
+    <Content Include="images\prettyphoto\light_rounded\btnNext.html" />
+    <Content Include="images\prettyphoto\light_rounded\btnPrevious.html" />
+    <Content Include="images\prettyphoto\light_rounded\loader.html" />
+    <Content Include="images\prettyphoto\light_rounded\sprite.html" />
+    <Content Include="images\prettyphoto\light_rounded\_div style=.html" />
+    <Content Include="images\prettyphoto\light_square\btnNext.html" />
+    <Content Include="images\prettyphoto\light_square\btnPrevious.html" />
+    <Content Include="images\prettyphoto\light_square\sprite.html" />
+    <Content Include="images\prettyphoto\light_square\_div style=.html" />
+    <Content Include="images\prettyphoto\loader.gif" />
+    <Content Include="images\prettyphoto\sprite.png" />
+    <Content Include="images\prettyphoto\sprite_next.png" />
+    <Content Include="images\prettyphoto\sprite_prev.png" />
+    <Content Include="images\prettyphoto\sprite_x.png" />
+    <Content Include="images\prettyphoto\sprite_y.png" />
+    <Content Include="images\select2-spinner.gif" />
+    <Content Include="images\select2.png" />
+    <Content Include="images\sort_asc.png" />
+    <Content Include="images\sort_asc_disabled.png" />
+    <Content Include="images\sort_both.png" />
+    <Content Include="images\sort_desc.png" />
+    <Content Include="images\sort_desc_disabled.png" />
+    <Content Include="images\spritemap%402x.png" />
+    <Content Include="images\spritemap.png" />
+    <Content Include="images\uploadfile.png" />
+    <Content Include="images\user.png" />
+    <Content Include="js\bootbox.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.tmpl.min.js" />
+    <Content Include="js\custom.js" />
+    <Content Include="js\jquery-1.11.1.min.js" />
+    <Content Include="js\jquery-migrate-1.2.1.min.js" />
+    <Content Include="js\jquery-ui-1.10.3.min.js" />
+    <Content Include="js\jquery.cookies.js" />
+    <Content Include="js\jquery.numericInput.min.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="css\jasny-bootstrap.css.map" />
+    <Content Include="css\style.default.css.exclude" />
+    <Content Include="fonts\fontawesome-webfontba72.eot" />
+    <Content Include="fonts\fontawesome-webfontba72.ttf" />
+    <Content Include="fonts\fontawesome-webfontba72.woff" />
+    <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="fonts\lato\Lato-Bla-webfont.eot" />
+    <Content Include="fonts\lato\Lato-Bla-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-Bla-webfont.woff" />
+    <Content Include="fonts\lato\Lato-Bla-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-BlaIta-webfont.eot" />
+    <Content Include="fonts\lato\Lato-BlaIta-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-BlaIta-webfont.woff" />
+    <Content Include="fonts\lato\Lato-BlaIta-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-Bol-webfont.eot" />
+    <Content Include="fonts\lato\Lato-Bol-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-Bol-webfont.woff" />
+    <Content Include="fonts\lato\Lato-Bol-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-BolIta-webfont.eot" />
+    <Content Include="fonts\lato\Lato-BolIta-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-BolIta-webfont.woff" />
+    <Content Include="fonts\lato\Lato-BolIta-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-Hai-webfont.eot" />
+    <Content Include="fonts\lato\Lato-Hai-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-Hai-webfont.woff" />
+    <Content Include="fonts\lato\Lato-Hai-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-HaiIta-webfont.eot" />
+    <Content Include="fonts\lato\Lato-HaiIta-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-HaiIta-webfont.woff" />
+    <Content Include="fonts\lato\Lato-HaiIta-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-Lig-webfont.eot" />
+    <Content Include="fonts\lato\Lato-Lig-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-Lig-webfont.woff" />
+    <Content Include="fonts\lato\Lato-Lig-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-LigIta-webfont.eot" />
+    <Content Include="fonts\lato\Lato-LigIta-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-LigIta-webfont.woff" />
+    <Content Include="fonts\lato\Lato-LigIta-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-Reg-webfont.eot" />
+    <Content Include="fonts\lato\Lato-Reg-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-Reg-webfont.woff" />
+    <Content Include="fonts\lato\Lato-Reg-webfontd41d.eot" />
+    <Content Include="fonts\lato\Lato-RegIta-webfont.eot" />
+    <Content Include="fonts\lato\Lato-RegIta-webfont.ttf" />
+    <Content Include="fonts\lato\Lato-RegIta-webfont.woff" />
+    <Content Include="fonts\lato\Lato-RegIta-webfontd41d.eot" />
+    <Content Include="images\filetypes\icons.ai" />
+    <None Include="Properties\PublishProfiles\DeployClientes.pubxml" />
+    <Content Include="js\modernizr.min.js" />
+    <Content Include="js\select2.min.js" />
+    <Content Include="js\toggles.min.js" />
+    <Content Include="js\views\common.js" />
+    <Content Include="js\views\login.js" />
+    <Content Include="Views\Home\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CobranzasController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\MvcHelper.cs" />
+    <Compile Include="Models\FacturasViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\PasswordViewModel.cs" />
+    <Compile Include="Models\PrimerLoginViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\BaseViewPage .cs" />
+    <Compile Include="Security\BasicLog.cs" />
+    <Compile Include="Security\LoggedOrAuthorizedAttribute.cs" />
+    <Compile Include="Security\WebUser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\PrimerLogin.cshtml" />
+    <Content Include="Views\Account\CambiarPwd.cshtml" />
+    <Content Include="Views\Cobranzas\Cobranzas.cshtml" />
+    <Content Include="mercadopago.ashx" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ACHE.Extensions\ACHE.Extensions.csproj">
+      <Project>{7a7039b5-7c3d-4cae-8581-95feb281f315}</Project>
+      <Name>ACHE.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ACHE.FacturaElectronica\ACHE.FacturaElectronica.csproj">
+      <Project>{e24e97f6-7e88-445b-851f-531bc534800c}</Project>
+      <Name>ACHE.FacturaElectronica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ACHE.MercadoPagoAPI\ACHE.MercadoPago.csproj">
+      <Project>{79c389d6-9184-4d24-98bf-ff59172c8f0e}</Project>
+      <Name>ACHE.MercadoPago</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ACHE.Model\ACHE.Model.csproj">
+      <Project>{2c2c330e-ec5e-4218-b279-46979e7953c5}</Project>
+      <Name>ACHE.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ACHE.Negocio\ACHE.Negocio.csproj">
+      <Project>{70c968c5-96c8-41a4-96b7-36ad1ab3fb9a}</Project>
+      <Name>ACHE.Negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60214</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:31091/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

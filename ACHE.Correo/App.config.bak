@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 --></configSections>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+  <appSettings>
+    <add key="NotificacionesCorreoLogError" value="C:\ACHE\Contabilum\Site\Code\ACHE.Correo\log\NotificacionesCorreoError_XX.log" />
+    <add key="Email.From" value="no-reply@contabilium.com" />
+    <add key="Email.ReplyTo" value="atencioncliente@contabilium.com" />
+    <add key="Email.CC" value="" />
+    <add key="Email.BCC" value="leandrohalfon@gmail.com" />
+    <add key="PathBaseWeb" value="C:\ACHE\Contabilum\Site\Code\ACHE.Correo\" />
+
+    <add key="subject.NotificacionDosDias" value="Bienvenido a Contabilium!" />
+    <add key="subject.NotificacionDosSemanas" value="En Contabilium nos interesa tu opinión" />
+    <add key="subject.NotificacionVeiticincoDias" value="Versión full en Contabilium" />
+    <add key="subject.NotificacionCincoDiasVencimiento" value="Su plan está a punto de vencer en Contabilium" />
+
+    <add key ="Ejecutar.DosDias" value="0"/>
+    <add key ="Ejecutar.DosSemanas" value="0"/>
+    <add key ="Ejecutar.VeiticincoDias" value="0"/>
+    <add key ="Ejecutar.CincoDiasVencimiento" value="0"/>
+    
+    <add key ="Ejecutar.ChequesACobrar" value="0"/>
+    <add key ="Ejecutar.ChequesAVencer" value="0"/>
+
+    <add key ="Ejecutar.AvisosVencimientos" value="0"/>
+    
+  </appSettings>
+  <connectionStrings>
+    <add name="ACHEEntities" connectionString="metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=sql5018.smarterasp.net;Initial Catalog=DB_A26DF4_electronica2012;Persist Security Info=True;User ID=DB_A26DF4_electronica2012_admin;Password=992016DD;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+</configuration>

@@ -1,0 +1,3 @@
+Nombre;Codigo;descripcion;Stock;StockMinimo;PrecioUnitario;Observaciones;Iva;CostoInterno
+Nombre del Servicio 1;4; Descripcion del Servicio 1;200;;500,5;Solo para algunas personas;0;60
+Nombre del Servicio 2;3; Descripcion del Servicio 2;200;;600,5;ninguna;0;80

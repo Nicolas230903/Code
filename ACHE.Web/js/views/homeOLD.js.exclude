@@ -1,0 +1,499 @@
+﻿
+jQuery(document).ready(function () {
+
+    dashBoard.filtrarComprasPorCategoria('año');
+    dashBoard.filtrarRnkClienes("año");
+    dashBoard.filtrarRnkProductos("año");
+    dashBoard.filtrarCobranzas("mes");
+    dashBoard.filtrarPagos("mes");
+    dashBoard.filtrarGananciasVSPerdidas("año");
+
+    //$("#divIva,#divComprasPagos,#divIva").hide();
+    //$("#divCrobranzasPagos,#divTopProductosClientes,#divCategorias").hide();
+});
+
+var dashBoard = {
+    filtrarCobranzas: function (periodo) {
+        var data = dashBoard.ObtenerCobranzas(periodo);
+
+        jQuery.plot("#barchartCobranzas", [data], {
+            series: {
+                lines: {
+                    lineWidth: 1
+                },
+                bars: {
+                    show: true,
+                    barWidth: 0.5,
+                    align: "center",
+                    lineWidth: 0,
+                    fillColor: "#428BCA"
+                }
+            },
+            grid: {
+                borderColor: '#ddd',
+                borderWidth: 1,
+                labelMargin: 10,
+                hoverable: true
+            },
+            xaxis: {
+                mode: "categories",
+                tickLength: 0
+            }
+        });
+
+
+        var elem = $('#barchartCobranzas');
+        elem.bind("plothover", function (event, pos, item) {
+            if (item) {
+                if (previousPoint != item.datapoint) {
+                    previousPoint = item.datapoint;
+                    $("#flot-tooltip").remove();
+
+                    y = item.datapoint[1];
+                    z = item.series.color;
+
+                    dashBoard.showTooltip(item.pageX, item.pageY,
+                    "<b>" + "Importe de comprobantes " + item.series.data[item.dataIndex][0] + "</b> = $ " + y, z);
+                }
+            } else {
+                $("#flot-tooltip").remove();
+                previousPoint = null;
+            }
+        });
+
+    },
+    showTooltip: function (x, y, contents) {
+        jQuery('<div id="flot-tooltip" class="tooltipflot">' + contents + '</div>').css({
+            position: 'absolute',
+            display: 'none',
+            top: y + 5,
+            left: x + 5
+        }).appendTo("body").fadeIn(200);
+    },
+    ObtenerCobranzas: function (periodo) {
+        var ddata = [];
+        Common.mostrarProcesando("idCobrarSemana,#idCobrarMes,#idCobrarTrimestre,#idCobrarSemestre");
+        $.ajax({
+            type: "POST",
+            url: "/homeOLD.aspx/FiltrarCobranzas",
+            data: "{periodo: '" + periodo + "'}",
+            async: false,//wait for result
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg, text) {
+                Common.ocultarProcesando("idCobrarSemana", "Semana");
+                Common.ocultarProcesando("idCobrarMes", "Mes");
+                Common.ocultarProcesando("idCobrarTrimestre", "Trimestre");
+                Common.ocultarProcesando("idCobrarSemestre", "Semestre");
+
+                var data = msg.d;
+                for (i = 0; i < data.length; i++) {
+                    ddata.push([data[i].label, data[i].data]);
+                }
+
+                $(".btnCobrar").removeClass("btn btn-default").addClass("btn btn-black");
+
+                switch (periodo) {
+                    case "semana":
+                        $("#idCobrarSemana").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "mes":
+                        $("#idCobrarMes").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "trimestre":
+                        $("#idCobrarTrimestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "semestre":
+                        $("#idCobrarSemestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                }
+            },
+            error: function (response) {
+                Common.ocultarProcesando("idCobrarSemana", "Semana");
+                Common.ocultarProcesando("idCobrarMes", "Mes");
+                Common.ocultarProcesando("idCobrarTrimestre", "Trimestre");
+                Common.ocultarProcesando("idCobrarSemestre", "Semestre");
+                var r = jQuery.parseJSON(response.responseText);
+                alert(r.Message);
+            }
+        });
+        return ddata;
+    },
+    filtrarPagos: function (periodo) {
+
+        var data = dashBoard.ObtenerPagos(periodo);
+
+        jQuery.plot("#barchartPagos", [data], {
+            series: {
+                lines: {
+                    lineWidth: 1
+                },
+                bars: {
+                    show: true,
+                    barWidth: 0.5,
+                    align: "center",
+                    lineWidth: 0,
+                    fillColor: "#428BCA"
+                }
+            },
+            grid: {
+                borderColor: '#ddd',
+                borderWidth: 1,
+                labelMargin: 10
+            },
+            xaxis: {
+                mode: "categories",
+                tickLength: 0
+            }
+        });
+    },
+    ObtenerPagos: function (periodo) {
+        var ddata = [];
+        Common.mostrarProcesando("idPagarSemana,#idPagarMes,#idPagarTrimestre,#idPagarSemestre");
+        $.ajax({
+            type: "POST",
+            url: "/homeOLD.aspx/FiltrarPagos",
+            data: "{periodo: '" + periodo + "'}",
+            async: false,//wait for result
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg, text) {
+                Common.ocultarProcesando("idPagarSemana", "Semana");
+                Common.ocultarProcesando("idPagarMes", "Mes");
+                Common.ocultarProcesando("idPagarTrimestre", "Trimestre");
+                Common.ocultarProcesando("idPagarSemestre", "Semestre");
+                var data = msg.d;
+                for (i = 0; i < data.length; i++) {
+                    ddata.push([data[i].label, data[i].data]);
+                }
+
+                $(".btnPagar").removeClass("btn btn-default").addClass("btn btn-black");
+
+                switch (periodo) {
+                    case "semana":
+                        $("#idPagarSemana").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "mes":
+                        $("#idPagarMes").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "trimestre":
+                        $("#idPagarTrimestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "semestre":
+                        $("#idPagarSemestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                }
+
+            },
+            error: function (response) {
+                Common.ocultarProcesando("idPagarSemana", "Semana");
+                Common.ocultarProcesando("idPagarMes", "Mes");
+                Common.ocultarProcesando("idPagarTrimestre", "Trimestre");
+                Common.ocultarProcesando("idPagarSemestre", "Semestre");
+                var r = jQuery.parseJSON(response.responseText);
+                alert(r.Message);
+            }
+        });
+        return ddata;
+    },
+    ////////////////////////// Top 10 de Productos y Clientes
+    filtrarRnkClienes: function (periodo) {
+        Common.mostrarProcesando("idRnkClientessMes,#idRnkClientesstrimestre,#idRnkClientessSemestre,#idRnkClientessAño");
+        var info = "{ periodo: '" + periodo + "'}";
+        $.ajax({
+            type: "POST",
+            url: "/homeOLD.aspx/ObtenerTopClientes",
+            data: info,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, text) {
+                Common.ocultarProcesando("idRnkClientessMes", "Mes");
+                Common.ocultarProcesando("idRnkClientesstrimestre", "Trimestre");
+                Common.ocultarProcesando("idRnkClientessSemestre", "Semestre");
+                Common.ocultarProcesando("idRnkClientessAño", "Año");
+                // Render using the template
+                $("#resultsContainerCliente").html("");
+                if (data.d.Items.length > 0)
+                    $("#resultTemplateTop").tmpl({ results: data.d.Items }).appendTo("#resultsContainerCliente");
+                else
+                    $("#noResultTemplateTop").tmpl({ results: data.d.Items }).appendTo("#resultsContainerCliente");
+
+                $(".btnRnkClientes").removeClass("btn btn-default").addClass("btn btn-black");
+
+                switch (periodo) {
+                    case "mes":
+                        $("#idRnkClientessMes").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "trimestre":
+                        $("#idRnkClientesstrimestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "semestre":
+                        $("#idRnkClientessSemestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "año":
+                        $("#idRnkClientessAño").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+
+                }
+            },
+            error: function (response) {
+                Common.ocultarProcesando("idRnkClientessMes", "Mes");
+                Common.ocultarProcesando("idRnkClientesstrimestre", "Trimestre");
+                Common.ocultarProcesando("idRnkClientessSemestre", "Semestre");
+                Common.ocultarProcesando("idRnkClientessAño", "Año");
+                var r = jQuery.parseJSON(response.responseText);
+                alert(r.Message);
+            }
+        });
+    },
+    filtrarRnkProductos: function (periodo) {
+        Common.mostrarProcesando("idRnkProductosMes,#idRnkProductosTrimestre,#idRnkProductosSemestre,#idRnkProductosAño");
+
+        var info = "{ periodo: '" + periodo + "'}";
+        $.ajax({
+            type: "POST",
+            url: "/homeOLD.aspx/ObtenerTopProductos",
+            data: info,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, text) {
+                Common.ocultarProcesando("idRnkProductosMes", "Mes");
+                Common.ocultarProcesando("idRnkProductosTrimestre", "Trimestre");
+                Common.ocultarProcesando("idRnkProductosSemestre", "Semestre");
+                Common.ocultarProcesando("idRnkProductosAño", "Año");
+                $("#resultsContainerProductos").html("");
+                // Render using the template
+                if (data.d.Items.length > 0)
+                    $("#resultTemplateTop").tmpl({ results: data.d.Items }).appendTo("#resultsContainerProductos");
+                else
+                    $("#noResultTemplateTop").tmpl({ results: data.d.Items }).appendTo("#resultsContainerProductos");
+
+                $(".btnRnkProductos").removeClass("btn btn-default").addClass("btn btn-black");
+
+                switch (periodo) {
+                    case "mes":
+                        $("#idRnkProductosMes").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "trimestre":
+                        $("#idRnkProductosTrimestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "semestre":
+                        $("#idRnkProductosSemestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "año":
+                        $("#idRnkProductosAño").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+
+                }
+            },
+            error: function (response) {
+                Common.ocultarProcesando("idRnkProductosMes", "Mes");
+                Common.ocultarProcesando("idRnkProductosTrimestre", "Trimestre");
+                Common.ocultarProcesando("idRnkProductosSemestre", "Semestre");
+                Common.ocultarProcesando("idRnkProductosAño", "Año");
+                var r = jQuery.parseJSON(response.responseText);
+                alert(r.Message);
+            }
+        });
+    },
+    ///////////////////////// Compras por Categorias//////////////////////
+    filtrarComprasPorCategoria: function (periodo) {
+        //var data = dashBoard.ObtenerCompras($("#txtFechaDesde").val(), $("#txtFechaHasta").val());
+        var data = dashBoard.ObtenerCompras(periodo);
+
+        jQuery.plot('#piechart', data, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    tilt: 0.5,
+                    label: {
+                        show: true,
+                        radius: 2 / 3,
+                        formatter: dashBoard.labelFormatter,
+                        background: {
+                            opacity: 0.5,
+                            color: '#000'
+                        },
+                        threshold: 0.1
+                    }
+                }
+            },
+            legend: {
+                position: "nw",
+                background: {
+                    color: 'red'
+                },
+                labelFormatter: function (label, series) {
+                    var percent = Math.round(series.percent);
+                    var number = series.data[0][1]; //kinda weird, but this is what it takes
+                    //return ("<a href=\"javascript:verDetalle('" + label + "')\"><b>" + label + "</b>: " + number + " (" + percent + "%)</a>");
+                    return ("<b>" + label + "</b>: " + number + " (" + percent + "%)");
+                }
+            },
+            grid: {
+                hoverable: true,
+                clickable: true
+            }
+        });
+
+        $("#piechart").bind("plotclick", function (event, pos, item) {
+            if (item) {
+                // detalles de los items
+                //verDetalle(item.series.label, (item.dataIndex));
+            }
+        });
+
+    },
+    ObtenerCompras: function (periodo) {
+        var ddata = [];
+        Common.mostrarProcesando("idCategoriaMes,#idCategoriaTrimestre,#idCategoriaSemestre,#idCategoriaAño");
+        $.ajax({
+            type: "POST",
+            url: "/homeOLD.aspx/FiltrarComprasPorCategoria",
+            data: "{periodo: '" + periodo + "'}",
+            async: false,//wait for result
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg, text) {
+                Common.ocultarProcesando("idCategoriaMes", "Mes");
+                Common.ocultarProcesando("idCategoriaTrimestre", "Trimestre");
+                Common.ocultarProcesando("idCategoriaSemestre", "Semestre");
+                Common.ocultarProcesando("idCategoriaAño", "Año");
+                var data = msg.d;
+                for (i = 0; i < data.length; i++) {
+                    ddata.push(data[i]);
+                }
+
+                $(".btnCategirias").removeClass("btn btn-default").addClass("btn btn-black");
+
+                switch (periodo) {
+                    case "mes":
+                        $("#idCategoriaMes").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "trimestre":
+                        $("#idCategoriaTrimestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "semestre":
+                        $("#idCategoriaSemestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "año":
+                        $("#idCategoriaAño").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+
+                }
+            },
+            error: function (response) {
+                Common.ocultarProcesando("idCategoriaMes", "Mes");
+                Common.ocultarProcesando("idCategoriaTrimestre", "Trimestre");
+                Common.ocultarProcesando("idCategoriaSemestre", "Semestre");
+                Common.ocultarProcesando("idCategoriaAño", "Año");
+                var r = jQuery.parseJSON(response.responseText);
+                alert(r.Message);
+            }
+        });
+        return ddata;
+    },
+    labelFormatter: function (label, series) {
+        return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;cursor:pointer'>" + label + "</div>";
+    },
+
+    filtrarGananciasVSPerdidas: function (periodo) {
+
+        $("#line-chart,#sparkline,#sparkline2").html("");
+
+        var Data = dashBoard.obtenerGanancasVSPerdidas(periodo);
+
+        new Morris.Line({
+            // ID of the element in which to draw the chart.
+            element: 'line-chart',
+            // Chart data records -- each entry in this array corresponds to a point on
+            // the chart.
+            data: Data,
+            xkey: 'fechas',
+            ykeys: ['cobranzas', 'pagos'],
+            labels: ['Series cobranzas', 'Series pagos'],
+            gridTextColor: 'rgba(255,255,255,0.5)',
+            //lineColors: ['#fff', '#fdd2a4'],
+            lineColors: ['#99C2FF', '#fdd2a4'],
+            lineWidth: '2px',
+            //hideHover: 'always',
+            smooth: false,
+            grid: false
+        });
+
+        //jQuery('#sparkline').sparkline([4, 3, 3, 1, 4, 3, 2, 2, 3, 10, 9, 6], {
+        //    type: 'bar',
+        //    height: '30px',
+        //    barColor: '#428BCA'
+        //});
+
+        //jQuery('#sparkline2').sparkline([9, 8, 8, 6, 9, 10, 6, 5, 6, 3, 4, 2], {
+        //    type: 'bar',
+        //    height: '30px',
+        //    barColor: '#999'
+        //});
+    },
+    obtenerGanancasVSPerdidas: function (periodo) {
+        var ddata = [];
+        Common.mostrarProcesando("idGananciasVSPerdidasMes,#idGananciasVSPerdidasTrimestre,#idGananciasVSPerdidasSemestre,#idGananciasVSPerdidasAño");
+        $.ajax({
+            type: "POST",
+            url: "/homeOLD.aspx/FiltrarGananciasVSPerdidas",
+            data: "{periodo: '" + periodo + "'}",
+            async: false,//wait for result
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg, text) {
+                Common.ocultarProcesando("idGananciasVSPerdidasMes", "Mes");
+                Common.ocultarProcesando("idGananciasVSPerdidasTrimestre", "Trimestre");
+                Common.ocultarProcesando("idGananciasVSPerdidasSemestre", "Semestre");
+                Common.ocultarProcesando("idGananciasVSPerdidasAño", "Año");
+                var data = msg.d.Items;
+                $("#TotalCobrado,#TotalPagado").html("");
+                $("#TotalCobrado").html(msg.d.TotalCobranzas);
+                $("#TotalPagado").html(msg.d.TotalPagos);
+
+                for (i = 0; i < data.length; i++) {
+
+                    var obj = new Object();
+                    obj.fechas = data[i].Fecha
+
+                    if (data[i].Cobranza != 0)
+                        obj.cobranzas = data[i].Uno
+
+                    if (data[i].Pagos != 0)
+                        obj.pagos = data[i].Dos
+
+                    ddata.push(obj);
+                }
+                $(".btnGananciasVSPerdidas").removeClass("btn btn-default").addClass("btn btn-black");
+
+                switch (periodo) {
+                    case "mes":
+                        $("#idGananciasVSPerdidasMes").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "trimestre":
+                        $("#idGananciasVSPerdidasTrimestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "semestre":
+                        $("#idGananciasVSPerdidasSemestre").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+                    case "año":
+                        $("#idGananciasVSPerdidasAño").removeClass("btn btn-black").addClass("btn btn-default");
+                        break;
+
+                }
+            },
+            error: function (response) {
+                Common.ocultarProcesando("idGananciasVSPerdidasMes", "Mes");
+                Common.ocultarProcesando("idGananciasVSPerdidasTrimestre", "Trimestre");
+                Common.ocultarProcesando("idGananciasVSPerdidasSemestre", "Semestre");
+                Common.ocultarProcesando("idGananciasVSPerdidasAño", "Año");
+                var r = jQuery.parseJSON(response.responseText);
+                alert(r.Message);
+            }
+        });
+        return ddata;
+    }
+}

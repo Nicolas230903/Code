@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2C2C330E-EC5E-4218-B279-46979E7953C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACHE.Model</RootNamespace>
+    <AssemblyName>ACHE.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\References\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers, Version=3.5.2.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.3.5.2\lib\net45\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers.DataLink">
+      <HintPath>..\..\References\FileHelpers.DataLink.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abonos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AbonosPersona.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccesoFormularioUsuario.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Actividad.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Activos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Alertas.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlertasGeneradas.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsientoDetalle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asientos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuditoriaDeCambio.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuthenticationToken.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuthenticationTokenClientes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AvisosVencimiento.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AvisosVencimientosView.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bancos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BancosBase.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BancosPlanDeCuenta.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Caja.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CajaView.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Categorias.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChequeAccion.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cheques.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ciudades.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CiudadesPrueba.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cobranzas.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CobranzasDetalle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CobranzasFormasDePago.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CobranzasRetenciones.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Compras.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComprobantesDetalle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComprobantesEnviados.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComunicacionesAFIP.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComunicacionesAFIPAdjuntos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conceptos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConceptosBackUp.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConceptosCaja.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConceptosTmp.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conceptos_Lote.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConfiguracionPlanDeCuenta.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_Cobrado_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_ComprasPorCategoria_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_Compras_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_IvaCompras_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_IvaVentas_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_Pagado_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_Ventas_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatosAFIPPersonas.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Estudios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FileHelpers\FacturasCSV.cs" />
+    <Compile Include="FileHelpers\PlanDeCuentasCSV.cs" />
+    <Compile Include="FileHelpers\ProductosPreciosCSV.cs" />
+    <Compile Include="FileHelpers\PersonasCSV.cs" />
+    <Compile Include="FileHelpers\ProductosCSV.cs" />
+    <Compile Include="SelectItem.cs" />
+    <Compile Include="fn_Split_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GastosBancarios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GastosGenerales.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Jurisdicciones.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LicenciaTemp.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LiquidoProductoMargenes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListaPrecios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginUsuarios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogServicios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Message.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MovimientoDeFondos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\CobranzaCartDto.cs" />
+    <Compile Include="Negocio\ComprobanteCartDto.cs" />
+    <Compile Include="Negocio\ComprobanteNroViewModel.cs" />
+    <Compile Include="Negocio\ComprasDto.cs" />
+    <Compile Include="Negocio\ComunicacionesAfip\ArchivoAdjunto.cs" />
+    <Compile Include="Negocio\ComunicacionesAfip\ComunicacionesAfipConAdjunto.cs" />
+    <Compile Include="Negocio\ComunicacionesAfip\ComunicacionesAfipSinAdjunto.cs" />
+    <Compile Include="Negocio\PersonaDomicilioConGeo.cs" />
+    <Compile Include="Negocio\DatosAfipPersonasConGeo.cs" />
+    <Compile Include="Negocio\DatosAfipPuntosDeVenta.cs" />
+    <Compile Include="Negocio\Licencia\PostRequestLicencia.cs" />
+    <Compile Include="Negocio\Licencia\PostResponseLicencia.cs" />
+    <Compile Include="Negocio\Mensajes\MessageDto.cs" />
+    <Compile Include="Negocio\PresupuestoCartDto.cs" />
+    <Compile Include="Negocio\PagosCartDto.cs" />
+    <Compile Include="Negocio\CustomException.cs" />
+    <Compile Include="Negocio\Dashboards.cs" />
+    <Compile Include="Negocio\Encriptar.cs" />
+    <Compile Include="Negocio\TiendaNube\ProductoTiendaNubeResponse.cs" />
+    <Compile Include="Negocio\TiendaNube\ProductsAttributes.cs" />
+    <Compile Include="Negocio\TiendaNube\ProductsResponse.cs" />
+    <Compile Include="Negocio\TiendaNube\Attributes.cs" />
+    <Compile Include="Negocio\TiendaNube\Categories.cs" />
+    <Compile Include="Negocio\TiendaNube\Description.cs" />
+    <Compile Include="Negocio\TiendaNube\Handle.cs" />
+    <Compile Include="Negocio\TiendaNube\Images.cs" />
+    <Compile Include="Negocio\TiendaNube\Name.cs" />
+    <Compile Include="Negocio\TiendaNube\Products.cs" />
+    <Compile Include="Negocio\TiendaNube\ResponseGetOrders.cs" />
+    <Compile Include="Negocio\TiendaNube\ResponseGetOrdersElum.cs" />
+    <Compile Include="Negocio\TiendaNube\ResponseGetProducts.cs" />
+    <Compile Include="Negocio\TiendaNube\SeoDescription.cs" />
+    <Compile Include="Negocio\TiendaNube\SeoTitle.cs" />
+    <Compile Include="Negocio\TiendaNube\Value.cs" />
+    <Compile Include="Negocio\TiendaNube\Variant.cs" />
+    <Compile Include="Negocio\WebUser.cs" />
+    <Compile Include="ObservacionesUsuario.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObtenerCuentasDeCompras.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Obtener_Registros_lotes_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pagos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PagosDetalle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PagosFormasDePago.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PagosRetenciones.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PA_ConsultarTicketAfip_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaDomicilio.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personas.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonasPwd.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonasTemp.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanDeCuentaBase.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanDeCuentas.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Planes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanesPagos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PreciosConceptos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PresupuestoDetalle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provincias.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PuntosDeVenta.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RemitoComprobanteMargenes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptBancarioView.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptChequesAcciones.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptCobranzasPendientes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptEstadoResultadoView.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rptImpositivoLibroDiario.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptIvaCompras.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptIvaVentas.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptPagoProveedores.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptRankingClientes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptRankingConceptos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptRetenciones.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptSaldosCc.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptStock.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockAuditoria.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketsAfip.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoIVA.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrackingHoras.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transporte.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportePersona.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosAdicionales.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosEmpresa.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosPermitidos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosPlanesView.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosView.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCiudades.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCuadroResumen.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCuadroResumenOriginal.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AsientosManualesViewModel.cs" />
+    <Compile Include="ViewModels\ComboViewModel.cs" />
+    <Compile Include="ViewModels\CuadroResumenViewModel.cs" />
+    <Compile Include="ViewModels\GastosGeneralesViewModel.cs" />
+    <Compile Include="ViewModels\ComprobanteEntregaViewModel.cs" />
+    <Compile Include="ViewModels\ComprobantesDetalleViewModel.cs" />
+    <Compile Include="ViewModels\AuditoriaViewModel.cs" />
+    <Compile Include="ViewModels\ComprobantesViewModel.cs" />
+    <Compile Include="ViewModels\ComprobantesVinculadosCart.cs" />
+    <Compile Include="ViewModels\ConceptosViewModel.cs" />
+    <Compile Include="ViewModels\CobranzasDetalleViewModel.cs" />
+    <Compile Include="ViewModels\CobranzasFormasDePagoViewModel.cs" />
+    <Compile Include="ViewModels\AbonosViewModel.cs" />
+    <Compile Include="ViewModels\CobranzasRetencionesViewModel.cs" />
+    <Compile Include="ViewModels\ComprasViewModel.cs" />
+    <Compile Include="ViewModels\AbonosAGenerarViewModel.cs" />
+    <Compile Include="ViewModels\BancosViewModel.cs" />
+    <Compile Include="ViewModels\ChequesViewModel.cs" />
+    <Compile Include="ViewModels\CitiComprasViewModel.cs" />
+    <Compile Include="ViewModels\CajaViewModel.cs" />
+    <Compile Include="ViewModels\AlertasViewModel.cs" />
+    <Compile Include="ViewModels\ActivosViewModel.cs" />
+    <Compile Include="ViewModels\ComprobantesDescargasViewModel.cs" />
+    <Compile Include="ViewModels\CuentaCorrienteViewModel.cs" />
+    <Compile Include="ViewModels\DetalleBancarioViewModel.cs" />
+    <Compile Include="ViewModels\EstadoResultadoViewModel.cs" />
+    <Compile Include="ViewModels\JurisdiccionesViewModel.cs" />
+    <Compile Include="ViewModels\LoginUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\MovimientoDeFondosViewModel.cs" />
+    <Compile Include="ViewModels\PercepcionesViewModel.cs" />
+    <Compile Include="ViewModels\ActividadViewModel.cs" />
+    <Compile Include="ViewModels\PuntoDeVentaViewModel.cs" />
+    <Compile Include="ViewModels\ResultadosLibroMayorViewModel.cs" />
+    <Compile Include="ViewModels\LibroDiarioViewModel.cs" />
+    <Compile Include="ViewModels\PlanDeCuentasViewModel.cs" />
+    <Compile Include="ViewModels\PlanDePagosViewModel.cs" />
+    <Compile Include="ViewModels\listaPreciosViewModel.cs" />
+    <Compile Include="ViewModels\RegInfoCVComprasCBTEViewModel.cs" />
+    <Compile Include="ViewModels\EmpleadoViewModel.cs" />
+    <Compile Include="ViewModels\RegInfoAlicuotasViewModel.cs" />
+    <Compile Include="ViewModels\RegInfoCVventasCBTEViewModel.cs" />
+    <Compile Include="ViewModels\RicvViewModel.cs" />
+    <Compile Include="ViewModels\RptCobranzasPendientesViewModel.cs" />
+    <Compile Include="ViewModels\RptComisionesViewModel.cs" />
+    <Compile Include="ViewModels\RptStockDetalleViewModel.cs" />
+    <Compile Include="ViewModels\TotalesNotificacionesCorreoViewModel.cs" />
+    <Compile Include="ViewModels\TrackingHorasViewModel.cs" />
+    <Compile Include="ViewModels\GastosBancariosViewModel.cs" />
+    <Compile Include="ViewModels\RptIngresoEgresoViewModel.cs" />
+    <Compile Include="ViewModels\RptCuentasPagarViewModel.cs" />
+    <Compile Include="ViewModels\PagosDetalleViewModel.cs" />
+    <Compile Include="ViewModels\PagosFormasDePagoViewModel.cs" />
+    <Compile Include="ViewModels\PagosRetencionesViewModel.cs" />
+    <Compile Include="ViewModels\EmpresasViewModel.cs" />
+    <Compile Include="ViewModels\RptCcDetalleViewModel.cs" />
+    <Compile Include="ViewModels\RptSaldosCcViewModel.cs" />
+    <Compile Include="ViewModels\UsuariosViewModel.cs" />
+    <Compile Include="ViewModels\RptRetencionesSufridasViewModel.cs" />
+    <Compile Include="ViewModels\PresupuestosViewModel.cs" />
+    <Compile Include="ViewModels\RptIvaVentasViewModel.cs" />
+    <Compile Include="ViewModels\FileExplorerViewModel.cs" />
+    <Compile Include="ViewModels\RptRnkViewModel.cs" />
+    <Compile Include="ViewModels\RptCcViewModel.cs" />
+    <Compile Include="ViewModels\PagosViewModel.cs" />
+    <Compile Include="ViewModels\RptPagoProvViewModel.cs" />
+    <Compile Include="ViewModels\RptIvaComprasViewModel.cs" />
+    <Compile Include="ViewModels\TotalesViewModel.cs" />
+    <Compile Include="ViewModels\PersonasViewModel.cs" />
+    <Compile Include="vLogServicios.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vMovimientoDeFondos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPdvPendientesDeProcesar.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPdvPendientesDeProcesarDetalle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPdvProcesados.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ACHE.Extensions\ACHE.Extensions.csproj">
+      <Project>{7a7039b5-7c3d-4cae-8581-95feb281f315}</Project>
+      <Name>ACHE.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ACHE.FacturaElectronica\ACHE.FacturaElectronica.csproj">
+      <Project>{e24e97f6-7e88-445b-851f-531bc534800c}</Project>
+      <Name>ACHE.FacturaElectronica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

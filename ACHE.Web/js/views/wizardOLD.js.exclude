@@ -1,0 +1,271 @@
+﻿var wizard = {
+    configForm: function () {
+
+
+        $(".select2").select2({ width: '100%', allowClear: true });
+        Common.obtenerProvincias("ddlProvincia", $("#hdnProvincia").val(), true);
+        Common.obtenerCiudades("ddlCiudad", $("#hdnCiudad").val(), $("#hdnProvincia").val(), true);
+
+
+        // Validation with select boxes
+        var $validator = $("form").validate({
+            highlight: function (element) {
+                jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+            },
+            success: function (element) {
+                jQuery(element).closest('.form-group').removeClass('has-error');
+            },
+
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+
+
+        $('.txtFechaInicioAct').datepicker();
+        configDatePicker();
+
+        $.validator.addMethod("validCuit", function (value, element) {
+            return CuitEsValido($("#txtCuit").val());
+        }, "CUIT Inválido");
+
+
+        //jQuery(document).ready(function () {
+
+        // Disabled Tab Click Wizard
+        jQuery('#idWizard').bootstrapWizard({
+            'nextSelector': '.next',
+            'previousSelector': '.previous',
+            tabClass: 'nav nav-pills nav-justified nav-disabled-click',
+            onTabClick: function (tab, navigation, index) {
+                return false;
+            },
+            onNext: function (tab, navigation, index) {
+
+                var verif = true;
+                switch (index) {
+                    case 1://Datos Generales
+                        verif = $("#txtRazonSocial,#ddlCondicionIva,#txtCuit,#txtFechaInicioAct,#ddlPersoneria,#txtEmail").valid();
+                        break;
+                    case 2://Domicilio
+                        verif = $("#txtCiudad,#txtDomicilio,#txtCp,#txtCp,#txtTelefono").valid();
+                        break;
+                    case 3://Punto
+                        if ($("#punto_1").length > 0) {
+                            verif = true;
+                            $("#divErrorPuntos").hide();
+                        }
+                        else {
+                            $("#msgErrorPuntos").html("Debe ingresar un punto de venta. Si no sabe qué punto de venta tiene habilitado, ingrese el 1");
+                            $("#divErrorPuntos").show();
+                            verif = false
+                        }
+                        break;
+                    case 4:
+                        verif = $("#tieneFactura,#noTieneFactura").is(":checked");
+                        break;
+                    case 6://Fin del Wizard
+
+                        verif = $("#default1,#default2,#default3,#default4,#default5,#default6").is(":checked");
+                        if (verif) {
+                            $("#btnNext").attr("onclick", "wizard.ActualizarUsuario()");
+                            $("#btnNext").text("Finalizar Configuración");
+                            $("#liNext").removeClass("next disabled");
+                            $('#divErrorTemplate').hide();
+                        }
+                        else {
+                            $("#divErrorTemplate").html("Debe seleccionar un Template");
+                            $("#divErrorTemplate").show();
+
+                        }
+                        break;
+                }
+
+                if (!verif) {
+                    $validator.focusInvalid();
+                    return false;
+
+                    //return false;
+                }
+                else {
+
+                    if (index == 1)
+                        $("#txtTelefono").val($("#txtCelular").val());
+
+                    $('html, body').animate({ scrollTop: $('#divTabsMenu').offset().top }, 'slow');
+                }
+
+                var $total = navigation.find('li').length;
+                var $current = index + 1;
+                var $percent = ($current / $total) * 100;
+                jQuery('#idWizard').find('.progress-bar').css('width', $percent + '%');
+            },
+            onPrevious: function (tab, navigation, index) {
+                $("#btnNext").removeAttr("onclick", "wizard.ActualizarUsuario()");
+                $("#btnNext").text("Siguiente");
+                $("#liNext").addClass("next disabled");
+
+                var $total = navigation.find('li').length;
+                var $current = index + 1;
+                var $percent = ($current / $total) * 100;
+                jQuery('#idWizard').find('.progress-bar').css('width', $percent + '%');
+            },
+            onTabShow: function (tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index + 1;
+                var $percent = ($current / $total) * 100;
+                jQuery('#idWizard').find('.progress-bar').css('width', $percent + '%');
+            }
+        });
+    },
+    changeProvincia: function () {
+        Common.obtenerCiudades("ddlCiudad", "", $("#ddlProvincia").val(), true);
+    },
+
+    ActualizarUsuario: function () {
+        wizard.ocultarMensajes();
+        Common.mostrarProcesando("btnNext");
+        var info = "{ razonSocial: '" + $("#txtRazonSocial").val()
+                + "', condicionIva: '" + $("#ddlCondicionIva").val()
+                + "', cuit: '" + $("#txtCuit").val()
+                + "', iibb: '" + $("#txtIIBB").val()
+                + "', fechaInicio: '" + $("#txtFechaInicioAct").val()
+                + "', personeria: '" + $("#ddlPersoneria").val()
+                + "', email: '" + $("#txtEmail").val()
+                + "', emailAlertas: '" + $("#txtEmailAlertas").val()
+                + "', telefono: '" + $("#txtTelefono").val()
+                + "', celular: '" + $("#txtCelular").val()
+                + "', contacto: '" + $("#txtContacto").val()
+                + "', idProvincia: '" + $("#ddlProvincia").val()
+                + "', idCiudad: '" + $("#ddlCiudad").val()
+                + "', domicilio: '" + $("#txtDomicilio").val()
+                + "', pisoDepto: '" + $("#txtPisoDepto").val()
+                + "', cp: '" + $("#txtCp").val()
+                + "', ddlTemplate: '" + $("input[name='ctl00$MainContent$dlltemplate']:checked").attr('value')
+                + "', chkCorreoPortal: '" + $("#ChkCorreoPortal").is(':checked')
+                + "', chkPortalClientes: '" + $("#chkPortalClientes").is(':checked')
+                 + "', TieneFacturaElectronica: '" + $("#tieneFactura").is(':checked')
+                + "' }";
+        $.ajax({
+            type: "POST",
+            url: "wizard.aspx/ActualizarUsuario",
+            data: info,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, text) {
+                $('#divOk').show();
+                $("#divError").hide();
+                $('html, body').animate({ scrollTop: 0 }, 'slow');
+                wizard.showWizard();
+            },
+            error: function (response) {
+                var r = jQuery.parseJSON(response.responseText);
+                $("#divErrorFinal").html(r.Message);
+                $("#divErrorFinal").show();
+                $('html, body').animate({ scrollTop: 0 }, 'slow');
+                Common.ocultarProcesando("btnNext", "Siguiente");
+            }
+        });
+    },
+    eliminarPunto: function (id) {
+        wizard.ocultarMensajes();
+
+        var info = "{ punto: " + parseInt(id) + "}";
+
+        $.ajax({
+            type: "POST",
+            url: "wizard.aspx/eliminarPunto",
+            data: info,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, text) {
+                wizard.obtenerPuntos();
+            },
+            error: function (response) {
+                var r = jQuery.parseJSON(response.responseText);
+                $("#msgErrorPuntos").html(r.Message);
+                $("#divErrorPuntos").show();
+            }
+        });
+    },
+    agregarPunto: function () {
+        wizard.ocultarMensajes();
+        $("#btnPunto").attr("disabled", true);
+        if ($("#txtNuevoPunto").val() != "") {
+
+            var info = "{ punto: " + parseInt($("#txtNuevoPunto").val()) + "}";
+
+            $.ajax({
+                type: "POST",
+                url: "wizard.aspx/agregarPunto",
+                data: info,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data, text) {
+                    wizard.obtenerPuntos()
+                    $("#btnPunto").attr("disabled", false);
+                },
+                error: function (response) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    $("#msgErrorPuntos").html(r.Message);
+                    $("#divErrorPuntos").show();
+                    $("#btnPunto").attr("disabled", false);
+                }
+            });
+
+        }
+        else {
+            $("#msgErrorPuntos").html("Debes ingresar un valor");
+            $("#divErrorPuntos").show();
+            $("#btnPunto").attr("disabled", false);
+        }
+    },
+    obtenerPuntos: function () {
+        $.ajax({
+            type: "POST",
+            url: "wizard.aspx/obtenerPuntos",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    $("#bodyDetalle").html(data.d);
+                }
+            }
+        });
+    },
+    ocultarMensajes: function () {
+        $("#divError, #divOk, #divErrorPuntos").hide();
+    },
+    showWizard: function () {
+
+        $.ajax({
+            type: "POST",
+            url: "common.aspx/verificarWizard",
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, text) {
+
+                if (data.d == true) {
+                    window.location.href = "/home.aspx";
+                }
+                else {
+                    window.location.href = "/Wizard.aspx";
+                }
+            },
+            error: function (response) {
+                var r = jQuery.parseJSON(response.responseText);
+                $("#divError").html(r.Message);
+                $("#divError").show();
+
+                $("#divLoginForm").show();
+                $("#divLoginLoading").hide();
+            }
+        });
+
+    }
+}

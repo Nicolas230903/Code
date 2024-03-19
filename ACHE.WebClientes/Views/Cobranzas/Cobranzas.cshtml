@@ -1,0 +1,55 @@
+﻿@model ACHE.WebClientes.Models.FacturaViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageheader">
+    <h2><i class="fa fa-file-text"></i>Cobranza electronica</h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">Estás aquí:</span>
+        <ol class="breadcrumb">
+            <li> @Html.ActionLink("Contabilium","Index","Home")</li>
+            <li class="active">Cobranza electronica</li>
+        </ol>
+    </div>
+</div>
+
+<div class="contentpanel">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Resultado de la operación : @Model.ResultadoOperacion</h4>
+                    <p id="msjResultados"></p>
+                </div>
+                <!-- panel-heading -->
+                <div class="panel-body">
+                    <div class="alert alert-danger" id="divError" style="display: none">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Lo sentimos!</strong> <span id="msgError"></span>
+                    </div>
+
+                    <p>
+                      @Model.MensajeResultadoOperacion
+                    </p>
+                      <p>
+                        Datos de la operación
+                    </p>
+                    <p>
+                        Factura: @Model.NroComprobante
+                    </p>
+                    <p>
+                        Monto Total a pagar: @Model.Importe
+                    </p>
+
+                       @Html.ActionLink("Volver a atras","Index","Home")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section  Scripts{
+    <script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
+}

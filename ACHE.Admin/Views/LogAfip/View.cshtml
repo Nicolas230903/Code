@@ -1,0 +1,136 @@
+﻿@model ACHE.Model.vLogServicios
+
+@{
+    ViewBag.Title = "View";
+}
+
+<div class="pageheader">
+
+    <h2>
+        <i class="fa fa-medkit"></i>Detalle Log Afip
+        <span>LogAfip</span>
+    </h2>
+</div>
+
+<div class="contentpanel">
+    <div class="row mb15">
+        <!-- profile-header -->
+        <div class="alert alert-danger" id="divError" style="display: none">
+            <strong>Lo sentimos! </strong><span id="msgError"></span>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form id="frmEdicion">
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <h3>Información del regitro</h3>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">IDLogServicio</label>
+                                <input id="txtCuitUsuario" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.IDLogServicio)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Entidad</label>
+                                <input id="txtEntidad" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.Entidad)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Url</label>
+                                <input id="txtUrl" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.Url)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Nombre</label>
+                                <input id="txtNombre" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.Nombre)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Mensaje</label>
+                                <input id="txtMensaje" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.Mensaje)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">FechaEmision</label>
+                                <input id="txtFechaEmision" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.FechaEmision)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">UsuarioCUIT</label>
+                                <input id="txtCUIT" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.CUIT)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">RazonSocial</label>
+                                <input id="txtRazonSocial" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.RazonSocial)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Envio</label>
+                                <input id="txtEnvio" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.Envio)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Respuesta</label>
+                                <textarea id="txtRespuesta" class="form-control" readonly="readonly" style="height: -webkit-fill-available;">
+                                    @Html.DisplayFor(model => model.Respuesta)
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">RespuestaExitosa</label>
+                                <input id="txtRespuestaExitosa" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.RespuestaExitosa)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">FechaRespuesta</label>
+                                <input id="txtFechaRespuesta" class="form-control" readonly="readonly" value="@Html.DisplayFor(model => model.FechaRespuesta)" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Volver a la lista", "Index","LogAfip",new {@class="btn btn-success"})
+        </div>
+    </div>
+</div>

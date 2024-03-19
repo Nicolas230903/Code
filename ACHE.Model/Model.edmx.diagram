@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3e6868c2f9664a5da85901c105eaa882" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="AxanModel.Abonos" Width="1.5" PointX="21.75" PointY="134.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.AbonosPersona" Width="1.5" PointX="13.5" PointY="108.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Activos" Width="1.5" PointX="16.5" PointY="110.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Alertas" Width="1.5" PointX="13.5" PointY="84.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.AlertasGeneradas" Width="1.5" PointX="15.75" PointY="101.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.AsientoDetalle" Width="1.5" PointX="26.25" PointY="140.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Asientos" Width="1.5" PointX="24" PointY="119.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.AuthenticationToken" Width="1.5" PointX="13.5" PointY="100.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.AuthenticationTokenClientes" Width="1.5" PointX="10.5" PointY="124.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.AvisosVencimiento" Width="1.5" PointX="13.5" PointY="103" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Bancos" Width="1.5" PointX="21.5" PointY="103.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.BancosBase" Width="1.5" PointX="19.25" PointY="96" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.BancosPlanDeCuenta" Width="1.5" PointX="24.75" PointY="130.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Caja" Width="1.5" PointX="21.75" PointY="128.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Categorias" Width="1.5" PointX="13.5" PointY="112.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ChequeAccion" Width="1.5" PointX="26.75" PointY="105.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Ciudades" Width="1.5" PointX="3" PointY="110.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Cobranzas" Width="1.5" PointX="15.75" PointY="132.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.CobranzasDetalle" Width="1.5" PointX="24" PointY="134.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.CobranzasFormasDePago" Width="1.5" PointX="26.75" PointY="121.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.CobranzasRetenciones" Width="1.5" PointX="18" PointY="148.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Compras" Width="1.5" PointX="18.75" PointY="107.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ComprobantesEnviados" Width="1.5" PointX="24" PointY="125.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ComunicacionesAFIP" Width="1.5" PointX="13.5" PointY="127.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ComunicacionesAFIPAdjuntos" Width="1.5" PointX="15.75" PointY="127.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ConceptosCaja" Width="1.5" PointX="13.5" PointY="132.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ConfiguracionPlanDeCuenta" Width="1.5" PointX="13.5" PointY="134.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.DatosAFIPPersonas" Width="1.5" PointX="13.5" PointY="140.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Empleados" Width="1.5" PointX="5.25" PointY="109.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Estudios" Width="1.5" PointX="9" PointY="102.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Formularios" Width="1.5" PointX="20" PointY="99" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.GastosBancarios" Width="1.5" PointX="29.75" PointY="107.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Jurisdicciones" Width="1.5" PointX="24" PointY="106.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.LicenciaTemp" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ListaPrecios" Width="1.5" PointX="13.5" PointY="146.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.LogServicios" Width="1.5" PointX="13.5" PointY="152.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Message" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.MovimientoDeFondos" Width="1.5" PointX="29.75" PointY="113.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ObservacionesUsuario" Width="1.5" PointX="13.5" PointY="157" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PagosFormasDePago" Width="1.5" PointX="26.75" PointY="109.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PagosRetenciones" Width="1.5" PointX="15.75" PointY="122.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PersonaDomicilio" Width="1.5" PointX="10.5" PointY="168" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PersonasPwd" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PersonasTemp" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PlanDeCuentaBase" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PlanDeCuentas" Width="1.5" PointX="13.5" PointY="160.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Planes" Width="1.5" PointX="9" PointY="118.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PlanesPagos" Width="1.5" PointX="21" PointY="121.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PreciosConceptos" Width="1.5" PointX="18.75" PointY="125.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Presupuestos" Width="1.5" PointX="21.5" PointY="109.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Provincias" Width="1.5" PointX="0.75" PointY="110.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.PuntosDeVenta" Width="1.5" PointX="13.5" PointY="165.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.Roles" Width="1.5" PointX="22.25" PointY="99.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.UsuariosPermitidos" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.CiudadesPrueba" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ConceptosTmp" Width="1.5" PointX="13.5" PointY="173.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.TicketsAfip" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.AvisosVencimientosView" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.CajaView" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.ObtenerCuentasDeCompras" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptBancarioView" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptCobranzasPendientes" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptEstadoResultadoView" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.rptImpositivoLibroDiario" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptIvaCompras" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptPagoProveedores" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptRankingClientes" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptRetenciones" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.RptSaldosCc" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.UsuariosPlanesView" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.vCiudades" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.vLogServicios" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.vMovimientoDeFondos" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.vPdvPendientesDeProcesar" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.vPdvPendientesDeProcesarDetalle" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxanModel.vPdvProcesados" Width="1.5" PointX="16.75" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="AxanModel.FK_Abonos_PlanDeCuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_AbonosPersona_Abonos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Activos_Compras" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_AlertaGenerada_Alertas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_AlertasGeneradas_Cobranzas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_AsientoParte_Asientos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_AsientoParte_PlanDeCuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Asientos_Cobranzas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Asientos_Compras" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Asientos_GastosBancarios" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Asientos_MovimientoDeFondos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Bancos_BancosBase" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_BancosPlanDeCuenta_Bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_ChequeAccion_Bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_CobranzasFormasDePago_Bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_GastosBancarios_Bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_MovimientoDeFondos_BancosDestino" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_MovimientoDeFondos_BancosOrigen" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_PagosFormasDePago_Bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_BancosPlanDeCuenta_PlanDeCuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Caja_ConceptosCaja" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Caja_PlanDeCuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Compras_Categorias" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Ciudades_Provincias" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Empleados_Ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Cobranzas_PuntosDeVenta" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_CobranzasDetalle_Cobranzas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_CobranzasFormasDePago_Cobranzas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_CobranzasRetenciones_Cobranzas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_ComprobantesEnviados_Cobranzas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Jurisdicciones_Compras" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FR_ComunicacionesAFIPAdjuntos_ComunicacionesAFIP" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Empleados_Provincias" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Formularios_Planes" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_Jurisdicciones_Provincias" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_PreciosConceptos_ListaPrecios" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_PlanDeCuentaBase_PlanDeCuentaBase" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_PlanDeCuentas_PlanDeCuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FK_PlanesPagos_Planes" ManuallyRouted="false" />
+        <AssociationConnector Association="AxanModel.FormulariosRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AxanModel.RptStock" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="AxanModel.Pagos" Width="1.5" PointX="32" PointY="117.75" />
+        <AssociationConnector Association="AxanModel.FK_AlertasGeneradas_Pagos" />
+        <AssociationConnector Association="AxanModel.FK_Asientos_Pagos" />
+        <AssociationConnector Association="AxanModel.FK_PagosFormasDePago_Pagos" />
+        <AssociationConnector Association="AxanModel.FK_PagosRetenciones_Pagos" />
+        <EntityTypeShape EntityType="AxanModel.PagosDetalle" Width="1.5" PointX="34.25" PointY="114.5" />
+        <AssociationConnector Association="AxanModel.FK_PagosDetalle_Compras" />
+        <AssociationConnector Association="AxanModel.FK_PagosDetalle_Pagos" />
+        <EntityTypeShape EntityType="AxanModel.RptRankingConceptos" Width="1.5" PointX="3.375" PointY="18.75" />
+        <EntityTypeShape EntityType="AxanModel.Transporte" Width="1.5" PointX="13.5" PointY="116.25" />
+        <EntityTypeShape EntityType="AxanModel.StockAuditoria" Width="1.5" PointX="37.25" PointY="111.625" />
+        <EntityTypeShape EntityType="AxanModel.AuditoriaDeCambio" Width="1.5" PointX="13.5" PointY="95.75" />
+        <EntityTypeShape EntityType="AxanModel.LiquidoProductoMargenes" Width="1.5" PointX="13.5" PointY="92.25" />
+        <EntityTypeShape EntityType="AxanModel.TransportePersona" Width="1.5" PointX="30" PointY="124.125" />
+        <EntityTypeShape EntityType="AxanModel.LoginUsuarios" Width="1.5" PointX="16.5" PointY="106.625" />
+        <EntityTypeShape EntityType="AxanModel.TrackingHoras" Width="1.5" PointX="32" PointY="113.375" />
+        <EntityTypeShape EntityType="AxanModel.UsuariosAdicionales" Width="1.5" PointX="24.5" PointY="110.25" />
+        <EntityTypeShape EntityType="AxanModel.UsuariosEmpresa" Width="1.5" PointX="32.75" PointY="110" />
+        <AssociationConnector Association="AxanModel.FK_LoginUsuarios_UsuariosAdicionales" />
+        <AssociationConnector Association="AxanModel.FK_TrackingHoras_UsuariosAdicionales" />
+        <AssociationConnector Association="AxanModel.FK_UsuariosEmpresa_UsuariosAdicionales" />
+        <AssociationConnector Association="AxanModel.RolesUsuariosAdicionales" />
+        <EntityTypeShape EntityType="AxanModel.AccesoFormularioUsuario" Width="1.5" PointX="13.5" PointY="69.875" />
+        <EntityTypeShape EntityType="AxanModel.Personas" Width="1.5" PointX="18.75" PointY="129.375" />
+        <AssociationConnector Association="AxanModel.FK_AbonosPersona_Personas" />
+        <AssociationConnector Association="AxanModel.FK_Activos_Personas" />
+        <AssociationConnector Association="AxanModel.FK_AlertasGeneradas_Personas" />
+        <AssociationConnector Association="AxanModel.FK_AuthenticationTokenClientes_Personas" />
+        <AssociationConnector Association="AxanModel.FK_Personas_Ciudades" />
+        <AssociationConnector Association="AxanModel.FK_Cobranzas_Persona" />
+        <AssociationConnector Association="AxanModel.FK_Compras_Personas" />
+        <AssociationConnector Association="AxanModel.FK_Personas_ListaPrecios" />
+        <AssociationConnector Association="AxanModel.FK_Pagos_Personas" />
+        <AssociationConnector Association="AxanModel.FR_PersonaDomicilio_Personas" />
+        <AssociationConnector Association="AxanModel.FK_Personas_Provincias" />
+        <AssociationConnector Association="AxanModel.FK_Presupuestos_Personas" />
+        <AssociationConnector Association="AxanModel.FK_TrackingHoras_Personas" />
+        <AssociationConnector Association="AxanModel.FR_TransportePersona_Personas" />
+        <EntityTypeShape EntityType="AxanModel.TipoIVA" Width="1.5" PointX="35" PointY="140.75" />
+        <EntityTypeShape EntityType="AxanModel.Conceptos" Width="1.5" PointX="37.25" PointY="116.625" />
+        <EntityTypeShape EntityType="AxanModel.PresupuestoDetalle" Width="1.5" PointX="37.25" PointY="124.375" />
+        <AssociationConnector Association="AxanModel.FK_Conceptos_Personas" />
+        <AssociationConnector Association="AxanModel.FK_PreciosConceptos_Conceptos" />
+        <AssociationConnector Association="AxanModel.FK_PresupuestoDetalle_Conceptos" />
+        <AssociationConnector Association="AxanModel.FR_Conceptos_TipoIVA" />
+        <AssociationConnector Association="AxanModel.FR_StockAuditoria_Conceptos" />
+        <AssociationConnector Association="AxanModel.FK_PresupuestoDetalle_Presupuestos" />
+        <AssociationConnector Association="AxanModel.FR_PresupuestoDetalle_TipoIVA" />
+        <EntityTypeShape EntityType="AxanModel.GastosGenerales" Width="1.5" PointX="13.5" PointY="63.75" />
+        <EntityTypeShape EntityType="AxanModel.RemitoComprobanteMargenes" Width="1.5" PointX="13.5" PointY="121" />
+        <EntityTypeShape EntityType="AxanModel.ComprobantesDetalle" Width="1.5" PointX="39.5" PointY="138" />
+        <AssociationConnector Association="AxanModel.FK_ComprobantesDetalle_Abonos" />
+        <AssociationConnector Association="AxanModel.FK_ComprobantesDetalle_Conceptos" />
+        <AssociationConnector Association="AxanModel.FK_ComprobantesDetalle_PlanDeCuentas" />
+        <AssociationConnector Association="AxanModel.FR_ComprobantesDetalle_TipoIVA" />
+        <EntityTypeShape EntityType="AxanModel.vCuadroResumen" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AxanModel.vCuadroResumenOriginal" Width="1.5" PointX="19.375" PointY="5.75" />
+        <EntityTypeShape EntityType="AxanModel.Actividad" Width="1.5" PointX="13.5" PointY="88.875" />
+        <EntityTypeShape EntityType="AxanModel.RptIvaVentas" Width="1.5" PointX="7.375" PointY="19.75" />
+        <EntityTypeShape EntityType="AxanModel.UsuariosView" Width="1.5" PointX="13.375" PointY="16.75" />
+        <EntityTypeShape EntityType="AxanModel.Cheques" Width="1.5" PointX="27.5" PointY="113.625" />
+        <AssociationConnector Association="AxanModel.FK_Cheques_BancosBase" />
+        <AssociationConnector Association="AxanModel.FK_ChequeAccion_Cheques" />
+        <AssociationConnector Association="AxanModel.FK_CobranzasFormasDePago_Cheques" />
+        <AssociationConnector Association="AxanModel.FK_PagosFormasDePago_Cheques" />
+        <AssociationConnector Association="AxanModel.FR_Chqeues_Personas" />
+        <EntityTypeShape EntityType="AxanModel.RptChequesAcciones" Width="1.5" PointX="9.375" PointY="19.75" />
+        <EntityTypeShape EntityType="AxanModel.Comprobantes" Width="1.5" PointX="32.25" PointY="124" />
+        <AssociationConnector Association="AxanModel.FR_Comprobantes_Actividad" />
+        <AssociationConnector Association="AxanModel.FK_Asientos_Comprobantes" />
+        <AssociationConnector Association="AxanModel.FK_CobranzasDetalle_Comprobantes" />
+        <AssociationConnector Association="AxanModel.FK_CobranzasFormasDePago_Comprobantes" />
+        <AssociationConnector Association="AxanModel.FK_Comprobantes_Persona" />
+        <AssociationConnector Association="AxanModel.FK_Comprobantes_Provincias" />
+        <AssociationConnector Association="AxanModel.FK_Comprobantes_PuntosDeVenta" />
+        <AssociationConnector Association="AxanModel.FK_ComprobantesEnviados_Comprobantes" />
+        <AssociationConnector Association="AxanModel.FK_PlanesPagos_Comprobantes" />
+        <AssociationConnector Association="AxanModel.FR_Comprobantes_PersonaDomicilio" />
+        <AssociationConnector Association="AxanModel.FR_Comprobantes_Transporte" />
+        <AssociationConnector Association="AxanModel.FR_Comprobantes_TransportePersona" />
+        <AssociationConnector Association="AxanModel.PK_ComprobantesDetalle_Notas" />
+        <EntityTypeShape EntityType="AxanModel.Usuarios" Width="1.5" PointX="11.25" PointY="98.75" />
+        <AssociationConnector Association="AxanModel.FK_Abonos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_AccesoFormularioUsuario_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_Actividad_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Alertas_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_AlertasGeneradas_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Asientos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_AuditoriaDeCambio_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_AuthenticationToken_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_AvisosVencimiento_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Bancos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_BancosPlanDeCuenta_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Caja_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Categorias_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_ChequeAccion_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Cheques_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Usuarios_Ciudades" />
+        <AssociationConnector Association="AxanModel.FK_Cobranzas_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Compras_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Comprobantes_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_ComprobantesEnviados_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_ComunicacionesAFIP_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Conceptos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_ConceptosCaja_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_ConfiguracionPlanDeCuenta_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_DatosAFIPPersonas_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Empleados_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Usuarios_Estudios" />
+        <AssociationConnector Association="AxanModel.FK_GastosBancarios_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_GastosGenerales_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_LiquidoProductoMargenes_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_ListaPrecio_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_LoginUsuarios_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_LogServicios_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_MovimientoDeFondos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_ObservacionesUsuario_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Pagos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Personas_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_PlanDeCuentas_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Usuarios_Planes" />
+        <AssociationConnector Association="AxanModel.FK_PlanesPagos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Presupuestos_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_Usuarios_Provincias" />
+        <AssociationConnector Association="AxanModel.FK_PuntosDeVenta_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_RemitoComprobanteMargenes_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_StockAuditoria_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_TrackingHoras_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_Transporte_Usuarios" />
+        <AssociationConnector Association="AxanModel.FR_TransportePersona_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_ConceptosTmp_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_UsuariosAdicionales_Usuarios" />
+        <AssociationConnector Association="AxanModel.FK_UsuariosEmpresa_Usuarios" />
+        <EntityTypeShape EntityType="AxanModel.Conceptos_Lote" Width="1.5" PointX="19.375" PointY="17.75" />
+        <EntityTypeShape EntityType="AxanModel.ConceptosBackUp" Width="1.5" PointX="19.375" PointY="10.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{70C968C5-96C8-41A4-96B7-36AD1AB3FB9A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACHE.Negocio</RootNamespace>
+    <AssemblyName>ACHE.Negocio</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\References\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\References\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\References\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers, Version=3.5.2.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.3.5.2\lib\net45\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers.DataLink">
+      <HintPath>..\..\References\FileHelpers.DataLink.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\References\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ACHE.FacturaElectronica\Componentes\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\DatosPersonaAfipCommon.cs" />
+    <Compile Include="Common\ComunicacionesAfipCommon.cs" />
+    <Compile Include="Common\AuditoriaCommon.cs" />
+    <Compile Include="Common\LicenciaCommon.cs" />
+    <Compile Include="Common\TiendaNubeCommon.cs" />
+    <Compile Include="Compras\GastosGeneralesCommon.cs" />
+    <Compile Include="Helper\Auditoria.cs" />
+    <Compile Include="Helper\Utiles.cs" />
+    <Compile Include="tesoreria\BancosCommon.cs" />
+    <Compile Include="tesoreria\MovimientoDeFondosCommon.cs" />
+    <Compile Include="Ventas\AbonosCommon.cs" />
+    <Compile Include="tesoreria\CajaCommon.cs" />
+    <Compile Include="Common\PersonasCommon.cs" />
+    <Compile Include="Common\CommonModel.cs" />
+    <Compile Include="Common\DatosInicialesCommon.cs" />
+    <Compile Include="Common\IEnumerableToDataTable.cs" />
+    <Compile Include="Common\ImportacionMasiva.cs" />
+    <Compile Include="Common\PermisosModulosCommon.cs" />
+    <Compile Include="Common\TokenCommon.cs" />
+    <Compile Include="Contabilidad\ContabilidadCommon.cs" />
+    <Compile Include="Ventas\CobranzasCommon.cs" />
+    <Compile Include="Compras\ComprasCommon.cs" />
+    <Compile Include="Ventas\ComprobantesCommon.cs" />
+    <Compile Include="Compras\PagosCommon.cs" />
+    <Compile Include="Ventas\ActividadCommon.cs" />
+    <Compile Include="Ventas\PuntoDeVentaCommon.cs" />
+    <Compile Include="Ventas\PresupuestosCommon.cs" />
+    <Compile Include="Ventas\ListaPreciosCommon.cs" />
+    <Compile Include="Ventas\ConceptosCommon.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\ReportesCommon.cs" />
+    <Compile Include="Common\UsuarioCommon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ACHE.Extensions\ACHE.Extensions.csproj">
+      <Project>{7a7039b5-7c3d-4cae-8581-95feb281f315}</Project>
+      <Name>ACHE.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ACHE.FacturaElectronica\ACHE.FacturaElectronica.csproj">
+      <Project>{e24e97f6-7e88-445b-851f-531bc534800c}</Project>
+      <Name>ACHE.FacturaElectronica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ACHE.Model\ACHE.Model.csproj">
+      <Project>{2c2c330e-ec5e-4218-b279-46979e7953c5}</Project>
+      <Name>ACHE.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

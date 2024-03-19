@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Front.master.cs" Inherits="Front" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ar">
+<head id="Head1" runat="server">
+    <title><%= ConfigurationManager.AppSettings["Titulo"] %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link href="/css/style.default.css" rel="stylesheet" />
+    <link href="/css/yamm.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript">
+        var MI_CONDICION = '<%= ((ACHE.Model.WebUser)Session["CurrentUser"]).CondicionIVA %>';
+        var MI_IDUSUARIO = '<%= ((ACHE.Model.WebUser)Session["CurrentUser"]).IDUsuario %>';
+        var MI_RAZONSOCIAL = '<%= ((ACHE.Model.WebUser)Session["CurrentUser"]).RazonSocial   %>';
+        var MI_CUIT = '<%= ((ACHE.Model.WebUser)Session["CurrentUser"]).CUIT   %>';
+    </script>
+
+
+     <asp:Literal ID="liZopin" runat="server"></asp:Literal>
+    <!--End of Zopim Live Chat Script-->
+</head>
+
+<body class="horizontal-menu stickyheader">
+  
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+    </div>
+
+    <section>
+        <%--<UC:SideBar runat="server" ID="ucSidebar"></UC:SideBar>--%>
+
+        <div class="mainpanel">
+            <UC:Header runat="server" ID="ucHeader"></UC:Header>
+          
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal modal-wide fade" id="modalAyuda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="titDetalle">Ayuda & Soporte</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="divAyudaError" style="display: none">
+                        <strong>Lo sentimos! </strong><span id="msgAyudaError"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Por favor, indicanos en qué te podemos ayudar</p>
+                            <textarea rows="5" id="txtAyudaMensaje" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="enviarAyuda();">Enviar</button>
+                    <a style="margin-left:20px" href="#" type="button" data-dismiss="modal">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-1.11.1.min.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/jquery-migrate-1.2.1.min.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/jquery-ui-1.10.3.min.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/bootstrap.min.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/modernizr.min.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/jquery.numericInput.min.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <%--<script src="/js/jquery.sparkline.min.js"></script>--%>
+    <script src="/js/toggles.min.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <%--<script src="/js/retina.min.js"></script>--%>
+    <script src="/js/jquery.cookies.js?=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/custom.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/bootbox.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/views/common.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <script src="/js/views/alertas.js?v=<%= ConfigurationManager.AppSettings["JS.Version"] %>"></script>
+    <asp:ContentPlaceHolder ID="FooterContent" runat="server">        
+    </asp:ContentPlaceHolder>
+</body>
+</html>

@@ -1,0 +1,3 @@
+Nombre;Codigo;descripcion;Stock;StockMinimo;PrecioUnitario;Observaciones;Iva;CostoInterno
+Nombre del Producto 1;1; Descripcion del producto 1;200;100;350,5;El producto se encuentra en exelente estado;0;20
+Nombre del Producto 2;2; Descripcion del producto 2;200;100;400,5;El producto se encuentra con problemas;0;40

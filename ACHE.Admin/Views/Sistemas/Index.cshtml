@@ -1,0 +1,181 @@
+﻿@model ACHE.Admin.Models.SistemasViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-user"></i>Sistemas
+        <span>Administración</span>
+    </h2>
+</div>
+
+<div class="contentpanel">
+
+    <div class="row mb15">
+        <div class="col-sm-12" id="divSistemas">
+            <!-- profile-header -->
+            <div class="alert alert-danger" id="divError" style="display: none">
+                <strong>Lo sentimos! </strong><span id="msgError"></span>
+            </div>
+            <div class="alert alert-success" id="divOk" style="display: none">
+                <strong>Bien hecho! </strong>Los datos se han actualizado correctamente
+            </div>
+
+
+            <form id="frmEdicion" runat="server" clientidmode="Static">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="PerfilUsuario" runat="server">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="info">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-9">
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <h2>Sistemas </h2>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Vigencia</label>
+                                                            @Html.TextBoxFor(m => m.Vigencia, new { @class = "form-control", @id = "txtVigencia" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Clave</label>
+                                                            @Html.TextBoxFor(m => m.Clave, new { @class = "form-control", @id = "txtClave" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <h4>Módulo 1 </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Nombre</label>
+                                                            @Html.TextBoxFor(m => m.Modulo1_Nombre, new { @class = "form-control", @id = "txtModulo1_Nombre" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Versión</label>
+                                                            @Html.TextBoxFor(m => m.Modulo1_Version, new { @class = "form-control", @id = "txtModulo1_Version" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <h4>Módulo 2 </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Nombre</label>
+                                                            @Html.TextBoxFor(m => m.Modulo2_Nombre, new { @class = "form-control", @id = "txtModulo2_Nombre" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Versión</label>
+                                                            @Html.TextBoxFor(m => m.Modulo2_Version, new { @class = "form-control", @id = "txtModulo2_Version" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <h4>Módulo 3 </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Nombre</label>
+                                                            @Html.TextBoxFor(m => m.Modulo3_Nombre, new { @class = "form-control", @id = "txtModulo3_Nombre" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Versión</label>
+                                                            @Html.TextBoxFor(m => m.Modulo3_Version, new { @class = "form-control", @id = "txtModulo3_Version" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <h4>Módulo 4 </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Nombre</label>
+                                                            @Html.TextBoxFor(m => m.Modulo4_Nombre, new { @class = "form-control", @id = "txtModulo4_Nombre" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Versión</label>
+                                                            @Html.TextBoxFor(m => m.Modulo4_Version, new { @class = "form-control", @id = "txtModulo4_Version" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <h4>Módulo 5 </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Nombre</label>
+                                                            @Html.TextBoxFor(m => m.Modulo5_Nombre, new { @class = "form-control", @id = "txtModulo5_Nombre" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"> Versión</label>
+                                                            @Html.TextBoxFor(m => m.Modulo5_Version, new { @class = "form-control", @id = "txtModulo5_Version" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-9">
+                                            <a class="btn btn-success" id="btnActualizarInfo" onclick="sistemas.grabar();">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- col-sm-9 -->
+    </div>
+    <!-- row -->
+</div>
+
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/select2.min.js"></script>
+<script src="~/js/views/Sistemas.js"></script>
+<script src="/js/jquery.maskedinput.min.js"></script>
+<script src="/js/jquery.maskMoney.min.js"></script>

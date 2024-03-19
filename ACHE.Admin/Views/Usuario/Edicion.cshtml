@@ -1,0 +1,1584 @@
+﻿@model ACHE.Admin.Models.UsuarioViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-users"></i>Usuarios
+        <span>Administración</span>
+    </h2>
+</div>
+
+<div class="contentpanel">
+
+    <div class="row mb15">
+        <div class="col-sm-12" id="divDatosPersonales">
+            <!-- profile-header -->
+            <div class="alert alert-danger" id="divError" style="display: none">
+                <strong>Lo sentimos! </strong><span id="msgError"></span>
+            </div>
+            <div class="alert alert-success" id="divOk" style="display: none">
+                <strong>Bien hecho! </strong>Los datos se han actualizado correctamente
+            </div>
+
+            <ul class="nav nav-tabs nav-justified nav-profile">
+
+                <li id="liPerfilUsuario" class="active" runat="server">
+                    <a href="#PerfilUsuario" data-toggle="tab" style="text-align: left;">
+                        <span class="fa fa-smile-o" style="font-size: 18px;"></span>
+                        <strong>PERFIL Y USUARIOS</strong><br />
+
+                    </a>
+                </li>
+                <li id="liplanPagos" runat="server">
+                    <a href="#planPagos" data-toggle="tab" style="text-align: left;">
+                        <span class="fa fa-credit-card" style="font-size: 18px;"></span>
+                        <strong>PLAN Y PAGOS</strong><br />
+
+                    </a>
+                </li>
+                <li id="liEmpresas" runat="server">
+                    <a href="#Empresas" data-toggle="tab" style="text-align: left;">
+                        <span class="fa fa-briefcase" style="font-size: 18px;"></span>
+                        <strong>EMPRESAS</strong><br />
+
+                    </a>
+                </li>
+                <li id="liEstadisticas" runat="server">
+                    <a href="#Estadisticas" data-toggle="tab" style="text-align: left;">
+                        <span class="fa fa-bar-chart" style="font-size: 18px;"></span>
+                        <strong>ESTADÍSTICAS</strong><br />
+
+                    </a>
+                </li>
+                <li id="liDatosInternos" runat="server">
+                    <a href="#DatosInternos"  data-toggle="tab" style="text-align: left;">
+                        <span class="fa fa-user" style="font-size: 18px;"></span>
+                        <strong>Datos internos</strong><br />
+
+                    </a>
+                </li>
+                <li id="liAccesos" runat="server">
+                    <a href="#Accesos" data-toggle="tab" style="text-align: left;">
+                        <span class="fa fa-check" style="font-size: 18px;"></span>
+                        <strong>Accesos</strong><br />
+
+                    </a>
+                </li>
+                <li id="li4"><a href="#" data-toggle="tab"><strong></strong></a></li>
+                <li id="li1"><a href="#" data-toggle="tab"><strong></strong></a></li>
+            </ul>
+            <form id="frmEdicion" runat="server" clientidmode="Static">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="PerfilUsuario" runat="server">
+                        <ul class="nav nav-tabs nav-justified nav-profile tab-content" id="tabsPerfil">
+                            <li id="liDatosPrincipales" class="active"><a href="#info" data-toggle="tab" style="text-align: left;"><strong>Datos principales</strong></a></li>
+                            <li id="liDomicilio"><a href="#domicilio" data-toggle="tab" style="text-align: left;"><strong>Domicilio fiscal</strong></a></li>
+                            <li id="liDatosFiscales"><a href="#datosFiscales" data-toggle="tab" style="text-align: left;"><strong>Datos impositivos</strong></a></li>
+                            @*<li id="liportalClientes" runat="server"><a href="#portalClientes" data-toggle="tab" style="text-align: left;"><strong>Acceso clientes</strong></a></li>*@
+                            <li id="liTemplate" runat="server"><a href="#template" data-toggle="tab" style="text-align: left;"><strong>Formato de factura</strong></a></li>
+                            <li id="liCambiarpwd"><a href="#" onclick="usuario.resetearPwd(@Model.ID,'@Model.RazonSocial');" style="text-align: left;"><strong>Resetear contraseña</strong></a></li>
+                            <li id="liImportaciones"><a href="#" onclick="usuario.importaciones(@Model.ID);" style="text-align: left;"><strong>Importar datos</strong></a></li>
+                            <li id="liUsuariosAd"><a href="#UsuariosAd" data-toggle="tab" style="text-align: left;"><strong>Usuarios</strong></a></li>
+                            <li id="liConfiguracion"><a href="#configuracion" data-toggle="tab" style="text-align: left;"><strong>Configuración</strong></a></li>
+                            <li id="liFijarNuevaClave"><a href="#fijarNuevaClave" data-toggle="tab" style="text-align: left;"><strong>Fijar nueva clave</strong></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="info">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-2" id="divFotoPerfil">
+
+                                                @if (!string.IsNullOrWhiteSpace(Model.Logo))
+                                                {
+                                                    <img id="imgLogo" src="http://app.contabilium.com/files/usuarios/@Model.Logo" class="thumbnail img-responsive" alt="" runat="server" />
+                                                }
+                                                else
+                                                {
+                                                    <img id="imgLogo" src="http://app.contabilium.com/files/usuarios/no-photo.png" class="thumbnail img-responsive" alt="" runat="server" />
+                                                }
+
+                                                <div class="col-sm-12" id="divEliminarUsuario" style="padding-top: 20px">
+                                                    <a class="btn btn-danger" onclick="usuario.eliminarUsuario(@Model.ID);">ELIMINAR USUARIO</a>
+                                                </div>
+                                                <div class="col-sm-12 alert alert-success" id="divOkEliminarUsuario" style="display: none">
+                                                    <strong></strong><span id="msgOkEliminarUsuario"></span>
+                                                </div>
+                                                <div class="col-sm-12 alert alert-danger" id="divErrorEliminarUsuario" style="display: none">
+                                                    <strong>Lo sentimos! </strong><span id="msgErrorEliminarUsuario"></span>
+                                                </div>
+
+                                                <div class="mb30"></div>
+
+                                                <div id="divLogo" style="display: none">
+                                                    <p class="mb30">Formato JPG, PNG o GIF. Tamaño máximo recomendado: 200x60px</p>
+                                                    <input type="hidden" value="" name="" /><input type="file" id="flpArchivo" />
+                                                    <div class="mb20"></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm-9">
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <h3>Datos principales </h3>
+                                                        <label class="control-label">Estos son los datos básicos y obligatorios que el sistema necesita para poder facturar.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"><code>*</code> Razón Social</label>
+                                                            @Html.TextBoxFor(m => m.RazonSocial, new { @class = "form-control required", @id = "txtRazonSocial", @maxlength = "128", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"><code>*</code> Categoría Impositiva</label>
+                                                            @Html.DropDownListFor(m => m.CondicionIva, new SelectList(new List<Object>{
+                                                                                                new { value = "" , text = "" },
+                                                                                                new { value = "Ex" , text = "Exento" },
+                                                                                                new { value = "RI" , text = "Responsable Inscripto"  },
+                                                                                                new { value = "NI" , text = "Responsable no inscripto" },
+                                                                                                new { value = "MO" , text = "Monotributista"  }
+                                                            },
+                                                          "value",
+                                                          "text"), new { @class = "select2", @id = "ddlCondicionIva", @placeholder = "Seleccione un valor" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"><code>*</code> CUIT</label>
+                                                            @Html.TextBoxFor(m => m.CUIT, new { @class = "form-control required number validCuit", @id = "txtCuit", @maxlength = "13", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"><code>*</code> E-mail</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">@@</span>
+                                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control required", @id = "txtEmail", @maxlength = "128", @type = "email" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Inicio de actividades</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                                @Html.TextBoxFor(m => m.FechaInicioActividades, new { @class = "form-control validDate", @id = "txtFechaInicioAct", @maxlength = "10", @disabled = "true" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label"><code>*</code> Personería</label>
+                                                            @Html.DropDownListFor(m => m.Personeria, new SelectList(new List<Object>{
+                                                                                                    new { value = "F" , text = "Física" },
+                                                                                                    new { value = "J" , text = "Jurídica"  }
+                                                                },
+                                                              "value",
+                                                              "text"), new { @class = "form-control", @id = "ddlPersoneria", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-12">
+                                                        <hr />
+                                                        <h3>Datos generales </h3>
+                                                        <label class="control-label">Estos datos no son necesarios para facturar, pero podrían serte de utilidad ;-)</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb15">
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">IIBB</label>
+                                                            @Html.CheckBoxFor(m => m.TieneFacturaElectronica, new { @id = "chkExento", @Text = "&nbsp;Soy exento", @Style = "border: 0; background-color: transparent;", @disabled = "true" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Nro. IIBB</label>
+                                                            @Html.TextBoxFor(m => m.ExentoIIBB, new { @class = "form-control number", @id = "txtIIBB", @maxlength = "15", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">E-mail alertas</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">@@</span>
+                                                                @Html.TextBoxFor(m => m.EmailAlertas, new { @class = "form-control", @id = "txtEmailAlertas", @disabled = "true" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb15">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Contacto</label>
+                                                            @Html.TextBoxFor(m => m.Contacto, new { @class = "form-control", @id = "txtContacto", @maxlength = "200", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Celular</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                                                @Html.TextBoxFor(m => m.Celular, new { @class = "form-control", @id = "txtCelular", @maxlength = "50" })
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb15">
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Es contador</label>
+                                                            @Html.CheckBoxFor(m => m.EsContador, new { @id = "chkEsContador", @Text = "&nbsp;Es contador", @Style = "border: 0; background-color: transparent;", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Usa plan corporativo</label>
+                                                            @Html.CheckBoxFor(m => m.UsaPlanCorporativo, new { @id = "chkUsaPlanCorporativo", @Text = "&nbsp;Usa Plan de Corporativo", @Style = "border: 0; background-color: transparent;", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-9">
+                                            <a class="btn btn-success" id="btnActualizarInfo" onclick="usuario.grabar(@Model.ID);">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="domicilio">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label"><span class="asterisk">*</span> Provincia</label>
+                                                    @*<select id="ddlProvincia" class="select2 required" data-placeholder="Selecciona una provincia...">
+                                                        </select>*@
+                                                    @Html.TextBoxFor(m => m.ProvinciaNombre, new { @class = "form-control", @id = "ddlProvincia", @maxlength = "100", @disabled = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label"><span class="asterisk">*</span> Ciudad/Localidad</label>
+                                                    @*<select id="ddlCiudad" class="select2 required" data-placeholder="Selecciona una ciudad...">
+                                                        </select>*@
+                                                    @Html.TextBoxFor(m => m.CiudadNombre, new { @class = "form-control", @id = "ddlCiudad", @maxlength = "100", @disabled = "true" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label"><span class="asterisk">*</span> Domicilio</label>
+                                                    @Html.TextBoxFor(m => m.Domicilio, new { @class = "form-control required", @id = "txtDomicilio", @maxlength = "100", @disabled = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Piso/Depto</label>
+                                                    @Html.TextBoxFor(m => m.PisoDepto, new { @class = "form-control", @id = "txtPisoDepto", @maxlength = "10", @disabled = "true" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Código Postal</label>
+                                                    @Html.TextBoxFor(m => m.CodigoPostal, new { @class = "form-control", @id = "txtCp", @maxlength = "10", @disabled = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Teléfono</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", @id = "txtTelefono", @maxlength = "50", @textmode = "Phone", @disabled = "true" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer hide">
+                                        <a class="btn btn-success" id="btnActualizarDomicilio" onclick="MisDatos.grabar();">Actualizar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="portalClientes">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <h3>¿Quiere que sus clientes accedan a un portal para descargar las facturas que les emitís? (VÁLIDO para plan PYME en adelante)</h3>
+                                        <p class="mb30">
+                                            Seleccionando "Habilitar acceso de clientes" sis clientes podrán ingresar a <a href="http://clientes.contabilium.com" target="_blank">http://clientes.contabilium.com</a> y descargar todas sus facturas de forma online.
+                                        </p>
+
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(m => m.PortalClientes, new { @id = "chkPortalClientes", @disabled = "true" })
+                                                    <label class="control-label">&nbsp;Habilitar acceso de clientes</label>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(m => m.CorreoPortal, new { @id = "ChkCorreoPortal", @disabled = "true" })
+                                                    <label class="control-label">&nbsp;Enviar mail automáticamente al emitirles una factura</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <hr />
+                                            <h3>¿Quiere cobrarle a sus clientes las facturas que le emite a través de MercadoPago?</h3>
+                                            <p>Sigue los siguientes pasos:</p>
+                                            <br />
+                                            <p>
+                                                1.- Ingresa a <a href="https://www.mercadopago.com/mla/herramientas/aplicaciones" target="_blank">www.mercadopago.com/mla/herramientas/aplicaciones</a>
+                                            </p>
+                                            <p>
+                                                2.- Completa el usuario y contraseña de Mercado Pago en caso de ser necesario.
+                                            </p>
+                                            <p>
+                                                3.- Copia los valores de Client_id y Client_secret a los campos correspondientes.
+                                            </p>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-sm-9 col-md-5 col-lg-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Client ID</label>
+                                                            @Html.TextBoxFor(m => m.MercadoPagoClientID, new { @class = "form-control", @id = "txtClientId", @maxlength = "150", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-9 col-md-5 col-lg-3">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Client Secret</label>
+                                                            @Html.TextBoxFor(m => m.MercadoPagoClientSecret, new { @class = "form-control", @id = "txtClientSecret", @maxlength = "150", @disabled = "true" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <p>
+                                                4 - Ingresa a <a href="https://www.mercadopago.com/mla/herramientas/notificaciones" target="_blank">www.mercadopago.com/mla/herramientas/notificaciones</a> y completa el campo Url con el siguiente valor: <strong style="color: #000">
+                                                    https://clientes.contabilium.com/mercadopago.ashx?token=@Model.ApiKey
+                                                </strong>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-footer hide">
+                                        <a class="btn btn-success" id="btnActualizarPortalClientes" onclick="MisDatos.portalClientes();">Actualizar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="template">
+                                <div class="panel-body">
+                                    <h3>La imagen es todo</h3>
+
+                                    <p>El diseño de factura elegido es.</p>
+
+                                    <div class="row mb15">
+                                        <div class="row filemanager">
+                                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                                <div class="thmb">
+                                                    <div class="thmb-prev">
+                                                        <img src="~/images/templates/1.png" class="img-responsive" alt="" />
+                                                    </div>
+                                                    <h5 class="fm-title">
+                                                        @Html.RadioButtonFor(m => m.TemplateFc, "default", new { @id = "default1", @name = "dlltemplate", @disabled = "true" })
+                                                        Default
+                                                    </h5>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                                <div class="thmb">
+                                                    <div class="thmb-prev">
+                                                        <img src="~/images/templates/2.png" class="img-responsive" alt="" />
+                                                    </div>
+                                                    <h5 class="fm-title">
+                                                        @Html.RadioButtonFor(m => m.TemplateFc, "amarillo", new { @id = "default2", @name = "dlltemplate", @disabled = "true" })
+                                                        Amarillo
+                                                    </h5>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                                <div class="thmb">
+                                                    <div class="thmb-prev">
+                                                        <img src="~/images/templates/3.png" class="img-responsive" alt="" />
+                                                    </div>
+                                                    <h5 class="fm-title">
+                                                        @Html.RadioButtonFor(m => m.TemplateFc, "celeste", new { @id = "default3", @name = "dlltemplate", @disabled = "true" })
+                                                        Celeste
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                                <div class="thmb">
+                                                    <div class="thmb-prev">
+                                                        <img src="~/images/templates/5.png" class="img-responsive" alt="" />
+                                                    </div>
+                                                    <h5 class="fm-title">
+                                                        @Html.RadioButtonFor(m => m.TemplateFc, "rojo", new { @id = "default5", @name = "dlltemplate", @disabled = "true" })
+                                                        Rojo
+                                                    </h5>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                                <div class="thmb">
+                                                    <div class="thmb-prev">
+                                                        <img src="~/images/templates/6.png" class="img-responsive" alt="" />
+                                                    </div>
+                                                    <h5 class="fm-title">
+                                                        @Html.RadioButtonFor(m => m.TemplateFc, "verde", new { @id = "default6", @name = "dlltemplate", @disabled = "true" })
+                                                        Verde
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer hide">
+                                    <a class="btn btn-success" id="btnActualizarTemplate" onclick="MisDatos.ActualizarTemplate();">Actualizar</a>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="datosFiscales">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <h3>Puntos de venta </h3>
+                                                <label class="control-label">Estos son los Puntos de ventas habilitados para facturar.</label>
+                                            </div>
+                                        </div>
+                                        <div id="puntos">
+                                            <div class="alert alert-danger" id="divErrorPuntos" style="display: none">
+                                                <strong>Lo sentimos! </strong><span id="msgErrorPuntos"></span>
+                                            </div>
+                                            <br />
+                                            <div class="table-responsive">
+                                                <table class="table mb30">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Punto</th>
+                                                            <th>Fecha alta</th>
+                                                            <th>Fecha baja</th>
+                                                            <th>Por defecto</th>
+                                                            <th class="columnIcons"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="bodyDetalle">
+                                                        <tr>
+                                                            @foreach (var item in Model.listaPuntos)
+                                                            {
+                                                            <tr>
+                                                                <td>@item.IDPuntoVenta</td>
+                                                                <td>@item.Punto</td>
+                                                                <td>@item.FechaAlta</td>
+                                                                <td>@item.FechaBaja</td>
+                                                                <td>@item.PorDefecto</td>
+                                                                <td>
+                                                                    @if (item.FechaBaja != null)
+                                                                    {
+                                                                        <a onclick="usuario.habilitarPuntoVenta(@item.IDPuntoVenta);return false;" style="cursor: pointer; font-size: 16px" title="Habilitar punto de venta"><i class="fa fa-check-circle"></i></a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row mb15">
+                                                <div class="col-sm-12">
+                                                    <h3>Es agente de percepción </h3>
+                                                    <hr />
+                                                    <label class="control-label">
+                                                        El agente de percepción recibe el importe correspondiente al tributo en el momento que el contribuyente paga la factura que se le extiende por la compra de un bien o la prestación de servicio.
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row mb15">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        @Html.CheckBoxFor(m => m.EsAgentePercepcionIVA, new { @id = "esAgentePersepcionIVA", @disabled = "true" })
+                                                        <label class="control-label">&nbsp;IVA</label>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.CheckBoxFor(m => m.EsAgentePercepcionIIBB, new { @id = "esAgentePersepcionIIBB", @disabled = "true" })
+                                                        <label class="control-label">&nbsp;IIBB</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb15">
+                                                <div class="col-sm-12">
+                                                    <h3>Es agente de retención </h3>
+                                                    <hr />
+                                                    <label class="control-label">
+                                                        El agente de retención, casi siempre debe entregar o ser partícipe de alguna manera de la entrega de un monto destinado al contribuyente, del cual detrae, amputa o resta a dicho importe la parte que le corresponde al fisco en concepto de tributo.
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row mb15">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        @Html.CheckBoxFor(m => m.EsAgenteRetencion, new { @id = "esAgenteRetencion", @disabled = "true" })
+                                                        <label class="control-label">&nbsp; Soy agente de retención</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer hide">
+                                            <a class="btn btn-success" id="btnActualizarDatosFiscales" onclick="MisDatos.grabar();">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="UsuariosAd" runat="server">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-5">
+                                                <h3>Estas son las empresa que tiene el usuario</h3>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table mb30">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>correo</th>
+                                                            <th>Nivel de seguridad</th>
+                                                            <th>Activo</th>
+                                                            <th>Empresas a las que tiene acceso</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            @foreach (var item in Model.ListaUsuariosAd)
+                                                            {
+                                                            <tr>
+                                                                <td>@item.Correo</td>
+                                                                <td>@item.NivelSeguridad</td>
+                                                                <td>@item.Activo</td>
+                                                                <td>@item.Empresas</td>
+                                                            </tr>
+                                                        }
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="configuracion">
+                                <div class="alert alert-danger" id="divErrorConfiguracion" style="display: none">
+                                    <strong>Lo sentimos! </strong><span id="msgErrorConfiguracion"></span>
+                                </div>
+                                <div class="alert alert-success" id="divOkConfiguracion" style="display: none">
+                                    <strong>Bien hecho! </strong>Los datos se han actualizado correctamente
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label"><span class="asterisk">*</span> Usar precio unitario con Con IVA</label>
+                                                    @*@Html.CheckBoxFor(m => m.UsaPrecioFinalConIVA , new { @id = "chkPrecioUnitarioConIVA", @disabled = "true",@Style="border: 0; background-color: transparent;",@Text="&nbsp Si, usar el precio unitario con el IVA incluido" })*@
+
+                                                    <h5 class="fm-title">
+                                                        @Html.RadioButtonFor(m => m.UsaPrecioFinalConIVA, true, new { @id = "rPrecioUnitarioConIVA", @name = "rPrecioUnitario", @disabled = "true" })
+                                                        Si, usar el precio unitario con IVA incluido.
+                                                    </h5>
+                                                    <h5 class="fm-title">
+                                                        @Html.RadioButtonFor(m => m.UsaPrecioFinalConIVA, false, new { @id = "rPrecioUnitarioSinIVA", @name = "rPrecioUnitario", @disabled = "true" })
+                                                        No, usar el precio unitario sin incluir IVA.
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <a class="btn btn-success" id="A1" onclick="MisDatos.guardarConfiguracion();">Actualizar</a>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="tab-pane" id="fijarNuevaClave">
+                                <div class="alert alert-danger" id="divErrorFijarNuevaClave" style="display: none">
+                                    <strong>Lo sentimos! </strong><span id="msgErrorFijarNuevaClave"></span>
+                                </div>
+                                <div class="alert alert-success" id="divOkFijarNuevaClave" style="display: none">
+                                    <strong>Bien hecho! </strong>Los datos se han actualizado correctamente
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <h3>Fijar nueva clave </h3>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row mb15">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label"><span class="asterisk">*</span> Nueva contraseña</label>
+                                                                <input type="password" id="txtPwd" maxlength="20" min="8" autocomplete="off" class="form-control required validPassword" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb15">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label"><span class="asterisk">*</span> Confirmar contraseña</label>
+                                                                <input type="password" id="txtPwd2" maxlength="20" min="8" autocomplete="off" class="form-control required validPassword" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <a class="btn btn-success" id="A1" onclick="usuario.fijarNuevaClave(@Model.ID);">Fijar Nueva Clave</a>
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="tab-pane" id="planPagos" runat="server">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <h3>El plan actual es:  @Model.PlanActual</h3>
+                                                <label class="control-label">La fecha de vencimiento es: @Model.FechaFinPlanActual </label>
+                                                <br />
+                                                <label class="control-label">Estado Actual del plan: @Model.PlanEstado</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <h3>Historial de pagos </h3>
+                                                <label class="control-label">Estos son todos los pagos registrados en el sistema.</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table mb30">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Plan</th>
+                                                        <th>Inicio</th>
+                                                        <th>Vencimiento</th>
+                                                        <th>Foma de pago</th>
+                                                        <th>Nro ref.</th>
+                                                        <th>Importe pagado</th>
+                                                        <th>Fecha de pago</th>
+                                                        <th>IDComprobante</th>
+                                                        <th>Nro comprobante</th>
+                                                        <th>Estado</th>
+                                                        <th class="columnIcons"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.listaPlanesPagos)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.Planes.Nombre</td>
+                                                            <td>@item.FechaInicioPlan.Value.ToString("dd/MM/yyyy")</td>
+                                                            <td>@item.FechaFinPlan.Value.ToString("dd/MM/yyyy")</td>
+                                                            <td>@item.FormaDePago</td>
+                                                            <td>@item.NroReferencia</td>
+                                                            <td>@item.ImportePagado</td>
+                                                            <td>@item.FechaDePago</td>
+                                                            <td>@item.IDComprobante</td>
+
+                                                            @if (item.Comprobantes != null)
+                                                            {
+                                                                <td>@item.Comprobantes.Tipo @item.Comprobantes.PuntosDeVenta.Punto.ToString("#0000")-@item.Comprobantes.Numero.ToString("#00000000")</td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th>-</th>
+                                                            }
+                                                            <td>@item.Estado</td>
+
+                                                            <td class="table-action">
+                                                                @if (item.Estado == "Pendiente")
+                                                                {
+                                                                    <a onclick="usuario.aceptarPago(@item.IDPlanesPagos,@item.IDUsuario,'@item.Usuarios.RazonSocial');return false;" style="cursor: pointer; font-size: 16px" title="Aceptar pago"><i class="fa fa-check"></i></a>
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="Empresas" runat="server">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-5">
+                                                <h3>Estas son las empresa que tiene el usuario</h3>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table mb30">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Razón social</th>
+                                                            <th>CUIT</th>
+                                                            <th>Direccion</th>
+                                                            <th>Condicion IVA</th>
+                                                            <th>Usa Produccion</th>
+                                                            <th>Factura Electrónica</th>
+                                                            <th class="columnIcons"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            @foreach (var item in Model.ListaEmpresas)
+                                                            {
+                                                            <tr>
+                                                                <td>@item.RazonSocial</td>
+                                                                <td>@item.CUIT</td>
+                                                                <td>@item.Domicilio</td>
+                                                                <td>@item.CondicionIva</td>
+                                                                <td>@item.TieneFacturaElectronica</td>
+                                                                <td>@item.UsaProd</td>
+                                                                <td class="table-action">
+                                                                    @if (item.TieneFacturaElectronica == "SI")
+                                                                    {
+                                                                        <a onclick="usuario.habilitarFCEmpresas(@item.ID,'@item.RazonSocial',false);return false;" style="cursor: pointer; font-size: 16px" title="Inhabilitar facturación eletrónica"><i class="fa fa-times"></i></a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a onclick="usuario.habilitarFCEmpresas(@item.ID,'@item.RazonSocial',true);return false;" style="cursor: pointer; font-size: 16px" title="Habilitar facturación eletrónica"><i class="fa fa-check"></i></a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            }
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="Estadisticas" runat="server">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-5">
+                                                <h3>Datos estadísticos del usuario</h3>
+                                            </div>
+                                        </div>
+
+                                        <hr />
+                                        <div class="row">
+                                            <div class="row text-center">
+
+                                                <div class="col-sm-6 col-md-6 col-lg-4">
+                                                    <div class="panel panel-success panel-stat">
+                                                        <div class="panel-heading">
+                                                            <div class="stat">
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <img src="~/images/is-user.png" alt="" />
+                                                                    </div>
+                                                                    <div class="col-xs-8">
+                                                                        <small class="stat-label">Total</small>
+                                                                        <h1 style="font-size: 30px;">Personas</h1>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="mb15"></div>
+
+                                                                <div class="row">
+                                                                    <div class="col-xs-6">
+                                                                        <small class="stat-label">Clientes</small>
+                                                                        <h4>@Model.Estadisticas.CantClientes </h4>
+                                                                    </div>
+
+                                                                    <div class="col-xs-6">
+                                                                        <small class="stat-label">Proveedores</small>
+                                                                        <h4>@Model.Estadisticas.CantProveedores</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6 col-md-6 col-lg-4">
+                                                    <div class="panel panel-success panel-stat">
+                                                        <div class="panel-heading">
+                                                            <div class="stat">
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <img src="~/images/is-document.png" alt="" />
+                                                                    </div>
+                                                                    <div class="col-xs-8">
+                                                                        <small class="stat-label">Comprobantes</small>
+                                                                        <h1 style="font-size: 30px;">Emitidos</h1>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="mb15"></div>
+
+                                                                <div class="row">
+                                                                    <div class="col-xs-6">
+                                                                        <small class="stat-label">Mes</small>
+                                                                        <h4>@Model.Estadisticas.CantVentasMes </h4>
+                                                                    </div>
+
+                                                                    <div class="col-xs-6">
+                                                                        <small class="stat-label">Total</small>
+                                                                        <h4>@Model.Estadisticas.CantVentasTotal</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="DatosInternos" runat="server">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <h3>Datos internos</h3>
+                                                <label class="control-label">Estos datos son internos</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Factura Electronica</label>
+                                                    @Html.CheckBoxFor(m => m.TieneFacturaElectronica, new { @id = "chkFactElectronica" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Usa Producción</label>
+                                                    @Html.CheckBoxFor(m => m.UsaProd, new { @id = "chkUsaProd" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">CUIT Afip</label>
+                                                    @Html.TextBoxFor(m => m.CUITAfip, new { @class = "form-control", @id = "txtCUITAfip", @maxlength = "11" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div id="divCertificadoPfxActual" class="col-sm-6">
+                                                        <label class="control-label">Certificado PFX Actual</label>
+                                                        @if (Model.CertificadoPfxActual != null)
+                                                        {
+                                                            @Html.TextBoxFor(m => m.CertificadoPfxActual, new { @class = "form-control", @id = "txtCertificadoPfxActual", @disabled = "true", @style = "font-weight:bold;" })
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="text" id="txtCertificadoPfxActual" value="NO TIENE CERTIFICADO PFX CARGADO" class="form-control" style="font-weight:bold" disabled="disabled" />
+                                                        }
+                                                    </div>
+                                                    <div id="divbtnCertificadoPfx" class="col-sm-6">
+                                                        <label class="control-label">Certificado - Formato EJ: 23185938999.pfx</label>
+                                                        <input type="file" id="flpArchivoCertificado" accept=".pfx" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Acceso a GESTOR</label>
+                                                    @Html.DropDownListFor(m => m.accesoGestor, new SelectList(new List<Object>{
+                                                                new { value = "true" , text = "SI" },
+                                                                new { value = "false" , text = "NO"  }
+                                                    },
+                                                    "value",
+                                                    "text"), new { @class = "form-control", @id = "ddlAccesoGestor" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Cant de empresas habilitadas para crear</label>
+                                                    @Html.TextBoxFor(m => m.CantEmpresasHabilitadas, new { @class = "form-control", @id = "txtCantEmpresasHabilitadas", @maxlength = "2" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Esta bloqueado</label>
+                                                    @Html.DropDownListFor(m => m.EstaBloqueado, new SelectList(new List<Object>{
+                                                                                                            new { value = "true" , text = "SI" },
+                                                                                                            new { value = "false" , text = "NO"  }
+                                                                        },
+                                                                        "value",
+                                                                        "text"), new { @class = "form-control", @id = "ddlBloqueado" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Observaciones</label>
+                                                    @Html.TextAreaFor(m => m.Observaciones, new { @class = "form-control", @id = "txtObservaciones" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <h3>Vendedores</h3>
+                                                <label class="control-label">Datos referidos al rol de vendedor y la comisión</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Es Vendedor</label>
+                                                    @Html.DropDownListFor(m => m.EsVendedor, new SelectList(new List<Object>{
+                                                                                                            new { value = "true" , text = "SI" },
+                                                                                                            new { value = "false" , text = "NO"  }
+                                                                        },
+                                                                        "value",
+                                                                        "text"), new { @class = "form-control", @id = "ddlEsVendedor" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Porcentaje Comisión</label>
+                                                    @Html.TextBoxFor(m => m.PorcentajeComision, new { @class = "form-control", @id = "txtPorcentajeComision", @maxlength = "10000", Type = "number" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <h3>Baja del usuario</h3>
+                                                <label class="control-label">Estos datos son referidos a la baja</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Activo</label>
+                                                    @Html.DropDownListFor(m => m.Activo, new SelectList(new List<Object>{
+                                                                                                            new { value = "true" , text = "SI" },
+                                                                                                            new { value = "false" , text = "NO"  }
+                                                                        },
+                                                                        "value",
+                                                                        "text"), new { @class = "form-control", @id = "ddlActivo" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Fecha de baja</label>
+                                                    @Html.TextBoxFor(m => m.FechaBaja, new { @class = "form-control", @id = "txtFechaBaja", @maxlength = "2", @disabled = "true" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Motivo de baja</label>
+                                                    @Html.TextAreaFor(m => m.MotivoBaja, new { @class = "form-control", @id = "txtMotivoBaja" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <h3>Plan Corporativo</h3>
+                                                @*<label class="control-label">Estos datos son referidos al plan corporativo</label>*@
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-4" id="divbtnPlanCorporativo">
+                                                <a class="btn btn-danger" id="btnCofPlanCorporativo" onclick="usuario.configurarPlanCorporativo(@Model.ID);">Habilitar plan</a>
+                                            </div>
+                                            <div class="col-sm-4" id="divTextPlanCorporativo">
+                                                <p>Los datos ya se encuentran cargados.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-9">
+                                            <a class="btn btn-success" id="btnActualizarDatosInternos" onclick="usuario.grabar(@Model.ID);">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="Accesos" runat="server">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row mb15">
+                                            <div class="col-sm-12">
+                                                <hr />
+                                                <h3>Accesos</h3>
+                                                <label class="control-label">Gestión de los accesos a los items del sistema</label>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Home</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Home Valores</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HomeValores, new { @id = "chkHomeValores", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Comercial</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Pedido De Venta</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialPedidoDeVenta, new { @id = "chkComercialPedidoDeVenta", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Factura De Venta</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialFacturaDeVenta, new { @id = "chkComercialFacturaDeVenta", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Cobranzas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialCobranzas, new { @id = "chkComercialCobranzas", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Presupuestos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialPresupuestos, new { @id = "chkComercialPresupuestos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Entregas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialEntregas, new { @id = "chkComercialEntregas", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Abonos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialAbonos, new { @id = "chkComercialAbonos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Productos y Servicios</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialProductosYServicios, new { @id = "chkComercialProductosYServicios", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comercial - Clientes</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ComercialClientes, new { @id = "chkComercialClientes", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Suministro</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Suministro - Pedido De Compra</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.SuministroPedidoDeCompra, new { @id = "chkSuministroPedidoDeCompra", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Suministro - Comprobante De Compra</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.SuministroComprobanteDeCompra, new { @id = "chkSuministroComprobanteDeCompra", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Suministro - Pagos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.SuministroPagos, new { @id = "chkSuministroPagos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Suministro - Proveedores</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.SuministroProveedores, new { @id = "chkSuministroProveedores", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Administración</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Bancos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionBancos, new { @id = "chkAdministracionBancos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Instituciones</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionInstituciones, new { @id = "chkAdministracionInstituciones", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Gastos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionGastos, new { @id = "chkAdministracionGastos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Movimientos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionMovimientos, new { @id = "chkAdministracionMovimientos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Detalle Bancario</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionDetalleBancario, new { @id = "chkAdministracionDetalleBancario", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Cheques</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionCheques, new { @id = "chkAdministracionCheques", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Caja</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionCaja, new { @id = "chkAdministracionCaja", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Administracion - Cuentas Corrientes</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.AdministracionCuentasCorrientes, new { @id = "chkAdministracionCuentasCorrientes", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Producción</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Producción - Materiales</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ProduccionMateriales, new { @id = "chkProduccionMateriales", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Producción - Almacenes</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ProduccionAlmacenes, new { @id = "chkProduccionAlmacenes", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Producción - Costos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ProduccionCostos, new { @id = "chkProduccionCostos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Producción - Recursos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ProduccionRecursos, new { @id = "chkProduccionRecursos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Producción - Planificacion</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.ProduccionPlanificacion, new { @id = "chkProduccionPlanificacion", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Planeamiento</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Planeamiento - Objetivos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.PlaneamientoObjetivos, new { @id = "chkPlaneamientoObjetivos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Planeamiento - Programas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.PlaneamientoProgramas, new { @id = "chkPlaneamientoProgramas", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Planeamiento - Presupuestos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.PlaneamientoPresupuestos, new { @id = "chkPlaneamientoPresupuestos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h4>Info</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Financieros - Ventas Vs Compras</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoFinancierosVentasVsCompras, new { @id = "chkInfoFinancierosVentasVsCompras", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Financieros - Compras Por Categoria</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoFinancierosComprasPorCategoria, new { @id = "chkInfoFinancierosComprasPorCategoria", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Ganancias Vs Perdidas - Cobrado Vs Pagado</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGananciasVsPerdidasCobradoVsPagado, new { @id = "chkInfoGananciasVsPerdidasCobradoVsPagado", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Impositivos - IVA Ventas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoImpositivosIVAVentas, new { @id = "chkInfoImpositivosIVAVentas", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Impositivos - IVA Compras</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoImpositivosIVACompras, new { @id = "chkInfoImpositivosIVACompras", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Impositivos - IVA Saldo</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoImpositivosIVASaldo, new { @id = "chkInfoImpositivosIVASaldo", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Impositivos - Retenciones</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoImpositivosRetenciones, new { @id = "chkInfoImpositivosRetenciones", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Impositivos - Percepciones</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoImpositivosPercepciones, new { @id = "chkInfoImpositivosPercepciones", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Impositivos - CITI Compras Y Ventas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoImpositivosCITIComprasYVentas, new { @id = "chkInfoImpositivosCITIComprasYVentas", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Cuenta Corriente</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionCuentaCorriente, new { @id = "chkInfoGestionCuentaCorriente", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Cobranza Pendientes</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionCobranzaPendientes, new { @id = "chkInfoGestionCobranzaPendientes", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Pago A Proveedores</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionPagoAProveedores, new { @id = "chkInfoGestionPagoAProveedores", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Stock Productos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionStockProductos, new { @id = "chkInfoGestionStockProductos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Movimientos de Stock</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionStockDetalle, new { @id = "chkInfoGestionStockProductosDetalle", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Cuentas A Pagar</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionCuentasAPagar, new { @id = "chkInfoGestionCuentasAPagar", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Ranking Por Cliente</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionRankingPorCliente, new { @id = "chkInfoGestionRankingPorCliente", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Ranking Por Producto Servicio</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionRankingPorProductoServicio, new { @id = "chkInfoGestionRankingPorProductoServicio", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Tracking Horas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionTrackingHoras, new { @id = "chkInfoGestionTrackingHoras", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Lista Facturas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionListaFacturas, new { @id = "chkInfoGestionListaFacturas", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Info - Gestion - Comisiones</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.InfoGestionComisiones, new { @id = "chkInfoGestionComisiones", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Herramientas</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Explorador De Archivos</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasExploradorDeArchivos, new { @id = "chkHerramientasExploradorDeArchivos", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Importacion Masiva</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasImportacionMasiva, new { @id = "chkHerramientasImportacionMasiva", @Style = "border: 0; background-color: transparent;" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Tracking De Horas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasTrackingDeHoras, new { @id = "chkHerramientasTrackingDeHoras", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Configurar Alertas</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasConfigurarAlertas, new { @id = "chkHerramientasConfigurarAlertas", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Generación Compra Automatica</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasGeneracionCompraAutomatica, new { @id = "chkHerramientasGeneracionCompraAutomatica", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Generación Líquido Producto</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasGeneracionLiquidoProducto, new { @id = "chkHerramientasGeneracionLiquidoProducto", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Generación Factura Automatica</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasGeneracionFacturaAutomatica, new { @id = "chkHerramientasGeneracionFacturaAutomatica", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Herramientas - Auditoria</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HerramientasAuditoria, new { @id = "chkHerramientasAuditoria", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h4>Mas Opciones</h4>
+                                        <div class="row mb15">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Habilitar cambio de IVA en articulos desde comprobante</label>
+                                                    @Html.CheckBoxFor(m => m.acceso.HabilitarCambioIvaEnArticulosDesdeComprobante, new { @id = "chkHabilitarCambioIvaEnArticulosDesdeComprobante", @Style = "border: 0; background-color: transparent;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-9">
+                                            <a class="btn btn-success" id="btnActualizarAccesos" onclick="usuario.grabarAccesos(@Model.ID);">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+                    <!-- col-sm-9 -->
+    </div>
+                <!-- row -->
+</div>
+
+<input type="hidden" id="hdnPlanCorporativo" value="@Model.TienePlanDeCuentas" />
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/select2.min.js"></script>
+<script src="~/js/views/Usuario.js"></script>
+<script src="/js/jquery.maskedinput.min.js"></script>
+<script src="/js/jquery.maskMoney.min.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        usuario.config();
+        usuario.showBtnPlanCorporativo('@Model.TienePlanDeCuentas');
+    });
+</script>

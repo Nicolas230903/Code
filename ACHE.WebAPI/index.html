@@ -1,0 +1,728 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Ejemplos de llamadas</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+        //var urlBase = "http://apiqa.contabilium.com";
+        var urlBase = "";
+        function unjsEncode(string) {
+            var newstring = string.Replace(/\\x/g, '%');
+            newstring = newstring.Replace(/\\n/g, '');
+            newstring = newstring.Replace(/\\"/g, '"');
+            newstring = decodeURIComponent(newstring);
+            return newstring;
+        }
+
+        function loadXMLDoc(llamarA, tipo, idDiv) {
+            $.ajax({
+                url: urlBase + llamarA,
+                type: tipo,
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                },
+            });
+        }
+
+        function GuardarComprobante(idDiv) {
+            var obj = new Object();
+            var Item = new Object();
+            var Items = new Array();
+            obj.Token = "ef4a6b83-b5f6-4c85-8320-6186fa9de3f3";
+            obj.IDComprobante = 0;
+            obj.IDPersona = 5836;
+            obj.IDPuntoVenta = 15;
+            obj.Modo = "T";
+            obj.TipoComprobante = "FCB";
+            obj.FechaComprobante = "10/13/2015";
+            obj.FechaVencimiento = "11/13/2015";
+            obj.CondicionVenta = "Efectivo";
+            obj.TipoConcepto = 2;
+            obj.Numero = "00000088";
+            obj.Observaciones = "alguna obs";
+
+            Item.ID = 0;
+            Item.Concepto = "un producto";
+            Item.PrecioUnitario = 100;
+            Item.Iva = "21.00";
+            Item.Cantidad = 3;
+            Items.push(Item);
+            obj.Items = Items;
+
+            $.ajax({
+                type: 'POST',
+                url: 'Comprobante/procesar',
+                data: JSON.stringify(obj),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                }
+            });
+        }
+
+        function GuardarProductoTiendaNube(idDiv) {
+            var obj = new Object();
+            var Item = new Object();
+            var Items = new Array();
+            obj.Token = "ef4a6b83-b5f6-4c85-8320-6186fa9de3f3";
+            obj.IDComprobante = 0;
+            obj.IDPersona = 5836;
+            obj.IDPuntoVenta = 15;
+            obj.Modo = "T";
+            obj.TipoComprobante = "FCB";
+            obj.FechaComprobante = "10/13/2015";
+            obj.FechaVencimiento = "11/13/2015";
+            obj.CondicionVenta = "Efectivo";
+            obj.TipoConcepto = 2;
+            obj.Numero = "00000088";
+            obj.Observaciones = "alguna obs";
+
+            Item.ID = 0;
+            Item.Concepto = "un producto";
+            Item.PrecioUnitario = 100;
+            Item.Iva = "21.00";
+            Item.Cantidad = 3;
+            Items.push(Item);
+            obj.Items = Items;
+
+            $.ajax({
+                type: 'POST',
+                url: 'ProductoTiendaNube/procesar',
+                data: JSON.stringify(obj),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                }
+            });
+        }
+
+        function guardarListaDePrecio(idDiv) {
+            var lista = new Array();
+            var obj = new Object();
+            obj.IDPrecioConcepto = "2982";
+            obj.IDConceptos = "11";
+            obj.Precio = "200.00";
+            lista.push(obj);
+            var obj = new Object();
+            obj.IDPrecioConcepto = "2983";
+            obj.IDConceptos = "5735";
+            obj.Precio = "300.50";
+            lista.push(obj);
+
+            var listaDePrecios = new Object();
+            listaDePrecios.Token = "ef4a6b83-b5f6-4c85-8320-6186fa9de3f3";
+            listaDePrecios.ID = "21";
+            listaDePrecios.Nombre = "lista ttest";
+            listaDePrecios.Observaciones = "1";
+            listaDePrecios.Activa = "SI";
+            listaDePrecios.Items = lista;
+
+            $.ajax({
+                type: 'POST',
+                url: 'ListaDePrecios/procesar',
+                data: JSON.stringify(listaDePrecios),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                }
+            });
+        }
+
+        function GuardarCobranzas(idDiv) {
+            var Items = new Array();
+            var Retenciones = new Array();
+            var FormasDePago = new Array();
+
+            var cobrCartdto = new Object();
+            cobrCartdto.Token = "ef4a6b83-b5f6-4c85-8320-6186fa9de3f3";
+            cobrCartdto.IDCobranza = 7297;
+            cobrCartdto.IDPersona = 4500;
+            cobrCartdto.Tipo = "RC";
+            cobrCartdto.Fecha = "21/10/2015";//dd/MM/yyyy
+            cobrCartdto.IDPuntoVenta = 3117;
+            cobrCartdto.NumeroCobranza = "00000099";
+            cobrCartdto.Observaciones = "Alguna observación de la cobranza";
+
+            var obj = new Object();
+            obj.ID = 1;
+            obj.Comprobante = "FCB  00001-00001066";
+            obj.Importe = 361.79;
+            obj.IDComprobante = 15175;
+            Items.push(obj);
+
+            var obj = new Object();
+            obj.ID = 1;
+            obj.Importe = 361.79;
+            obj.FormaDePago = "Efectivo";
+            obj.NroReferencia = "";
+            FormasDePago.push(obj);
+
+            cobrCartdto.Items = Items;
+            cobrCartdto.FormasDePago = FormasDePago;
+            cobrCartdto.Retenciones = Retenciones;
+
+            $.ajax({
+                type: 'POST',
+                url: 'Cobranzas/procesar',
+                data: JSON.stringify(cobrCartdto),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                }
+            });
+        }
+
+        function GuardarCompras(idDiv) {
+
+            var Jurisdicciones = new Array();
+            var obj = new Object();
+            obj.IDJurisdicion = 1;
+            obj.IDCompra = 1;
+            obj.Importe = 1000;
+            obj.NombreJurisdiccion = "";
+            Jurisdicciones.push(obj);
+
+            var Compras = new Object();
+            Compras.token = "ef4a6b83-b5f6-4c85-8320-6186fa9de3f3";
+            Compras.IDCompra = 7219;
+            Compras.idPersona = 17001;
+            Compras.fecha = '19/10/2015';
+            Compras.nroFactura = '0005-00000318';
+            Compras.iva = '83.79';
+            Compras.importe2 = '0.00';
+            Compras.importe5 = '0.00';
+            Compras.importe10 = '0.00';
+            Compras.importe21 = '399.00';
+            Compras.importe27 = '0.00';
+            Compras.noGrav = '0.00';
+            Compras.importeMon = '';
+            Compras.impNacional = '0.00';
+            Compras.impMunicipal = '0.00';
+            Compras.impInterno = '0.00';
+            Compras.percepcionIva = '0.00';
+            Compras.otros = '0.00';
+            Compras.obs = 'Compra generada automaticamente por Contabilium= Plan= Corporativo';
+            Compras.tipo = 'FCA';
+            Compras.idCategoria = '';
+            Compras.rubro = 'Servicios';
+            Compras.exento = '0.00';
+            Compras.FechaEmision = '19/10/2015';
+            Compras.idPlanDeCuenta = 0;
+            Compras.Jurisdicciones = Jurisdicciones;
+            Compras.FechaPrimerVencimiento = '';
+            Compras.FechaSegundoVencimiento = '';
+
+            $.ajax({
+                type: 'POST',
+                url: 'Compras/procesar',
+                data: JSON.stringify(Compras),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                }
+            });
+        }
+
+        function GuardarPagos(idDiv) {
+            var Pagos = new Object();
+            var FormasDePago = new Array();
+            var Retenciones = new Array();
+            var Items = new Array();
+
+            Pagos.token = "ef4a6b83-b5f6-4c85-8320-6186fa9de3f3";
+            Pagos.IDPago = 7121;
+            Pagos.IDPersona = 17001;
+            Pagos.Observaciones = "";
+            Pagos.FechaPago = "21/10/2015";
+
+            var obj = new Object();
+            obj.ID = 1;
+            obj.IDCompra = 7219;
+            obj.Importe = 400;
+            obj.nroFactura = "FCA 0005-00000318";
+            Items.push(obj);
+
+            var obj = new Object();
+            obj.ID = 1;
+            obj.Importe = 400;
+            obj.NroReferencia = "";
+            obj.FormaDePago = "Efectivo";
+            FormasDePago.push(obj);
+
+            Pagos.Items = Items;
+            Pagos.FormasDePago = FormasDePago;
+            Pagos.Retenciones = Retenciones;
+
+
+            $.ajax({
+                type: 'POST',
+                url: 'Pagos/procesar',
+                data: JSON.stringify(Pagos),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                }
+            });
+        }
+
+        function GuardarPresupuesto(idDiv) {
+            var Presupuesto = new Object();
+            var Items = Array();
+
+            var obj = new Object();
+            obj.ID = 1;
+            obj.Cantidad = 1;
+            obj.Concepto = "Concepto DEMO ";
+            obj.PrecioUnitario = 100;
+            obj.Bonificacion = 0;
+            obj.Iva = 21;
+            Items.push(obj);
+            Presupuesto.Items = Items;
+
+            Presupuesto.Token = "ef4a6b83-b5f6-4c85-8320-6186fa9de3f3";
+            Presupuesto.IDPresupuesto = 4049;
+            Presupuesto.IDPersona = 3432;
+            Presupuesto.Fecha = "21/10/2015";
+            Presupuesto.Nombre = "presupuesto demo";
+            Presupuesto.Numero = 2;
+            Presupuesto.CondicionesPago = "A convenir";
+            Presupuesto.Observaciones = "Alguna observacion";
+            Presupuesto.Estado = "B";
+
+            $.ajax({
+                type: 'POST',
+                url: 'presupuesto/procesar',
+                data: JSON.stringify(Presupuesto),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById(idDiv).className = 'alert alert-info';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(jqXHR.responseText);
+                    document.getElementById(idDiv).className = 'alert alert-danger';
+                    document.getElementById(idDiv).innerHTML = '<pre>' + jqXHR.responseText + '</pre>';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h2>Listado de llamadas de json</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Api Contabilium</h3>
+
+                <h4>Authentication</h4>
+                <p>
+                    /Authentication/ObtenerToken?apiKey=efd3af80926c4ed8bfc663fd211fba52&email=axan.soporte@gmail.com<br>
+                    <button type="button" onclick="loadXMLDoc('/Authentication/ObtenerToken?apiKey=efd3af80926c4ed8bfc663fd211fba52&email=axan.soporte@gmail.com','POST', 'llamada1')">ejecutar</button>
+                </p>
+                <div id="llamada1"></div>
+                <hr>
+                <!-- BANCOS-->
+                <div>
+                    <h1>Bancos</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /bancos/obtener/{token}/{filtro}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/bancos/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&filtro=&page=1&pageSize=10000','GET', 'llamada2')">ejecutar</button>
+                    </p>
+                    <div id="llamada2"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /Bancos/procesar/{token}/{id}/{idBancoBase}/{nroCuenta}/{moneda}/{activo}/{saldoInicial}/{ejecutivo}/{direccion}/{telefono}/{email}/{observacion}<br>
+                        <button type="button" onclick="loadXMLDoc('/Bancos/procesar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=4071&idBancoBase=30&nroCuenta=1&moneda=Pesos Argentinos&activo=1&saldoInicial=0&ejecutivo=&direccion=&telefono=&email=uncorreo@gmail.com&observacion=alguna obsrevación','POST', 'llamada3')">ejecutar</button>
+                    </p>
+                    <div id="llamada3"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Bancos/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Bancos/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=4070','POST', 'llamada4')">ejecutar</button>
+                    </p>
+                    <div id="llamada4"></div>
+                    <hr>
+                </div>
+                <!-- CONCEPTOS-->
+                <div>
+                    <h1>Conceptos</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Conceptos/obtener/{token}/{filtro}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Conceptos/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&filtro=&page=1&pageSize=10000','GET', 'llamada5')">ejecutar</button>
+                    </p>
+                    <div id="llamada5"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /Conceptos/procesar/{token}/{id}/{nombre}/{codigo}/{tipo}/{descripcion}/{estado}/{precio}/{iva}/{stock}/{obs}/{constoInterno}/{stockMinimo}/{idPersona}<br>
+                        <button type="button" onclick="loadXMLDoc('/Conceptos/procesar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=6943&nombre=testconcepto&codigo=9999&tipo=P&descripcion=&estado=A&precio=20.50&iva=20,50&stock=100&obs= &constoInterno=&stockMinimo=12&idPersona=0','POST', 'llamada6')">ejecutar</button>
+                    </p>
+                    <div id="llamada6"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Conceptos/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Conceptos/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=6942','POST', 'llamada7')">ejecutar</button>
+                    </p>
+                    <div id="llamada7"></div>
+                    <hr>
+                </div>
+                <!-- PRODUCTOS TIENDA NUBE-->
+                <div>
+                    <h1>Productos TiendaNube</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /ProductoTiendaNube/obtener/{token}/{filtro}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/ProductoTiendaNube/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&filtro=&page=1&pageSize=10000','GET', 'llamada5')">ejecutar</button>
+                    </p>
+                    <div id="llamada5"></div>
+                    <h4>Crear producto</h4>
+                    <p>
+                        /ProductoTiendaNube/crearProducto/{productoTiendaNube}<br>
+                        <button type="button" onclick="GuardarProductoTiendaNube('llamada19');">ejecutar</button>
+                    </p>
+                    <div id="llamada6"></div>
+                    <h4>Eliminar producto</h4>
+                    <p>
+                        /ProductoTiendaNube/eliminarProducto/{eliminarProductoTiendaNube}<br>
+                        <button type="button" onclick="EliminarProductoTiendaNube('llamada20');">ejecutar</button>
+                    </p>
+                    <div id="llamada7"></div>
+                    <h4>Modificar producto</h4>
+                    <p>
+                        /ProductoTiendaNube/modificarProducto/{productoTiendaNube}<br>
+                        <button type="button" onclick="GuardarProductoTiendaNube('llamada19');">ejecutar</button>
+                    </p>
+                    <hr>
+                </div>
+                <!-- CLIENTES-->
+                <div>
+                    <h1>clientes</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Clientes/obtener/{token}/{filtro}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Clientes/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&filtro=&page=1&pageSize=10000','GET', 'llamada8')">ejecutar</button>
+                    </p>
+                    <div id="llamada8"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /Clientes/procesar/{token}/{id}/{razonSocial}/{nombreFantasia}/{condicionIva}/{personeria}/{tipoDoc}/{nroDoc}/{telefono}/{email}/{idProvincia}/{idCiudad}/{domicilio}/{pisoDepto}/{cp}/{obs}/{listaPrecio}/{codigo}/{saldoInicial}<br>
+                        <button type="button" onclick="loadXMLDoc('/Clientes/procesar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=5504&razonSocial=un cliente pal test&nombreFantasia= caracasa&condicionIva=MO&personeria=F&tipoDoc=DNI&nroDoc=12345678&telefono=4251108&email=uncliente@gmail.com&idProvincia=2&idCiudad=5003&domicilio=julian alvarez 764&pisoDepto=9B&cp=1414&obs=&listaPrecio=0&codigo=999999&saldoInicial=0','POST', 'llamada9')">ejecutar</button>
+                    </p>
+                    <div id="llamada9"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Clientes/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Clientes/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=4500','POST', 'llamada10')">ejecutar</button>
+                    </p>
+                    <div id="llamada10"></div>
+                    <hr>
+                </div>
+                <!-- PROVEEDORES-->
+                <div>
+                    <h1>Proveedores</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Proveedores/obtener/{token}/{filtro}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Proveedores/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&filtro=&page=1&pageSize=10000','GET', 'llamada11')">ejecutar</button>
+                    </p>
+                    <div id="llamada11"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /Proveedores/procesar/{token}/{id}/{razonSocial}/{nombreFantasia}/{condicionIva}/{personeria}/{tipoDoc}/{nroDoc}/{telefono}/{email}/{idProvincia}/{idCiudad}/{domicilio}/{pisoDepto}/{cp}/{obs}/{listaPrecio}/{codigo}/{saldoInicial}<br>
+                        <button type="button" onclick="loadXMLDoc('/Proveedores/procesar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=5505&razonSocial=un provee pal test&nombreFantasia=caracasa&condicionIva=MO&personeria=F&tipoDoc=DNI&nroDoc=87654321&telefono=4251108&email=unprovee@gmail.com&idProvincia=2&idCiudad=5003&domicilio=julian alvarez 764&pisoDepto=9B&cp=1414&obs=&listaPrecio=0&codigo=999991&saldoInicial=0','POST', 'llamada12')">ejecutar</button>
+                    </p>
+                    <div id="llamada12"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Proveedores/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Proveedores/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=4500','POST', 'llamada13')">ejecutar</button>
+                    </p>
+                    <div id="llamada13"></div>
+                    <hr>
+                </div>
+                <!-- LISTA DE PRECIOS-->
+                <div>
+                    <h1>Lista de precios</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /ListaDePrecios/obtener/{token}/{nombre}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/ListaDePrecios/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&nombre=&page=1&pageSize=10000','GET', 'llamada14')">ejecutar</button>
+                    </p>
+                    <div id="llamada14"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /ListaDePrecios/procesar/{token}/{id}/{nombre}/{Observaciones}/{activo}/{listaDePrecios}<br>
+                        <!--<button type="button" onclick="loadXMLDoc('/ListaDePrecios/procesar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=0&nombre=listaTest&Observaciones=&activo=1&listaDePrecios=-#2866#11#0,00-#2867#5735#0,00-#2980#5881#0,00-#2981#6134#0,00','POST', 'llamada15')">ejecutar</button>-->
+                        <button type="button" onclick="guardarListaDePrecio('llamada15');">ejecutar</button>
+                    </p>
+                    <div id="llamada15"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /ListaDePrecios/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/ListaDePrecios/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=19','POST', 'llamada16')">ejecutar</button>
+                    </p>
+                    <div id="llamada16"></div>
+                    <h4>Obtener Items de la lista de precios</h4>
+                    <p>
+                        /ListaDePrecios/obtenerItemsListaDePrecio/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/ListaDePrecios/obtenerItemsListaDePrecio?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=16','GET', 'llamada17')">ejecutar</button>
+                    </p>
+                    <div id="llamada17"></div>
+                    <hr>
+                </div>
+                <!-- COMPROBANTE-->
+                <div>
+                    <h1>Comprobante</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Comprobante/obtener/{token}/{condicion}/{periodo}/{fechaDesde}/{fechaHasta}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Comprobante/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&condicion=&periodo=&fechaDesde=&fechaHasta=&page=1&pageSize=1000','GET', 'llamada18')">ejecutar</button>
+                    </p>
+                    <div id="llamada18"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /Comprobante/procesar/{comprobante}<br>
+                        <button type="button" onclick="GuardarComprobante('llamada19');">ejecutar</button>
+                    </p>
+                    <div id="llamada19"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Comprobante/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Comprobante/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=2438','POST', 'llamada20')">ejecutar</button>
+                    </p>
+                    <div id="llamada20"></div>
+                    <hr>
+                </div>
+                <!--COMMON -->
+                <div>
+                    <h1>Common</h1>
+                    <h4>ObtenerProvincias</h4>
+                    <p>
+                        Common/ObtenerProvincias/{token}<br>
+                        <button type="button" onclick="loadXMLDoc('/Common/ObtenerProvincias?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3','GET', 'llamada21')">ejecutar</button>
+                    </p>
+                    <div id="llamada21"></div>
+
+                    <h4>obtenerCiudades</h4>
+                    <p>
+                        Common/obtenerCiudadesPaginadas/{token}/{idProvincia}<br>
+                        <button type="button" onclick="loadXMLDoc('/Common/obtenerCiudadesPaginadas?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&idProvincia=2','GET', 'llamada22')">ejecutar</button>
+                    </p>
+                    <div id="llamada22"></div>
+                    <h4>obtenerCiudadesPaginadas</h4>
+                    <p>
+                        Common/obtenerCiudadesPaginadas/{token}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Common/obtenerCiudadesPaginadas?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&page=1&pageSize=25','GET', 'llamada23')">ejecutar</button>
+                    </p>
+                    <div id="llamada23"></div>
+                    <hr>
+                </div>
+                <!-- COBRANZAS-->
+                <div>
+                    <h1>Cobranzas</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Cobranzas/obtener/{token}/{condicion}/{periodo}/{fechaDesde}/{fechaHasta}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Cobranzas/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&condicion=A&periodo=&fechaDesde=&fechaHasta=&page=1&pageSize=1000','GET', 'llamada24')">ejecutar</button>
+                    </p>
+                    <div id="llamada24"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /Cobranzas/procesar/{cobranza}<br>
+                        <button type="button" onclick="GuardarCobranzas('llamada25');">ejecutar</button>
+                    </p>
+                    <div id="llamada25"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Cobranzas/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Cobranzas/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=7294','POST', 'llamada26')">ejecutar</button>
+                    </p>
+                    <div id="llamada26"></div>
+                    <hr>
+                </div>
+                <!-- COMPRAS-->
+                <div>
+                    <h1>Compras</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Compras/obtener/{token}/{condicion}/{periodo}/{fechaDesde}/{fechaHasta}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Compras/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&condicion=A&periodo=&fechaDesde=&fechaHasta=&page=1&pageSize=1000','GET', 'llamada27')">ejecutar</button>
+                    </p>
+                    <div id="llamada27"></div>
+
+                    <h4>guardar</h4>
+                    <p>
+                        /Compras/procesar/{cobranza}<br>
+                        <button type="button" onclick="GuardarCompras('llamada28');">ejecutar</button>
+                    </p>
+                    <div id="llamada28"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Compras/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Compras/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=7294','POST', 'llamada29')">ejecutar</button>
+                    </p>
+                    <div id="llamada29"></div>
+                    <hr>
+                </div>
+                <!-- PAGOS-->
+                <div>
+                    <h1>Pagos</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Pagos/obtener/{token}/{condicion}/{periodo}/{fechaDesde}/{fechaHasta}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Pagos/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&condicion=A&periodo=&fechaDesde=&fechaHasta=&page=1&pageSize=1000','GET', 'llamada30')">ejecutar</button>
+                    </p>
+                    <div id="llamada30"></div>
+                    <h4>guardar</h4>
+                    <p>
+                        /Pagos/procesar/{cobranza}<br>
+                        <button type="button" onclick="GuardarPagos('llamada31');">ejecutar</button>
+                    </p>
+                    <div id="llamada31"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Pagos/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Pagos/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=7294','POST', 'llamada32')">ejecutar</button>
+                    </p>
+                    <div id="llamada32"></div>
+                    <hr>
+                </div>
+                <!-- PRESUPUESTOS-->
+                <div>
+                    <h1>presupuestos</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Presupuesto/obtener/{token}/{condicion}/{periodo}/{fechaDesde}/{fechaHasta}/{page}/{pageSize}<br>
+                        <button type="button" onclick="loadXMLDoc('/Presupuesto/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&condicion=A&periodo=&fechaDesde=&fechaHasta=&page=1&pageSize=1000','GET', 'llamada33')">ejecutar</button>
+                    </p>
+                    <div id="llamada33"></div>
+                    <h4>guardar</h4>
+                    <p>
+                        /Presupuesto/procesar/{cobranza}<br>
+                        <button type="button" onclick="GuardarPresupuesto('llamada34');">ejecutar</button>
+                    </p>
+                    <div id="llamada34"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /Presupuesto/eliminar/{token}/{id}<br>
+                        <button type="button" onclick="loadXMLDoc('/Presupuesto/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&id=7294','POST', 'llamada35')">ejecutar</button>
+                    </p>
+                    <div id="llamada35"></div>
+                    <hr>
+                </div>
+                <!-- CONFIGURACION-->
+                <div>
+                    <h1>Configuración</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /Configuracion/obtener/{token}<br>
+                        <button type="button" onclick="loadXMLDoc('/Configuracion/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3','GET', 'llamada36')">ejecutar</button>
+                    </p>
+                    <div id="llamada36"></div>
+                    <h4>guardar</h4>
+                    <p>
+                        /Configuracion/procesar/{token}/{razonSocial}/{condicionIva}/{cuit}/{iibb}/{fechaInicio}/{personeria}/{emailAlertas}/{telefono}/{celular}/{contacto}/{idProvincia}/{idCiudad}/{domicilio}/{pisoDepto}/{cp}/{esAgentePersepcionIVA}/{esAgentePersepcionIIBB}/{esAgenteRetencion}/{exentoIIBB}/{fechaCierreContable}/{idJurisdiccion}<br>
+                        <button type="button" onclick="loadXMLDoc('/Configuracion/procesar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&razonSocial=Demo SRL&condicionIva=RI&cuit=23323628939&iibb=&fechaInicio=01/04/2015&personeria=J&emailAlertas=axan.soporte@gmail.com&telefono=48561278&celular=&contacto=perez anda&idProvincia=1&idCiudad=2458&domicilio=Gurruchaga 447&pisoDepto=8A&cp=1414&esAgentePersepcionIVA=false&esAgentePersepcionIIBB=false&esAgenteRetencion=false&exentoIIBB=true&fechaCierreContable=&idJurisdiccion=1','POST', 'llamada37')">ejecutar</button>
+
+                    </p>
+                    <div id="llamada37"></div>
+                    <h4>cambiar Password</h4>
+                    <p>
+                        /Configuracion/cambiarPassword/{token}/{passwordActual}/{PasswordNuevo}/{Passwordverificado}<br>
+                        <button type="button" onclick="loadXMLDoc('/Configuracion/cambiarPassword?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&passwordActual=123456&PasswordNuevo=123456&Passwordverificado=123456','POST', 'llamada38')">ejecutar</button>
+                    </p>
+                    <div id="llamada38"></div>
+                    <hr>
+                </div>
+                <!-- PUNTO DE VENTA-->
+                <div>
+                    <h1>Punto de venta</h1>
+                    <h4>Obtener</h4>
+                    <p>
+                        /PuntoDeVenta/obtener/{token}<br>
+                        <button type="button" onclick="loadXMLDoc('/PuntoDeVenta/obtener?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3','GET', 'llamada39')">ejecutar</button>
+                    </p>
+                    <div id="llamada39"></div>
+                    <h4>Guardar</h4>
+                    <p>
+                        /PuntoDeVenta/procesar/{token}/{punto}<br>
+                        <button type="button" onclick="loadXMLDoc('/PuntoDeVenta/procesar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&punto=1','POST', 'llamada40')">ejecutar</button>
+
+                    </p>
+                    <div id="llamada40"></div>
+                    <h4>Eliminar</h4>
+                    <p>
+                        /PuntoDeVenta/eliminar/{token}/{idPuntoDeVenta}<br>
+                        <button type="button" onclick="loadXMLDoc('/PuntoDeVenta/eliminar?token=ef4a6b83-b5f6-4c85-8320-6186fa9de3f3&idPuntoDeVenta=3117','POST', 'llamada41')">ejecutar</button>
+                    </p>
+                    <div id="llamada41"></div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

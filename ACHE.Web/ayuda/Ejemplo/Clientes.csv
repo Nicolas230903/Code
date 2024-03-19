@@ -1,0 +1,5 @@
+Codigo;RazonSocial;NombreFantasia;TipoDocumento;NroDocumento;CondicionIva;Telefono;Celular;Web;Email;Observaciones;Provincia;Ciudad;Domicilio;PisoDepto;CodigoPostal;EmailsEnvioFc;Personeria;AlicuotaIvaDefecto;TipoComprobanteDefecto;CBU;Banco;Contacto
+1;Cliente responsable inscripto;;CUIT;11111111;RI;4525108;1524539428;www.axanweb.com;ejemplo@axanweb.com;esta es una observaciones;Ciudad de Buenos Aires;Palermo;julian alvarez 684;1;1414;ejemplo@axanweb.com;J;0;;;;Nombre de su contacto uno
+2;Cliente final;;DNI;22222222;CF;4525108;1524539428;;;;buenos aires;Mar del Plata;castillo 754;9;;;F;0;;;;Nombre de su contacto dos
+3;Cliente Monotributista;;CUIT;33333333;MO;4525108;1524539428;;;;buenos aires;Avellaneda;Corrientes 11;1;;;F;0;;;;Nombre de su contacto uno
+4;Cliente Excento;;CUIT;44444444;EX;4525108;1524539428;;;;Santa Fe;Rosario;Corrientes 11;1;;;F;0;;;;Nombre de su contacto uno

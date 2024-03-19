@@ -1,0 +1,157 @@
+﻿@model ACHE.Model.DashboardAdminViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageheader">
+    <h2><i class="fa fa-bar-chart"></i>Dashboard</h2>
+    <link href="~/css/morris.css" rel="stylesheet" />
+</div>
+
+<div class="contentpanel">
+
+    <div class="row text-center">
+
+        @foreach (var p in Model.Listaplanes)
+        {
+            <div class="col-sm-6 col-md-3 col-lg-2">
+                <div class="panel panel-@p.ClassMaxCantUsuarios panel-stat">
+                    <div class="panel-heading">
+                        <div class="stat">
+                            <div class="row">
+                                <div class="col-xs-12" style="margin-top: -15px; margin-bottom: 15px;">
+                                    <!--small class="stat-label">Plan</small-->
+                                    <h1 style="font-size: 22px;">@p.Nombre</h1>
+                                </div>
+
+
+                                <div class="col-xs-6 label label-@p.ClassMaxCantUsuarios dropdown-toggle tooltips" data-placement="bottom" data-toggle="dropdown" data-original-title="@p.ToolTipsActivos">
+                                    <small class="stat-label">Activos</small>
+                                    <h4><a style="color:#fff" href="#" onclick="home.consultarUsuariosSegunPlan(@p.IDPlan,'Total Activos');">@p.TotalActivos.ToString()</a></h4>
+                                </div>
+                                <div class="col-xs-6 label label-@p.ClassMaxCantUsuarios dropdown-toggle tooltips" data-placement="bottom" data-toggle="dropdown" data-original-title="@p.ToolTipsPendienteDePago">
+                                    <small class="stat-label">Pend de pago</small>
+                                    <h4><a style="color:#fff" href="#" onclick="home.consultarUsuariosSegunPlan(@p.IDPlan,'Total Pendientes de pago');">@p.TotalPendienteDePago.ToString()</a></h4>
+                                </div>
+
+                            </div>
+
+                            <div class="mb15"></div>
+
+                            <div class="row">
+                                <div class="col-xs-6 label label-@p.ClassMaxCantUsuarios dropdown-toggle tooltips" data-placement="bottom" data-toggle="dropdown" data-original-title="@p.ToolTipsInactivos">
+                                    <small class="stat-label">Inactivos</small>
+                                    <h4><a style="color:#fff" href="#" onclick="home.consultarUsuariosSegunPlan(@p.IDPlan,'Total Inactivos');">@p.TotalInactivos.ToString()</a></h4>
+                                </div>
+
+                                @if (p.IDPlan == 6)
+                                {
+                                    <div class="col-xs-6 label label-@p.ClassMaxCantUsuarios dropdown-toggle tooltips" data-placement="bottom" data-toggle="dropdown" data-original-title="@p.ToolTipsTotalUsuarios">
+                                        <small class="stat-label">Setup OK</small>
+                                        <h4><a style="color:#fff" href="#" onclick="home.consultarUsuariosSegunPlan(@p.IDPlan,'Setup OK');">@p.TotalActivos.ToString()</a></h4>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-xs-6 label label-@p.ClassMaxCantUsuarios dropdown-toggle tooltips" data-placement="bottom" data-toggle="dropdown" data-original-title="@p.ToolTipsTotalUsuarios">
+                                        <small class="stat-label">Total</small>
+                                        <h4><a style="color:#fff" href="#" onclick="home.consultarUsuariosSegunPlan(@p.IDPlan,'Total Usuarios');">@p.TotalUsuarios.ToString()</a></h4>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Cantidad de usuarios registrados en los últimos 6 meses por plan</h4>
+                    @*<p>Haciendo click en cada barra puede ver el detalle de la misma</p>*@
+                </div>
+                <div class="panel-body">
+                    <div id="BarUsuariosRegistrados" style="width: 100%; height: 300px;"></div>
+                    <p></p>
+                    @*<p style="text-align: center">Haga click en cada barra para ver el detalle de la misma</p>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cantidad de usuarios registrados en los últimos 30 días</h3>
+                </div>
+                <div class="panel-body" style="height: 346px;">
+                    <div id="BarUsuariosRegistradosDias" style="height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cantidad de formas de pago utilizadas en los últimos 6 meses por plan</h3>
+                </div>
+                <div class="panel-body" style="height: 346px;">
+                    <div id="BarFormasDePago" style="height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Evolución de la facturación en los últimos 6 meses</h3>
+                </div>
+                <div class="panel-body" style="height: 346px;">
+                    <div id="BarFacturacion" style="height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Evolución de la facturación en los últimos 30 dias</h3>
+                </div>
+                <div class="panel-body" style="height: 346px;">
+                    <div id="BarFacturacionDias" style="height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/flot/jquery.flot.js"></script>
+<script src="~/js/flot/jquery.flot.resize.min.js"></script>
+<script src="~/js/flot/jquery.flot.orderBars.min.js"></script>
+<script src="~/js/flot/jquery.flot.time.js"></script>
+<script src="~/js/flot/jquery.flot.categories.js"></script>
+<script src="~/js/views/common.js"></script>
+<script src="~/js/morris.min.js"></script>
+<script src="~/js/raphael-2.1.0.min.js"></script>
+<script src="~/js/views/home.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        home.ObtenerPlanesPorMeses();
+        home.ObtenerPlanesPorDias();
+        home.ObtenerFormasPago();
+        home.ObtenerFacturacion();
+        home.ObtenerFacturacionDias();
+    });
+</script>

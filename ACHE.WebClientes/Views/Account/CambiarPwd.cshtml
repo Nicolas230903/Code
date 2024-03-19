@@ -1,0 +1,80 @@
+﻿@model ACHE.WebClientes.Models.PasswordViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pageheader">
+    <h2><i class="fa fa-key"></i>Cambiar contraseña </h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">Estás aquí:</span>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")">Contabilium</a></li>
+            <li class="active">Cambiar contraseña</li>
+        </ol>
+    </div>
+</div>
+
+<div class="contentpanel">
+
+    <div class="row mb15">
+        <form id="frmEdicion" runat="server" class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="alert alert-danger" id="divError" style="display: none">
+                        <strong>Lo sentimos! <span id="msgError"></span></strong>
+                    </div>
+
+                    <div class="alert alert-success" id="divOk" style="display: none">
+                        <strong>Bien hecho! Los datos se han actualizado correctamente</strong>
+                    </div>
+
+                    <div class="row mb15">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label"><span class="asterisk">*</span> Contraseña actual</label>
+                                <input type="password" class="form-control" id="txtPwdOld" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label"><span class="asterisk">*</span> Nueva contraseña</label>
+                                <input type="password" class="form-control" id="txtPwdNew" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb15">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label"><span class="asterisk">*</span> Confirmar contraseña</label>
+                                <input type="password" class="form-control" id="txtPwdNew2" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-primary" onclick="cambiarPwd();">Actualizar</a>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-default">Volver</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section  Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtPwdOld, #txtPwdNew, #txtPwdNew2").keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if (keycode == '13') {
+                    cambiarPwd();
+                    return false;
+                }
+            });
+        });
+    </script>
+}

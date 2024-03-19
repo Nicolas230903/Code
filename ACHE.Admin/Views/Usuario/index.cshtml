@@ -1,0 +1,195 @@
+﻿@model ACHE.Model.PlanesViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="pageheader">
+
+    <h2><i class="fa fa-users"></i>Usuarios
+    <span>Administración</span></h2>
+</div>
+
+<div class="contentpanel">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 table-results">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                    <form runat="server" id="frmSearch">
+                        <input type="hidden" id="hdnPage" runat="server" value="1" />
+                        <div class="col-sm-12" style="padding-left: inherit">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-sm-4 col-md-4">
+                                        <input type="text" class="form-control" id="txtCondicion" maxlength="128" placeholder="Ingrese la razón social, cuit o email " />
+                                    </div>
+
+                                    <div class="col-sm-2 col-md-2">
+                                        <select class="select2" data-placeholder="Buscar por fecha de alta..." id="ddlPeriodo" onchange="usuario.otroPeriodo();">
+                                            <option value="" selected="selected"></option>
+                                            <option value="30">Últimos 30 dias</option>
+                                            <option value="15">Últimos 15 dias</option>
+                                            <option value="7">Últimos 7 dias</option>
+                                            <option value="1">Ayer</option>
+                                            <option value="0">Hoy</option>
+                                            <option value="-1">Otro período</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+
+                                        @Html.DropDownListFor(m => m.Plan, new SelectList(new List<Object>{ 
+                                                                                                new { value = "" , text = "" }, 
+                                                                                                new { value = "Basico" , text = "Basico" }, 
+                                                                                                new { value = "Profesional" , text = "Profesional"  },
+                                                                                                new { value = "Pyme" , text = "Pyme" }, 
+                                                                                                new { value = "Empresa" , text = "Empresa"  },
+                                                                                                new { value = "Corporativo" , text = "Corporativo"  },
+                                                                                                new { value = "Prueba" , text = "Prueba" }
+                                        },
+                                        "value",
+                                        "text"), new { @class = "select2", @id = "ddlTipoPlan", @onchange = " usuario.filtrar();", @placeholder = "Ingrese un plan" })
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+                                        @Html.DropDownListFor(m => m.Estado, new SelectList(new List<Object>{ 
+                                                                                                new { value = "" , text = "" }, 
+                                                                                                new { value = "Total Activos" , text = "Total Activos" }, 
+                                                                                                new { value = "Total Pendientes de pago" , text = "Total Pendientes de pago"  },
+                                                                                                new { value = "Total Inactivos" , text = "Total Inactivos" }, 
+                                                                                                new { value = "Setup OK" , text = "Setup OK"  },
+                                                                                                new { value = "Total Usuarios" , text = "Total Usuarios" },
+                                                                                                new { value = "Dados de baja" , text = "Dados de baja" }
+                                        },
+                                        "value",
+                                        "text"), new { @class = "select2", @id = "ddlEstado", @onchange = " usuario.filtrar();", @placeholder = "Ingrese un parametro" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb20"></div>
+
+                                <div id="divMasFiltros" style="display: none">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                <input id="txtFechaDesde" class="form-control validDate greaterThan" placeholder="Fecha desde" maxlength="10" onchange="usuario.filtrar();" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                <input id="txtFechaHasta" class="form-control validDate greaterThan" placeholder="Fecha hasta" maxlength="10" onchange="usuario.filtrar();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* <input type="hidden" id="hdnPlan" value="@Model.Plan"/>
+                        <input type="hidden" id="hdnEstado" value="@Model.Estado"/>*@
+                    </form>
+
+                    <div class="col-sm-12">
+                        <hr />
+                    </div>
+                    <div class="row mb20"></div>
+                    <div class="row">
+                        <div class="pull-right">
+                            <div class="btn-group mr10">
+                                <div class="btn btn-white tooltips">
+                                    <a id="divIconoDescargar" href="javascript:usuario.exportar();">
+                                        <i class="glyphicon glyphicon-save"></i>&nbsp;Exportar
+                                    </a>
+                                    <img alt="" src="~/images/loaders/loader1.gif" id="imgLoading" style="display: none" />
+                                    <a href="" id="lnkDownload" onclick="usuario.resetearExportacion();" download="Usuarios" style="display: none">Descargar</a>
+                                </div>
+                            </div>
+
+                            <div class="btn-group mr10" id="divPagination" style="display: none">
+                                <a class="btn btn-white" id="lnkPrevPage" style="cursor: pointer" onclick="usuario.mostrarPagAnterior();"><i class="glyphicon glyphicon-chevron-left"></i>Anterior</a>
+                                <a class="btn btn-white" id="lnkNextPage" style="cursor: pointer" onclick="usuario.mostrarPagProxima();">Siguiente <i class="glyphicon glyphicon-chevron-right"></i></a>
+                            </div>
+                        </div>
+
+                        <h4 class="panel-title" style="clear: left; padding-left: 20px">Resultados</h4>
+                        <p id="msjResultados" style="padding-left: 20px"></p>
+                    </div>
+                </div>
+                <!-- panel-heading -->
+                <div class="panel-body">
+
+                    <div class="alert alert-danger" id="divError" style="display: none">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Lo sentimos!</strong> <span id="msgError"></span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover mb30">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Razón social</th>
+                                    <th>CUIT</th>
+                                    <th>Cond. IVA</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Setup</th>
+                                    <th>Antig en meses</th>
+                                    <th>Plan</th>
+                                    <th>Último login</th>
+                                    <th>Fecha alta</th>
+                                    <th>Baja</th>
+                                    @*<th class="columnIcons"></th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="resultsContainer">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="resultTemplate" type="text/x-jQuery-tmpl">
+    {{each results}}
+        <tr onclick="usuario.editar(${ID});" style="cursor: pointer;">
+            <td>${ID}</td>
+            <td>${RazonSocial}</td>
+            <td>${CUIT}</td>
+            <td>${CondicionIva}</td>
+            <td>${Email}</td>
+            <td>${Telefono}</td>
+            <td>${SetupRealizado}</td>
+            <td>${AntiguedadMeses}</td>
+            <td>${PlanActual}</td>
+            <td>${FechaUltLogin}</td>
+            <td>${FechaAltaDesc}</td>
+            <td>${Baja}</td>
+            @*<td class="table-action">
+                <a onclick="usuario.editar(${ID});" style="cursor: pointer; font-size: 16px" title="Editar"><i class="fa fa-pencil"></i></a>
+            </td>*@
+        </tr>
+    {{/each}}
+</script>
+
+<script id="noResultTemplate" type="text/x-jQuery-tmpl">
+    <tr>
+        <td colspan="11">No se han encontrado resultados
+        </td>
+    </tr>
+</script>
+
+<script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/select2.min.js"></script>
+<script src="~/js/views/Usuario.js"></script>
+
+<script>
+    jQuery(document).ready(function () {
+        usuario.filtrar();
+        usuario.configFilters();
+    });
+</script>
